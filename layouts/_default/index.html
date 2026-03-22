@@ -2,55 +2,52 @@
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
 
-<div style="padding: 0 1rem;">
+<div class="home-wrap">
   {{- with site.Params.profileMode }}
-  <div class="profile" style="text-align:center;">
+  <div class="home-profile">
     {{- with .imageUrl }}
-    <img src="{{ . }}"
-         alt="{{ $.Site.Params.profileMode.imageTitle | default "profile" }}"
+    <img src="{{ . }}" alt="{{ $.Site.Params.profileMode.imageTitle | default "profile" }}"
          width="{{ $.Site.Params.profileMode.imageWidth | default 120 }}"
          height="{{ $.Site.Params.profileMode.imageHeight | default 120 }}" />
     {{- end }}
-    <div class="profile_inner">
-      <h1>{{ .title | default site.Title }}</h1>
-      <span>{{ .subtitle | default "" }}</span>
-      {{- with $.Site.Params.socialIcons }}
-      <div class="social-icons" style="margin:0.6rem 0;">
-        {{- range . }}
-        <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name }}" style="margin:0 3px;">
-          {{ partial "svg.html" . }}
-        </a>
-        {{- end }}
-      </div>
-      {{- end }}
-      {{- with .buttons }}
-      <div class="buttons" style="margin-top:0.6rem;">
-        {{- range . }}
-        <a class="button" href="{{ trim .url " " }}" rel="noopener">{{ .name }}</a>
-        {{- end }}
-      </div>
+    <h1>{{ .title | default site.Title }}</h1>
+    <p class="home-subtitle">{{ .subtitle | default "" }}</p>
+    {{- with $.Site.Params.socialIcons }}
+    <div class="home-social">
+      {{- range . }}
+      <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name }}">
+        {{ partial "svg.html" . }}
+      </a>
       {{- end }}
     </div>
+    {{- end }}
+    {{- with .buttons }}
+    <div class="home-buttons">
+      {{- range . }}
+      <a class="home-btn" href="{{ trim .url " " }}" rel="noopener">{{ .name }}</a>
+      {{- end }}
+    </div>
+    {{- end }}
   </div>
   {{- end }}
 
   {{- if $pages }}
-  <div id="recent-posts">
-    <h2>Recent posts</h2>
-    {{- range $pages }}
-    <a class="post-entry" href="{{ .Permalink }}">
-      <div class="entry-header">
-        <h2>{{ .Title }}</h2>
-      </div>
-      {{- with .Params.description }}
-      <div class="entry-content"><p>{{ . }}</p></div>
+  <div class="home-feed">
+    <span class="home-feed-label">Recent posts</span>
+    <div class="home-grid">
+      {{- range $pages }}
+      <a class="post-entry" href="{{ .Permalink }}">
+        <div class="entry-header"><h2>{{ .Title }}</h2></div>
+        {{- with .Params.description }}
+        <div class="entry-content"><p>{{ . }}</p></div>
+        {{- end }}
+        <div class="entry-footer">
+          <span>{{ .Date.Format "Jan 2006" }}</span>
+          {{- with .Params.tags }}&nbsp;·&nbsp;{{- range . }}<span>#{{ . }}</span> {{- end }}{{- end }}
+        </div>
+      </a>
       {{- end }}
-      <div class="entry-footer">
-        <span>{{ .Date.Format "Jan 2006" }}</span>
-        {{- with .Params.tags }}&nbsp;·&nbsp;{{- range . }}<span>#{{ . }}</span> {{- end }}{{- end }}
-      </div>
-    </a>
-    {{- end }}
+    </div>
   </div>
   {{- end }}
 </div>
