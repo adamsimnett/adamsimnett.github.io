@@ -1,0 +1,268 @@
+/* ============================================
+   CUSTOM PAPERMOD OVERRIDES
+   File: assets/css/extended/custom.css
+   ============================================ */
+
+/* --- Amber accent colour throughout --- */
+:root {
+  --amber-400: #d97706;
+  --amber-300: #f59e0b;
+  --amber-200: #fcd34d;
+  --amber-glow: rgba(217, 119, 6, 0.15);
+}
+
+/* --- Wider content area --- */
+.main {
+  max-width: 960px !important;
+}
+
+/* ============================================
+   BACKGROUND: dot grid + subtle dark gradient
+   ============================================ */
+body {
+  background-color: #0f0f0f;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(217, 119, 6, 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(217, 119, 6, 0.03) 0%, transparent 50%),
+    radial-gradient(#2a2a2a 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+
+/* ============================================
+   PILL NAVBAR
+   ============================================ */
+header.header {
+  background: transparent !important;
+  padding: 1.5rem 0 0;
+}
+
+#top-link,
+.nav {
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
+  padding: 6px 8px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: fit-content;
+  margin: 0 auto;
+  gap: 2px;
+}
+
+.nav a {
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+  letter-spacing: 0.01em;
+}
+
+.nav a:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav a.active,
+.nav a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 0.5px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================
+   PROFILE / HOMEPAGE HERO
+   ============================================ */
+.profile {
+  padding: 3rem 0 2rem;
+}
+
+.profile img {
+  border-radius: 50%;
+  border: 2px solid rgba(217, 119, 6, 0.4);
+  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.08);
+}
+
+.profile .profile_inner h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.profile .profile_inner p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+}
+
+.profile .buttons .button {
+  border: 1px solid rgba(217, 119, 6, 0.5);
+  border-radius: 50px;
+  color: var(--amber-300);
+  padding: 8px 22px;
+  font-size: 13px;
+  transition: all 0.15s ease;
+  background: transparent;
+}
+
+.profile .buttons .button:hover {
+  background: var(--amber-glow);
+  border-color: var(--amber-300);
+  color: var(--amber-200);
+}
+
+/* ============================================
+   BLOG POST CARDS - 2 column grid on homepage
+   ============================================ */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .posts-grid { grid-template-columns: 1fr; }
+}
+
+/* Standard post list entries styled as cards */
+.post-entry {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  text-decoration: none !important;
+}
+
+.post-entry:hover {
+  border-color: rgba(217, 119, 6, 0.35);
+  background: rgba(217, 119, 6, 0.04);
+}
+
+.post-entry .entry-header h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.post-entry .entry-content p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+
+.post-entry .entry-footer {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: monospace;
+}
+
+/* ============================================
+   TAGS / TERMS
+   ============================================ */
+.terms-tags a,
+.post-tags a {
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  color: var(--amber-300);
+  border-radius: 50px;
+  padding: 3px 10px;
+  font-size: 11px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.terms-tags a:hover,
+.post-tags a:hover {
+  background: rgba(217, 119, 6, 0.2);
+}
+
+/* ============================================
+   LINKS & ACCENTS
+   ============================================ */
+a {
+  color: var(--amber-300);
+}
+
+a:hover {
+  color: var(--amber-200);
+}
+
+.post-single a,
+.post-content a {
+  color: var(--amber-300);
+  text-decoration: underline;
+  text-decoration-color: rgba(217, 119, 6, 0.4);
+  text-underline-offset: 3px;
+}
+
+/* ============================================
+   POST SINGLE PAGE
+   ============================================ */
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.post-meta {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+}
+
+/* Code blocks */
+.highlight pre {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+code {
+  font-size: 13px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 12px;
+  padding: 2rem 0;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.footer a:hover {
+  color: var(--amber-300);
+}
+
+/* ============================================
+   SECTION HEADINGS
+   ============================================ */
+.section-heading {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  font-family: monospace;
+  margin: 2.5rem 0 1rem;
+}
