@@ -1,40 +1,86 @@
 /* ============================================
    CUSTOM PAPERMOD OVERRIDES
+   Uses CSS custom properties scoped to
+   PaperMod's actual dark/light selectors
    ============================================ */
 
+/* Light mode tokens */
 :root {
-  --amber-400: #d97706;
-  --amber-300: #f59e0b;
-  --amber-200: #fcd34d;
-  --amber-glow: rgba(217, 119, 6, 0.15);
+  --amber:        #d97706;
+  --amber-light:  #f59e0b;
+  --amber-pale:   #fcd34d;
+  --amber-glow:   rgba(217,119,6,0.12);
+
+  --bg:           #f8f8f6;
+  --bg-dot:       #e0e0e0;
+  --surface:      #ffffff;
+  --surface-2:    rgba(0,0,0,0.03);
+  --border:       rgba(0,0,0,0.08);
+  --border-hover: rgba(217,119,6,0.3);
+
+  --text-1:       rgba(0,0,0,0.88);
+  --text-2:       rgba(0,0,0,0.55);
+  --text-3:       rgba(0,0,0,0.35);
+  --text-muted:   rgba(0,0,0,0.25);
+
+  --nav-bg:       rgba(255,255,255,0.92);
+  --nav-border:   rgba(0,0,0,0.08);
+  --nav-shadow:   0 1px 8px rgba(0,0,0,0.07);
+  --nav-text:     rgba(0,0,0,0.5);
+  --nav-hover-bg: rgba(0,0,0,0.04);
+  --nav-active-bg:rgba(0,0,0,0.06);
+  --nav-active-text: rgba(0,0,0,0.85);
+
+  --tl-line:      rgba(0,0,0,0.1);
+  --tl-dot-bg:    #f8f8f6;
+  --tl-dot-border:rgba(0,0,0,0.18);
 }
 
-.main { max-width: 920px !important; }
+/* Dark mode tokens — PaperMod adds .dark to <html> */
+.dark {
+  --bg:           #0f0f0f;
+  --bg-dot:       #2a2a2a;
+  --surface:      rgba(255,255,255,0.03);
+  --surface-2:    rgba(255,255,255,0.05);
+  --border:       rgba(255,255,255,0.08);
+  --border-hover: rgba(217,119,6,0.35);
+
+  --text-1:       rgba(255,255,255,0.90);
+  --text-2:       rgba(255,255,255,0.55);
+  --text-3:       rgba(255,255,255,0.30);
+  --text-muted:   rgba(255,255,255,0.20);
+
+  --nav-bg:       rgba(22,22,22,0.92);
+  --nav-border:   rgba(255,255,255,0.09);
+  --nav-shadow:   none;
+  --nav-text:     rgba(255,255,255,0.5);
+  --nav-hover-bg: rgba(255,255,255,0.07);
+  --nav-active-bg:rgba(255,255,255,0.10);
+  --nav-active-text: #ffffff;
+
+  --tl-line:      rgba(255,255,255,0.07);
+  --tl-dot-bg:    #0f0f0f;
+  --tl-dot-border:rgba(255,255,255,0.2);
+}
 
 /* ============================================
    BACKGROUND
-   PaperMod sets dark class on <html>, not body
    ============================================ */
-
-/* Default (light) */
 body {
-  background-color: #fafafa;
-  background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* Dark mode — triggered by .dark on <html> */
-.dark body {
-  background-color: #0f0f0f !important;
+  background-color: var(--bg) !important;
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(217,119,6,0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(217,119,6,0.03) 0%, transparent 50%),
-    radial-gradient(#2a2a2a 1px, transparent 1px) !important;
-  background-size: 100% 100%, 100% 100%, 28px 28px !important;
+    radial-gradient(circle at 20% 20%, rgba(217,119,6,0.03) 0%, transparent 50%),
+    radial-gradient(var(--bg-dot) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 28px 28px !important;
 }
 
 /* ============================================
-   PILL NAVBAR
+   LAYOUT
+   ============================================ */
+.main { max-width: 920px !important; }
+
+/* ============================================
+   NAVBAR
    ============================================ */
 header.header {
   background: transparent !important;
@@ -42,23 +88,17 @@ header.header {
 }
 
 .nav {
-  display: flex;
+  display: flex !important;
   justify-content: center;
+  align-items: center;
+  gap: 2px;
   border-radius: 50px;
   padding: 4px 6px;
-  width: fit-content;
+  width: fit-content !important;
   margin: 0 auto;
-  gap: 2px;
-  align-items: center;
-  background: rgba(255,255,255,0.9);
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-}
-
-.dark .nav {
-  background: rgba(25,25,25,0.9) !important;
-  border: 1px solid rgba(255,255,255,0.09) !important;
-  box-shadow: none !important;
+  background: var(--nav-bg) !important;
+  border: 1px solid var(--nav-border) !important;
+  box-shadow: var(--nav-shadow) !important;
 }
 
 .nav a {
@@ -70,290 +110,273 @@ header.header {
   transition: all 0.15s ease;
   line-height: 1.4;
   white-space: nowrap;
-  color: rgba(0,0,0,0.5);
+  color: var(--nav-text) !important;
+  background: transparent;
+  border: none;
 }
 
-.dark .nav a { color: rgba(255,255,255,0.5) !important; }
-
-.nav a:hover { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.85); }
-.dark .nav a:hover { background: rgba(255,255,255,0.07) !important; color: rgba(255,255,255,0.9) !important; }
-
-.nav a.active, .nav a[aria-current="page"] {
-  background: rgba(0,0,0,0.06);
-  color: rgba(0,0,0,0.85);
-  border: 0.5px solid rgba(0,0,0,0.1);
+.nav a:hover {
+  background: var(--nav-hover-bg) !important;
+  color: var(--text-1) !important;
 }
-.dark .nav a.active, .dark .nav a[aria-current="page"] {
-  background: rgba(255,255,255,0.1) !important;
-  color: #fff !important;
-  border: 0.5px solid rgba(255,255,255,0.15) !important;
+
+.nav a.active,
+.nav a[aria-current="page"] {
+  background: var(--nav-active-bg) !important;
+  color: var(--nav-active-text) !important;
+  border: 0.5px solid var(--border) !important;
 }
 
 #theme-toggle {
   padding: 4px 8px;
   margin: 0;
-  background: transparent;
-  border: none;
+  background: transparent !important;
+  border: none !important;
   cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 14px;
   line-height: 1;
-  color: rgba(0,0,0,0.35);
+  color: var(--text-3) !important;
 }
-.dark #theme-toggle { color: rgba(255,255,255,0.4) !important; }
-#theme-toggle:hover { color: var(--amber-300) !important; }
+#theme-toggle:hover { color: var(--amber-light) !important; }
+#theme-toggle svg { width: 18px; height: 18px; }
 
 /* ============================================
-   TYPOGRAPHY — consistent headings everywhere
+   TYPOGRAPHY
    ============================================ */
+body { color: var(--text-1) !important; }
 
-/* Page/section titles */
-h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
-h2 { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
-h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.4; }
+h1, h2, h3, h4 { color: var(--text-1) !important; }
 
-/* Post list page title e.g. "Posts" */
-.list-header h1, .page-header h1, .archive-header h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-}
+h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; }
+h2 { font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
+h3 { font-size: 1.1rem; font-weight: 600; }
 
-/* Post single title */
 .post-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  font-size: 2.2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.2 !important;
+  color: var(--text-1) !important;
 }
 
 /* ============================================
-   PROFILE HERO — tighten vertical space
+   LINKS
    ============================================ */
-.profile {
-  padding: 1.5rem 0 1rem;
+a { color: var(--amber) !important; }
+a:hover { color: var(--amber-light) !important; }
+.post-content a {
+  text-decoration: underline;
+  text-decoration-color: rgba(217,119,6,0.35);
+  text-underline-offset: 3px;
 }
+
+/* ============================================
+   PROFILE HERO
+   ============================================ */
+.profile { padding: 1.75rem 0 1.25rem; }
 
 .profile img {
-  border-radius: 50%;
-  border: 2px solid rgba(217,119,6,0.4);
-  box-shadow: 0 0 0 4px rgba(217,119,6,0.08);
+  border-radius: 50% !important;
+  border: 2px solid rgba(217,119,6,0.45) !important;
+  box-shadow: 0 0 0 4px rgba(217,119,6,0.08) !important;
 }
 
 .profile .profile_inner h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 4px;
+  color: var(--text-1) !important;
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
 }
 
-.profile .profile_inner span {
-  font-size: 15px;
-  color: rgba(0,0,0,0.45);
+.profile .profile_inner span,
+.profile .profile_inner p {
+  color: var(--text-2) !important;
+  font-size: 15px !important;
 }
-.dark .profile .profile_inner span { color: rgba(255,255,255,0.45) !important; }
 
-.profile .buttons {
-  margin-top: 1rem;
-}
+.social-icons a { color: var(--amber) !important; }
+.social-icons svg { fill: var(--amber) !important; stroke: var(--amber) !important; }
 
 .profile .buttons .button {
-  border: 1px solid rgba(217,119,6,0.5);
-  border-radius: 50px;
-  color: var(--amber-400);
-  padding: 7px 20px;
-  font-size: 13px;
+  border: 1px solid rgba(217,119,6,0.45) !important;
+  border-radius: 50px !important;
+  color: var(--amber) !important;
+  padding: 7px 20px !important;
+  font-size: 13px !important;
+  background: transparent !important;
   transition: all 0.15s ease;
-  background: transparent;
 }
 .profile .buttons .button:hover {
-  background: var(--amber-glow);
-  border-color: var(--amber-300);
+  background: var(--amber-glow) !important;
+  border-color: var(--amber-light) !important;
 }
 
 /* ============================================
-   POST CARDS — 2 column grid
+   POST CARDS — 2 column grid on homepage
    ============================================ */
 #recent-posts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+  gap: 14px !important;
   margin-top: 0.5rem;
 }
 
 #recent-posts > h2 {
   grid-column: 1 / -1;
-  font-size: 11px;
+  font-size: 11px !important;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: monospace;
-  font-weight: 500;
-  margin: 0.5rem 0 0.25rem;
-  color: rgba(0,0,0,0.35);
+  font-weight: 500 !important;
+  margin: 0.5rem 0 0.25rem !important;
+  color: var(--text-3) !important;
 }
-.dark #recent-posts > h2 { color: rgba(255,255,255,0.3) !important; }
 
-@media (max-width: 640px) { #recent-posts { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  #recent-posts { grid-template-columns: 1fr !important; }
+}
 
 .post-entry {
-  border-radius: 12px;
-  padding: 1.1rem 1.25rem;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  border-radius: 12px !important;
+  padding: 1.1rem 1.25rem !important;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
   text-decoration: none !important;
   margin: 0 !important;
   display: block;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.07);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-.dark .post-entry {
-  background: rgba(255,255,255,0.03) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  box-shadow: none !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
 }
 
-.post-entry:hover { border-color: rgba(217,119,6,0.3) !important; box-shadow: 0 2px 8px rgba(217,119,6,0.08); }
-.dark .post-entry:hover { background: rgba(217,119,6,0.04) !important; box-shadow: none !important; }
+.post-entry:hover {
+  border-color: var(--border-hover) !important;
+  background: var(--surface-2) !important;
+}
 
 .post-entry .entry-header h2 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 6px;
-  line-height: 1.4;
-  color: rgba(0,0,0,0.85);
-  letter-spacing: 0;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-bottom: 6px !important;
+  line-height: 1.4 !important;
+  color: var(--text-1) !important;
+  letter-spacing: 0 !important;
 }
-.dark .post-entry .entry-header h2 { color: rgba(255,255,255,0.88) !important; }
 
 .post-entry .entry-content p {
-  font-size: 13px;
-  line-height: 1.55;
-  margin: 0 0 8px;
-  color: rgba(0,0,0,0.5);
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+  margin: 0 0 8px !important;
+  color: var(--text-2) !important;
 }
-.dark .post-entry .entry-content p { color: rgba(255,255,255,0.4) !important; }
 
 .post-entry .entry-footer {
-  font-size: 11px;
+  font-size: 11px !important;
   font-family: monospace;
-  color: rgba(0,0,0,0.3);
+  color: var(--text-3) !important;
 }
-.dark .post-entry .entry-footer { color: rgba(255,255,255,0.25) !important; }
+
+/* Blog list page (/posts/) */
+.post-entry + .post-entry { margin-top: 0 !important; }
 
 /* ============================================
-   BLOG LIST PAGE (separate /posts/ page)
+   POST META & HEADER
    ============================================ */
-.post-entry + .post-entry { margin-top: 0 !important; }
+.post-meta { font-size: 13px; color: var(--text-3) !important; }
+.post-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
 
 /* ============================================
    TAGS
    ============================================ */
 .terms-tags a, .post-tags a {
-  background: rgba(217,119,6,0.1);
-  border: 1px solid rgba(217,119,6,0.25);
-  color: var(--amber-400);
-  border-radius: 50px;
-  padding: 3px 10px;
-  font-size: 11px;
-  text-decoration: none;
-  transition: background 0.15s;
+  background: rgba(217,119,6,0.1) !important;
+  border: 1px solid rgba(217,119,6,0.25) !important;
+  color: var(--amber) !important;
+  border-radius: 50px !important;
+  padding: 3px 10px !important;
+  font-size: 11px !important;
+  text-decoration: none !important;
 }
-.terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.2); }
-
-/* ============================================
-   LINKS
-   ============================================ */
-a { color: var(--amber-400); }
-.dark a { color: var(--amber-300) !important; }
-a:hover { color: var(--amber-300); }
-.dark a:hover { color: var(--amber-200) !important; }
-
-.post-content a {
-  text-decoration: underline;
-  text-decoration-color: rgba(217,119,6,0.4);
-  text-underline-offset: 3px;
-}
-
-/* ============================================
-   POST META
-   ============================================ */
-.post-meta { font-size: 13px; color: rgba(0,0,0,0.4); }
-.dark .post-meta { color: rgba(255,255,255,0.35) !important; }
+.terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.2) !important; }
 
 /* ============================================
    CODE
    ============================================ */
-.highlight pre { border-radius: 8px; }
-.dark .highlight pre { border: 1px solid rgba(255,255,255,0.07); }
+.highlight pre { border-radius: 8px; border: 1px solid var(--border); }
 code { font-size: 13px; }
 
 /* ============================================
    FOOTER
    ============================================ */
-footer.footer { font-size: 12px; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.06); color: rgba(0,0,0,0.35); }
-.dark footer.footer { border-top: 1px solid rgba(255,255,255,0.06) !important; color: rgba(255,255,255,0.25) !important; }
-.footer a:hover { color: var(--amber-300) !important; }
+footer.footer {
+  font-size: 12px;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-3) !important;
+}
+.footer a { color: var(--text-3) !important; }
+.footer a:hover { color: var(--amber-light) !important; }
 
 /* ============================================
-   ABOUT PAGE — section labels + light mode fix
+   ABOUT PAGE
    ============================================ */
 .about-section-label {
-  font-size: 12px !important;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-family: monospace;
-  font-weight: 500;
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-family: monospace !important;
+  font-weight: 600 !important;
   margin: 2.5rem 0 1.25rem !important;
-  padding-bottom: 8px;
-  color: rgba(0,0,0,0.45) !important;
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-  display: block;
-}
-.dark .about-section-label {
-  color: rgba(255,255,255,0.5) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  padding-bottom: 8px !important;
+  color: var(--text-2) !important;
+  border-bottom: 1px solid var(--border) !important;
+  display: block !important;
 }
 
-/* About page light mode text colours */
-.about-bio { color: rgba(0,0,0,0.65); }
-.dark .about-bio { color: rgba(255,255,255,0.6) !important; }
+.about-bio { color: var(--text-2) !important; line-height: 1.75; }
+.about-bio p { color: var(--text-2) !important; }
 
-.about-hero-text .role { color: rgba(0,0,0,0.4); }
-.dark .about-hero-text .role { color: rgba(255,255,255,0.4) !important; }
+.about-hero-text h1 { color: var(--text-1) !important; }
+.about-hero-text .role { color: var(--text-3) !important; }
+.about-hero-text p { color: var(--text-2) !important; }
 
-.about-hero-text p { color: rgba(0,0,0,0.6); }
-.dark .about-hero-text p { color: rgba(255,255,255,0.55) !important; }
+.about-social a {
+  color: var(--text-2) !important;
+  border-color: var(--border) !important;
+  text-decoration: none !important;
+}
+.about-social a:hover { color: var(--amber-light) !important; border-color: rgba(217,119,6,0.35) !important; }
 
-.about-social a { color: rgba(0,0,0,0.45); border-color: rgba(0,0,0,0.1); }
-.dark .about-social a { color: rgba(255,255,255,0.45) !important; border-color: rgba(255,255,255,0.12) !important; }
+.about-divider { background: var(--border) !important; }
 
-.about-divider { background: rgba(0,0,0,0.07); }
-.dark .about-divider { background: rgba(255,255,255,0.07) !important; }
+/* Timeline */
+.timeline::before { background: var(--tl-line) !important; }
 
-/* Timeline light mode */
-.tl-card { background: #fff; border: 1px solid rgba(0,0,0,0.07); }
-.dark .tl-card { background: rgba(255,255,255,0.03) !important; border: 1px solid rgba(255,255,255,0.08) !important; }
-.tl-card:hover { border-color: rgba(217,119,6,0.3); }
+.tl-dot {
+  background: var(--tl-dot-bg) !important;
+  border-color: var(--tl-dot-border) !important;
+}
+.tl-dot.tl-active {
+  border-color: var(--amber) !important;
+  background: rgba(217,119,6,0.15) !important;
+  box-shadow: 0 0 0 3px rgba(217,119,6,0.08) !important;
+}
 
-.tl-title { color: rgba(0,0,0,0.85); font-size: 15px; font-weight: 500; }
-.dark .tl-title { color: rgba(255,255,255,0.88) !important; }
+.tl-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+.tl-card:hover { border-color: var(--border-hover) !important; }
 
-.tl-title .at { color: rgba(0,0,0,0.4); font-weight: 400; }
-.dark .tl-title .at { color: rgba(255,255,255,0.35) !important; }
+.tl-title { color: var(--text-1) !important; }
+.tl-title .at { color: var(--text-3) !important; font-weight: 400; }
+.tl-desc { color: var(--text-2) !important; }
+.tl-date, .tl-location { color: var(--text-3) !important; }
 
-.tl-desc { color: rgba(0,0,0,0.55); }
-.dark .tl-desc { color: rgba(255,255,255,0.45) !important; }
+.tag {
+  color: var(--text-2) !important;
+  background: var(--surface-2) !important;
+  border: 1px solid var(--border) !important;
+}
 
-.tl-date, .tl-location { color: rgba(0,0,0,0.35); }
-.dark .tl-date, .dark .tl-location { color: rgba(255,255,255,0.3) !important; }
-
-.timeline::before { background: rgba(0,0,0,0.1); }
-.dark .timeline::before { background: rgba(255,255,255,0.07) !important; }
-
-.tl-dot { background: #fafafa; border-color: rgba(0,0,0,0.18); }
-.dark .tl-dot { background: #0f0f0f !important; border-color: rgba(255,255,255,0.2) !important; }
-
-.tag { color: rgba(0,0,0,0.45); background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); }
-.dark .tag { color: rgba(255,255,255,0.35) !important; background: rgba(255,255,255,0.04) !important; border-color: rgba(255,255,255,0.08) !important; }
+/* Badge colours stay amber-based, no override needed */
