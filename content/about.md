@@ -252,16 +252,16 @@ summary: "About me"
 
 <!-- HERO -->
 <div class="about-hero">
-  <img src="/images/headshot.jpg" alt="Your Name" />
+  <img src="/images/headshot.jpg" alt="Adam Simnett" />
   <div class="about-hero-text">
-    <h1>Your Name</h1>
+    <h1>Adam Simnett</h1>
     <p class="role">Azure Engineer · Writer · Builder</p>
     <p>
       Senior cloud engineer based in the UK. I write about infrastructure, platform engineering,
       and the real lessons from building and operating systems at scale.
     </p>
     <div class="about-social">
-      <a href="https://github.com/yourusername">github</a>
+      <a href="https://github.com/adamsimnett">github</a>
       <a href="https://linkedin.com/in/yourprofile">linkedin</a>
       <a href="mailto:you@yourdomain.com">email</a>
       <a href="/index.xml">rss</a>
