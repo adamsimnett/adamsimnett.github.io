@@ -1,27 +1,23 @@
 /* ================================================
    adamsimnett.github.io — custom theme
-   Single source of truth. Do not accumulate.
+   PaperMod toggles data-theme="dark"/"light" on <html>
    ================================================ */
 
 /* ---- Tokens: light mode ---- */
 :root {
   --amber:        #d97706;
   --amber-hi:     #f59e0b;
-  --amber-pale:   #fcd34d;
   --amber-glow:   rgba(217,119,6,0.10);
-
   --bg:           #f7f6f3;
   --dot:          #dddbd5;
   --surface:      #ffffff;
   --surface-dim:  rgba(0,0,0,0.025);
   --border:       rgba(0,0,0,0.08);
   --border-hi:    rgba(217,119,6,0.30);
-
   --t1: rgba(0,0,0,0.88);
   --t2: rgba(0,0,0,0.55);
   --t3: rgba(0,0,0,0.35);
   --t4: rgba(0,0,0,0.22);
-
   --nav-bg:     rgba(255,255,255,0.92);
   --nav-border: rgba(0,0,0,0.09);
   --nav-link:   rgba(0,0,0,0.48);
@@ -31,19 +27,17 @@
 }
 
 /* ---- Tokens: dark mode ---- */
-.dark {
+[data-theme="dark"] {
   --bg:         #111110;
   --dot:        #252523;
   --surface:    rgba(255,255,255,0.035);
   --surface-dim:rgba(255,255,255,0.055);
   --border:     rgba(255,255,255,0.08);
   --border-hi:  rgba(217,119,6,0.38);
-
   --t1: rgba(255,255,255,0.90);
   --t2: rgba(255,255,255,0.55);
   --t3: rgba(255,255,255,0.30);
   --t4: rgba(255,255,255,0.18);
-
   --nav-bg:     rgba(20,20,19,0.94);
   --nav-border: rgba(255,255,255,0.09);
   --nav-link:   rgba(255,255,255,0.48);
@@ -55,8 +49,6 @@
 /* ================================================
    BASE
    ================================================ */
-*, *::before, *::after { box-sizing: border-box; }
-
 body {
   background-color: var(--bg) !important;
   background-image:
@@ -66,10 +58,10 @@ body {
   color: var(--t1) !important;
 }
 
-/* PaperMod default colour overrides */
-.dark body  { color: var(--t1) !important; }
-a           { color: var(--amber) !important; }
-a:hover     { color: var(--amber-hi) !important; }
+a         { color: var(--amber) !important; }
+a:hover   { color: var(--amber-hi) !important; }
+p, li     { color: var(--t1); }
+h1,h2,h3,h4 { color: var(--t1) !important; }
 
 /* ================================================
    LAYOUT
@@ -81,7 +73,7 @@ a:hover     { color: var(--amber-hi) !important; }
 }
 
 /* ================================================
-   NAVBAR  — slim pill, properly sized
+   NAVBAR
    ================================================ */
 header.header {
   background: transparent !important;
@@ -90,8 +82,6 @@ header.header {
   margin-bottom: 0 !important;
 }
 
-/* The nav element itself */
-nav#top-nav,
 .nav {
   background: var(--nav-bg) !important;
   border: 1px solid var(--nav-border) !important;
@@ -103,14 +93,11 @@ nav#top-nav,
   align-items: center !important;
   gap: 0 !important;
   box-shadow: 0 1px 6px rgba(0,0,0,0.06) !important;
-  /* Kill any min-height that bloats it */
   min-height: 0 !important;
   height: auto !important;
 }
 
-/* All nav links + site title */
-.nav a,
-.nav span {
+.nav a, .nav span {
   border-radius: 999px !important;
   padding: 4px 13px !important;
   font-size: 13px !important;
@@ -136,7 +123,6 @@ nav#top-nav,
   border: 0.5px solid var(--border) !important;
 }
 
-/* Theme toggle button — inline, no extra height */
 #theme-toggle {
   all: unset !important;
   cursor: pointer !important;
@@ -154,86 +140,54 @@ nav#top-nav,
 #theme-toggle svg   { width: 16px !important; height: 16px !important; display: block !important; }
 
 /* ================================================
-   PROFILE HERO — compact, no giant gap
+   PROFILE HERO
    ================================================ */
-.profile {
-  padding: 1.75rem 0 0.75rem !important;
-  margin: 0 !important;
-}
-
+.profile { padding: 1.75rem 0 0.75rem !important; margin: 0 !important; }
 .profile img {
   border-radius: 50% !important;
   border: 2px solid rgba(217,119,6,0.45) !important;
   box-shadow: 0 0 0 4px rgba(217,119,6,0.07) !important;
-  display: block !important;
-  margin: 0 auto 0.85rem !important;
 }
-
-.profile .profile_inner { text-align: center; }
-
 .profile .profile_inner h1 {
-  font-size: 1.9rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
-  line-height: 1.2 !important;
-  color: var(--t1) !important;
+  font-size: 1.9rem !important; font-weight: 600 !important;
+  letter-spacing: -0.025em !important; color: var(--t1) !important;
   margin: 0 0 3px !important;
 }
-
 .profile .profile_inner span {
-  font-size: 14px !important;
-  color: var(--t2) !important;
-  display: block;
-  margin-bottom: 0.6rem;
+  font-size: 14px !important; color: var(--t2) !important;
 }
-
-.social-icons { margin: 0.5rem 0 !important; }
-.social-icons a { color: var(--amber) !important; margin: 0 3px !important; }
+.social-icons a  { color: var(--amber) !important; }
 .social-icons svg { width: 18px !important; height: 18px !important; }
-
-.profile .buttons { margin-top: 0.65rem !important; gap: 8px; display: flex; justify-content: center; flex-wrap: wrap; }
 .profile .buttons .button {
   border: 1px solid rgba(217,119,6,0.45) !important;
-  border-radius: 999px !important;
-  color: var(--amber) !important;
-  padding: 6px 18px !important;
-  font-size: 13px !important;
-  background: transparent !important;
-  text-decoration: none !important;
+  border-radius: 999px !important; color: var(--amber) !important;
+  padding: 6px 18px !important; font-size: 13px !important;
+  background: transparent !important; text-decoration: none !important;
   transition: background 0.12s;
 }
 .profile .buttons .button:hover { background: var(--amber-glow) !important; }
 
 /* ================================================
-   RECENT POSTS — 2 column grid
+   RECENT POSTS GRID
    ================================================ */
 #recent-posts {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0,1fr)) !important;
   gap: 12px !important;
   margin-top: 0.5rem !important;
-  padding-top: 0 !important;
 }
-
-@media (max-width: 620px) {
-  #recent-posts { grid-template-columns: 1fr !important; }
-}
+@media (max-width: 620px) { #recent-posts { grid-template-columns: 1fr !important; } }
 
 #recent-posts > h2 {
   grid-column: 1 / -1 !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  font-family: monospace !important;
-  color: var(--t3) !important;
-  margin: 0.25rem 0 0 !important;
-  padding: 0 !important;
-  border: none !important;
+  font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important;
+  font-family: monospace !important; color: var(--t3) !important;
+  margin: 0.25rem 0 0 !important; border: none !important;
 }
 
 /* ================================================
-   POST ENTRY CARDS
+   POST CARDS
    ================================================ */
 .post-entry {
   background: var(--surface) !important;
@@ -245,52 +199,23 @@ nav#top-nav,
   display: block !important;
   transition: border-color 0.12s, background 0.12s;
 }
-.post-entry:hover {
-  border-color: var(--border-hi) !important;
-  background: var(--surface-dim) !important;
-}
-
+.post-entry:hover { border-color: var(--border-hi) !important; background: var(--surface-dim) !important; }
 .post-entry .entry-header h2 {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 1.4 !important;
-  color: var(--t1) !important;
-  margin: 0 0 5px !important;
-  letter-spacing: 0 !important;
+  font-size: 14px !important; font-weight: 500 !important;
+  color: var(--t1) !important; margin: 0 0 5px !important;
+  letter-spacing: 0 !important; line-height: 1.4 !important;
 }
-.post-entry .entry-content p {
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  color: var(--t2) !important;
-  margin: 0 0 7px !important;
-}
-.post-entry .entry-footer {
-  font-size: 11px !important;
-  color: var(--t3) !important;
-  font-family: monospace;
-}
-
-/* ================================================
-   BLOG LIST PAGE (/posts/)
-   ================================================ */
-.post-header h1, .archive-header h1, .page-header h1 {
-  font-size: 1.9rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.02em !important;
-  color: var(--t1) !important;
-}
+.post-entry .entry-content p { font-size: 13px !important; color: var(--t2) !important; margin: 0 0 7px !important; }
+.post-entry .entry-footer    { font-size: 11px !important; color: var(--t3) !important; font-family: monospace; }
 
 /* ================================================
    POST SINGLE
    ================================================ */
 .post-title {
-  font-size: 2rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
-  line-height: 1.2 !important;
-  color: var(--t1) !important;
+  font-size: 2rem !important; font-weight: 600 !important;
+  letter-spacing: -0.025em !important; color: var(--t1) !important;
 }
-.post-meta { font-size: 13px !important; color: var(--t3) !important; }
+.post-meta   { font-size: 13px !important; color: var(--t3) !important; }
 .post-header { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
 .post-content { color: var(--t1) !important; }
 .post-content a { text-decoration: underline; text-decoration-color: rgba(217,119,6,0.35); text-underline-offset: 3px; }
@@ -301,13 +226,9 @@ code { font-size: 13px; }
    TAGS
    ================================================ */
 .terms-tags a, .post-tags a {
-  background: rgba(217,119,6,0.09) !important;
-  border: 1px solid rgba(217,119,6,0.22) !important;
-  color: var(--amber) !important;
-  border-radius: 999px !important;
-  padding: 3px 10px !important;
-  font-size: 11px !important;
-  text-decoration: none !important;
+  background: rgba(217,119,6,0.09) !important; border: 1px solid rgba(217,119,6,0.22) !important;
+  color: var(--amber) !important; border-radius: 999px !important;
+  padding: 3px 10px !important; font-size: 11px !important; text-decoration: none !important;
 }
 .terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.18) !important; }
 
@@ -315,10 +236,8 @@ code { font-size: 13px; }
    FOOTER
    ================================================ */
 footer.footer {
-  font-size: 12px !important;
-  padding: 1.75rem 0 !important;
-  border-top: 1px solid var(--border) !important;
-  color: var(--t4) !important;
+  font-size: 12px !important; padding: 1.75rem 0 !important;
+  border-top: 1px solid var(--border) !important; color: var(--t4) !important;
 }
 .footer a { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
@@ -327,91 +246,28 @@ footer.footer {
    ABOUT PAGE
    ================================================ */
 .about-section-label {
-  display: block !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  font-family: monospace !important;
-  color: var(--t3) !important;
-  margin: 2.25rem 0 1rem !important;
-  padding-bottom: 8px !important;
+  display: block !important; font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important;
+  font-family: monospace !important; color: var(--t3) !important;
+  margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
 }
-
 .about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
-.about-hero-text h1 { color: var(--t1) !important; font-size: 1.6rem !important; font-weight: 600 !important; }
+.about-hero-text h1  { color: var(--t1) !important; font-size: 1.6rem !important; font-weight: 600 !important; }
 .about-hero-text .role { color: var(--t3) !important; font-size: 14px !important; }
-.about-hero-text p { color: var(--t2) !important; }
-
-.about-social a {
-  color: var(--t2) !important;
-  border-color: var(--border) !important;
-  text-decoration: none !important;
-  font-family: monospace;
-  font-size: 12px;
-}
-.about-social a:hover { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
-
-.about-divider { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
+.about-hero-text p   { color: var(--t2) !important; }
+.about-social a      { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
+.about-social a:hover{ color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
+.about-divider       { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
 
 /* Timeline */
-.timeline::before { background: var(--border) !important; }
-.tl-dot           { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
-.tl-dot.tl-active { border-color: var(--amber) !important; background: rgba(217,119,6,0.12) !important; box-shadow: 0 0 0 3px rgba(217,119,6,0.07) !important; }
-.tl-card          { background: var(--surface) !important; border: 1px solid var(--border) !important; }
-.tl-card:hover    { border-color: var(--border-hi) !important; }
-.tl-title         { color: var(--t1) !important; }
-.tl-title .at     { color: var(--t3) !important; font-weight: 400; }
-.tl-desc          { color: var(--t2) !important; }
+.timeline::before  { background: var(--border) !important; }
+.tl-dot            { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
+.tl-dot.tl-active  { border-color: var(--amber) !important; background: rgba(217,119,6,0.12) !important; }
+.tl-card           { background: var(--surface) !important; border: 1px solid var(--border) !important; }
+.tl-card:hover     { border-color: var(--border-hi) !important; }
+.tl-title          { color: var(--t1) !important; }
+.tl-title .at      { color: var(--t3) !important; font-weight: 400; }
+.tl-desc           { color: var(--t2) !important; }
 .tl-date, .tl-location { color: var(--t3) !important; font-family: monospace; font-size: 11px; }
 .tag { color: var(--t2) !important; background: var(--surface-dim) !important; border: 1px solid var(--border) !important; }
-
-/* ================================================
-   DARK MODE BODY BACKGROUND — belt and braces
-   PaperMod may override body bg via its own vars
-   ================================================ */
-.dark body,
-html.dark body,
-[data-theme="dark"] body {
-  background-color: #111110 !important;
-  background-image:
-    radial-gradient(circle at 15% 15%, rgba(217,119,6,0.04) 0%, transparent 45%),
-    radial-gradient(#252523 1px, transparent 1px) !important;
-  background-size: 100% 100%, 26px 26px !important;
-  color: rgba(255,255,255,0.90) !important;
-}
-
-/* Force PaperMod's own CSS variable overrides in dark mode */
-.dark,
-html.dark {
-  --theme: #111110 !important;
-  --entry: rgba(255,255,255,0.035) !important;
-  --primary: rgba(255,255,255,0.88) !important;
-  --secondary: rgba(255,255,255,0.55) !important;
-  --border: rgba(255,255,255,0.09) !important;
-  --content: rgba(255,255,255,0.88) !important;
-  --hljs-bg: #1e1e1e !important;
-  --code-bg: #1e1e1e !important;
-  --header: rgba(255,255,255,0.88) !important;
-}
-
-/* Ensure all text elements respect dark mode */
-.dark p, .dark li, .dark td, .dark th,
-html.dark p, html.dark li { color: rgba(255,255,255,0.80) !important; }
-
-.dark h1, .dark h2, .dark h3, .dark h4,
-html.dark h1, html.dark h2, html.dark h3 { color: rgba(255,255,255,0.92) !important; }
-
-/* Post entries dark mode */
-.dark .post-entry,
-html.dark .post-entry {
-  background: rgba(255,255,255,0.035) !important;
-  border-color: rgba(255,255,255,0.08) !important;
-}
-
-/* About page dark overrides */
-.dark .tl-card, html.dark .tl-card { background: rgba(255,255,255,0.035) !important; border-color: rgba(255,255,255,0.08) !important; }
-.dark .tl-title, html.dark .tl-title { color: rgba(255,255,255,0.90) !important; }
-.dark .tl-desc, html.dark .tl-desc { color: rgba(255,255,255,0.55) !important; }
-.dark .about-bio, .dark .about-bio p, html.dark .about-bio, html.dark .about-bio p { color: rgba(255,255,255,0.55) !important; }
