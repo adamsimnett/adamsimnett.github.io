@@ -1,12 +1,18 @@
 baseURL: "https://adamsimnett.github.io/"
 title: "Adam Simnett"
-paginate: 10
+pagination:
+  pagerSize: 10
 theme: PaperMod
 
 enableRobotsTXT: true
 buildDrafts: false
 buildFuture: false
 buildExpired: false
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 
 minify:
   disableXML: true
