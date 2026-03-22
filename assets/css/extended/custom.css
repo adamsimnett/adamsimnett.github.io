@@ -1,381 +1,368 @@
-/* ============================================
-   CUSTOM PAPERMOD OVERRIDES
-   ============================================ */
+/* ================================================
+   adamsimnett.github.io — custom theme
+   Single source of truth. Do not accumulate.
+   ================================================ */
 
-/* ============================================
-   AMBER ACCENT
-   ============================================ */
+/* ---- Tokens: light mode ---- */
 :root {
-  --amber:       #d97706;
-  --amber-light: #f59e0b;
-  --amber-pale:  #fcd34d;
-  --amber-glow:  rgba(217,119,6,0.12);
+  --amber:        #d97706;
+  --amber-hi:     #f59e0b;
+  --amber-pale:   #fcd34d;
+  --amber-glow:   rgba(217,119,6,0.10);
+
+  --bg:           #f7f6f3;
+  --dot:          #dddbd5;
+  --surface:      #ffffff;
+  --surface-dim:  rgba(0,0,0,0.025);
+  --border:       rgba(0,0,0,0.08);
+  --border-hi:    rgba(217,119,6,0.30);
+
+  --t1: rgba(0,0,0,0.88);
+  --t2: rgba(0,0,0,0.55);
+  --t3: rgba(0,0,0,0.35);
+  --t4: rgba(0,0,0,0.22);
+
+  --nav-bg:     rgba(255,255,255,0.92);
+  --nav-border: rgba(0,0,0,0.09);
+  --nav-link:   rgba(0,0,0,0.48);
+  --nav-hover:  rgba(0,0,0,0.05);
+  --nav-active: rgba(0,0,0,0.07);
+  --nav-act-t:  rgba(0,0,0,0.85);
 }
 
-/* ============================================
-   LAYOUT
-   ============================================ */
-.main { max-width: 920px !important; }
-
-/* Remove PaperMod's excessive top padding on homepage */
-.page__inner-sm,
-.main > .profile-mode,
-.main > div {
-  padding-top: 0 !important;
-}
-
-/* ============================================
-   BACKGROUND
-   PaperMod uses --theme for body bg
-   We override it per mode
-   ============================================ */
-:root {
-  --theme: #f8f8f6;
-}
+/* ---- Tokens: dark mode ---- */
 .dark {
-  --theme: #0f0f0f;
+  --bg:         #111110;
+  --dot:        #252523;
+  --surface:    rgba(255,255,255,0.035);
+  --surface-dim:rgba(255,255,255,0.055);
+  --border:     rgba(255,255,255,0.08);
+  --border-hi:  rgba(217,119,6,0.38);
+
+  --t1: rgba(255,255,255,0.90);
+  --t2: rgba(255,255,255,0.55);
+  --t3: rgba(255,255,255,0.30);
+  --t4: rgba(255,255,255,0.18);
+
+  --nav-bg:     rgba(20,20,19,0.94);
+  --nav-border: rgba(255,255,255,0.09);
+  --nav-link:   rgba(255,255,255,0.48);
+  --nav-hover:  rgba(255,255,255,0.07);
+  --nav-active: rgba(255,255,255,0.10);
+  --nav-act-t:  #ffffff;
 }
+
+/* ================================================
+   BASE
+   ================================================ */
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  background-color: var(--theme) !important;
+  background-color: var(--bg) !important;
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(217,119,6,0.03) 0%, transparent 50%),
-    radial-gradient(rgba(0,0,0,0.07) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 28px 28px !important;
-}
-.dark body {
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(217,119,6,0.04) 0%, transparent 50%),
-    radial-gradient(#2a2a2a 1px, transparent 1px) !important;
+    radial-gradient(circle at 15% 15%, rgba(217,119,6,0.03) 0%, transparent 45%),
+    radial-gradient(var(--dot) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 26px 26px !important;
+  color: var(--t1) !important;
 }
 
-/* ============================================
-   NAVBAR — pill shape
-   ============================================ */
+/* PaperMod default colour overrides */
+.dark body  { color: var(--t1) !important; }
+a           { color: var(--amber) !important; }
+a:hover     { color: var(--amber-hi) !important; }
+
+/* ================================================
+   LAYOUT
+   ================================================ */
+.main {
+  max-width: 900px !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* ================================================
+   NAVBAR  — slim pill, properly sized
+   ================================================ */
 header.header {
   background: transparent !important;
-  padding: 1rem 0 0;
+  box-shadow: none !important;
+  padding: 1rem 0 0 !important;
+  margin-bottom: 0 !important;
 }
 
+/* The nav element itself */
+nav#top-nav,
 .nav {
-  display: flex !important;
-  align-items: center !important;
-  gap: 2px !important;
-  border-radius: 50px !important;
-  padding: 4px 6px !important;
+  background: var(--nav-bg) !important;
+  border: 1px solid var(--nav-border) !important;
+  border-radius: 999px !important;
+  padding: 3px 6px !important;
   width: fit-content !important;
   margin: 0 auto !important;
-  /* Light */
-  background: rgba(255,255,255,0.92) !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06) !important;
-}
-
-.dark .nav {
-  background: rgba(22,22,22,0.95) !important;
-  border: 1px solid rgba(255,255,255,0.09) !important;
-  box-shadow: none !important;
-}
-
-.nav a {
-  border-radius: 50px !important;
-  padding: 5px 14px !important;
-  font-size: 13px !important;
-  font-weight: 400 !important;
-  text-decoration: none !important;
-  transition: all 0.15s ease !important;
-  white-space: nowrap !important;
-  color: rgba(0,0,0,0.5) !important;
-  background: transparent !important;
-  border: none !important;
-}
-.dark .nav a { color: rgba(255,255,255,0.5) !important; }
-
-.nav a:hover {
-  background: rgba(0,0,0,0.05) !important;
-  color: rgba(0,0,0,0.85) !important;
-}
-.dark .nav a:hover {
-  background: rgba(255,255,255,0.07) !important;
-  color: rgba(255,255,255,0.9) !important;
-}
-
-.nav a.active, .nav a[aria-current="page"] {
-  background: rgba(0,0,0,0.06) !important;
-  color: rgba(0,0,0,0.88) !important;
-  border: 0.5px solid rgba(0,0,0,0.1) !important;
-}
-.dark .nav a.active, .dark .nav a[aria-current="page"] {
-  background: rgba(255,255,255,0.1) !important;
-  color: #ffffff !important;
-  border: 0.5px solid rgba(255,255,255,0.15) !important;
-}
-
-#theme-toggle {
-  padding: 4px 8px !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  color: rgba(0,0,0,0.3) !important;
   display: flex !important;
   align-items: center !important;
+  gap: 0 !important;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06) !important;
+  /* Kill any min-height that bloats it */
+  min-height: 0 !important;
+  height: auto !important;
 }
-.dark #theme-toggle { color: rgba(255,255,255,0.35) !important; }
-#theme-toggle:hover { color: var(--amber-light) !important; }
 
-/* ============================================
-   PROFILE HERO — tighten vertical space
-   ============================================ */
+/* All nav links + site title */
+.nav a,
+.nav span {
+  border-radius: 999px !important;
+  padding: 4px 13px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+  color: var(--nav-link) !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  background: transparent !important;
+  border: none !important;
+  transition: background 0.12s, color 0.12s;
+}
+
+.nav a:hover {
+  background: var(--nav-hover) !important;
+  color: var(--t1) !important;
+}
+
+.nav a.active,
+.nav a[aria-current="page"] {
+  background: var(--nav-active) !important;
+  color: var(--nav-act-t) !important;
+  border: 0.5px solid var(--border) !important;
+}
+
+/* Theme toggle button — inline, no extra height */
+#theme-toggle {
+  all: unset !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 8px !important;
+  color: var(--t3) !important;
+  border-radius: 999px !important;
+  transition: color 0.12s;
+  line-height: 1 !important;
+  height: auto !important;
+}
+#theme-toggle:hover { color: var(--amber-hi) !important; }
+#theme-toggle svg   { width: 16px !important; height: 16px !important; display: block !important; }
+
+/* ================================================
+   PROFILE HERO — compact, no giant gap
+   ================================================ */
 .profile {
-  padding: 1.5rem 0 0.75rem !important;
+  padding: 1.75rem 0 0.75rem !important;
+  margin: 0 !important;
 }
 
 .profile img {
   border-radius: 50% !important;
   border: 2px solid rgba(217,119,6,0.45) !important;
-  box-shadow: 0 0 0 4px rgba(217,119,6,0.08) !important;
+  box-shadow: 0 0 0 4px rgba(217,119,6,0.07) !important;
+  display: block !important;
+  margin: 0 auto 0.85rem !important;
 }
+
+.profile .profile_inner { text-align: center; }
 
 .profile .profile_inner h1 {
-  font-size: 2rem !important;
+  font-size: 1.9rem !important;
   font-weight: 600 !important;
-  letter-spacing: -0.02em !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.2 !important;
+  color: var(--t1) !important;
+  margin: 0 0 3px !important;
 }
 
-.profile .buttons { margin-top: 0.75rem !important; }
+.profile .profile_inner span {
+  font-size: 14px !important;
+  color: var(--t2) !important;
+  display: block;
+  margin-bottom: 0.6rem;
+}
 
+.social-icons { margin: 0.5rem 0 !important; }
+.social-icons a { color: var(--amber) !important; margin: 0 3px !important; }
+.social-icons svg { width: 18px !important; height: 18px !important; }
+
+.profile .buttons { margin-top: 0.65rem !important; gap: 8px; display: flex; justify-content: center; flex-wrap: wrap; }
 .profile .buttons .button {
   border: 1px solid rgba(217,119,6,0.45) !important;
-  border-radius: 50px !important;
+  border-radius: 999px !important;
   color: var(--amber) !important;
   padding: 6px 18px !important;
   font-size: 13px !important;
   background: transparent !important;
+  text-decoration: none !important;
+  transition: background 0.12s;
 }
-.profile .buttons .button:hover {
-  background: var(--amber-glow) !important;
-  border-color: var(--amber-light) !important;
-}
+.profile .buttons .button:hover { background: var(--amber-glow) !important; }
 
-/* ============================================
-   POST CARDS — 2 column grid
-   PaperMod uses --entry for card backgrounds
-   ============================================ */
+/* ================================================
+   RECENT POSTS — 2 column grid
+   ================================================ */
 #recent-posts {
   display: grid !important;
   grid-template-columns: repeat(2, minmax(0,1fr)) !important;
   gap: 12px !important;
-  margin-top: 0.25rem !important;
+  margin-top: 0.5rem !important;
+  padding-top: 0 !important;
+}
+
+@media (max-width: 620px) {
+  #recent-posts { grid-template-columns: 1fr !important; }
 }
 
 #recent-posts > h2 {
   grid-column: 1 / -1 !important;
   font-size: 10px !important;
+  font-weight: 600 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-family: monospace !important;
-  font-weight: 500 !important;
-  margin: 0 0 0.25rem !important;
-  color: rgba(0,0,0,0.3) !important;
-}
-.dark #recent-posts > h2 { color: rgba(255,255,255,0.25) !important; }
-
-@media (max-width: 640px) {
-  #recent-posts { grid-template-columns: 1fr !important; }
+  color: var(--t3) !important;
+  margin: 0.25rem 0 0 !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
+/* ================================================
+   POST ENTRY CARDS
+   ================================================ */
 .post-entry {
-  border-radius: 12px !important;
-  padding: 1rem 1.2rem !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+  padding: 1rem 1.1rem !important;
   margin: 0 !important;
-  display: block !important;
   text-decoration: none !important;
-  transition: border-color 0.15s, background 0.15s !important;
-  /* Light */
-  background: #ffffff !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
+  display: block !important;
+  transition: border-color 0.12s, background 0.12s;
 }
-.dark .post-entry {
-  background: rgba(255,255,255,0.03) !important;
-  border: 1px solid rgba(255,255,255,0.07) !important;
-}
-
 .post-entry:hover {
-  border-color: rgba(217,119,6,0.3) !important;
-}
-.dark .post-entry:hover {
-  background: rgba(217,119,6,0.04) !important;
-  border-color: rgba(217,119,6,0.35) !important;
+  border-color: var(--border-hi) !important;
+  background: var(--surface-dim) !important;
 }
 
 .post-entry .entry-header h2 {
   font-size: 14px !important;
   font-weight: 500 !important;
-  margin-bottom: 5px !important;
   line-height: 1.4 !important;
-  color: rgba(0,0,0,0.85) !important;
+  color: var(--t1) !important;
+  margin: 0 0 5px !important;
   letter-spacing: 0 !important;
 }
-.dark .post-entry .entry-header h2 { color: rgba(255,255,255,0.88) !important; }
-
 .post-entry .entry-content p {
   font-size: 13px !important;
-  line-height: 1.55 !important;
-  margin: 0 0 6px !important;
-  color: rgba(0,0,0,0.5) !important;
+  line-height: 1.5 !important;
+  color: var(--t2) !important;
+  margin: 0 0 7px !important;
 }
-.dark .post-entry .entry-content p { color: rgba(255,255,255,0.4) !important; }
-
 .post-entry .entry-footer {
   font-size: 11px !important;
-  font-family: monospace !important;
-  color: rgba(0,0,0,0.28) !important;
+  color: var(--t3) !important;
+  font-family: monospace;
 }
-.dark .post-entry .entry-footer { color: rgba(255,255,255,0.22) !important; }
 
-/* ============================================
-   TYPOGRAPHY — consistent across all pages
-   ============================================ */
-h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; }
-h2 { font-size: 1.4rem; font-weight: 600; }
-h3 { font-size: 1.1rem; font-weight: 600; }
+/* ================================================
+   BLOG LIST PAGE (/posts/)
+   ================================================ */
+.post-header h1, .archive-header h1, .page-header h1 {
+  font-size: 1.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--t1) !important;
+}
 
+/* ================================================
+   POST SINGLE
+   ================================================ */
 .post-title {
-  font-size: 2.2rem !important;
+  font-size: 2rem !important;
   font-weight: 600 !important;
   letter-spacing: -0.025em !important;
   line-height: 1.2 !important;
+  color: var(--t1) !important;
 }
+.post-meta { font-size: 13px !important; color: var(--t3) !important; }
+.post-header { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.post-content { color: var(--t1) !important; }
+.post-content a { text-decoration: underline; text-decoration-color: rgba(217,119,6,0.35); text-underline-offset: 3px; }
+.highlight pre { border-radius: 8px; border: 1px solid var(--border); }
+code { font-size: 13px; }
 
-.post-meta { font-size: 13px; }
-
-/* ============================================
-   LINKS
-   ============================================ */
-a { color: var(--amber) !important; }
-a:hover { color: var(--amber-light) !important; }
-.post-content a {
-  text-decoration: underline !important;
-  text-decoration-color: rgba(217,119,6,0.35) !important;
-  text-underline-offset: 3px !important;
-}
-
-/* ============================================
+/* ================================================
    TAGS
-   ============================================ */
+   ================================================ */
 .terms-tags a, .post-tags a {
-  background: rgba(217,119,6,0.08) !important;
+  background: rgba(217,119,6,0.09) !important;
   border: 1px solid rgba(217,119,6,0.22) !important;
   color: var(--amber) !important;
-  border-radius: 50px !important;
+  border-radius: 999px !important;
   padding: 3px 10px !important;
   font-size: 11px !important;
   text-decoration: none !important;
 }
-.terms-tags a:hover, .post-tags a:hover {
-  background: rgba(217,119,6,0.18) !important;
-}
+.terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.18) !important; }
 
-/* ============================================
-   CODE
-   ============================================ */
-.highlight pre { border-radius: 8px; }
-code { font-size: 13px; }
-
-/* ============================================
+/* ================================================
    FOOTER
-   ============================================ */
-footer.footer { font-size: 12px; padding: 2rem 0; }
-.footer a:hover { color: var(--amber-light) !important; }
+   ================================================ */
+footer.footer {
+  font-size: 12px !important;
+  padding: 1.75rem 0 !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--t4) !important;
+}
+.footer a { color: var(--t3) !important; }
+.footer a:hover { color: var(--amber-hi) !important; }
 
-/* ============================================
+/* ================================================
    ABOUT PAGE
-   ============================================ */
+   ================================================ */
 .about-section-label {
-  font-size: 11px !important;
+  display: block !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-family: monospace !important;
-  font-weight: 600 !important;
-  margin: 2.5rem 0 1.25rem !important;
+  color: var(--t3) !important;
+  margin: 2.25rem 0 1rem !important;
   padding-bottom: 8px !important;
-  display: block !important;
-  /* Light */
-  color: rgba(0,0,0,0.4) !important;
-  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
-}
-.dark .about-section-label {
-  color: rgba(255,255,255,0.45) !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  border-bottom: 1px solid var(--border) !important;
 }
 
-.about-bio p { color: rgba(0,0,0,0.6); line-height: 1.75; }
-.dark .about-bio p { color: rgba(255,255,255,0.55) !important; }
-
-.about-hero-text h1 { color: rgba(0,0,0,0.88); }
-.dark .about-hero-text h1 { color: rgba(255,255,255,0.9) !important; }
-
-.about-hero-text .role { color: rgba(0,0,0,0.4); }
-.dark .about-hero-text .role { color: rgba(255,255,255,0.4) !important; }
-
-.about-hero-text p { color: rgba(0,0,0,0.6); }
-.dark .about-hero-text p { color: rgba(255,255,255,0.55) !important; }
+.about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
+.about-hero-text h1 { color: var(--t1) !important; font-size: 1.6rem !important; font-weight: 600 !important; }
+.about-hero-text .role { color: var(--t3) !important; font-size: 14px !important; }
+.about-hero-text p { color: var(--t2) !important; }
 
 .about-social a {
-  color: rgba(0,0,0,0.45) !important;
-  border-color: rgba(0,0,0,0.1) !important;
+  color: var(--t2) !important;
+  border-color: var(--border) !important;
   text-decoration: none !important;
+  font-family: monospace;
+  font-size: 12px;
 }
-.dark .about-social a {
-  color: rgba(255,255,255,0.45) !important;
-  border-color: rgba(255,255,255,0.12) !important;
-}
-.about-social a:hover { color: var(--amber-light) !important; }
+.about-social a:hover { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
 
-.about-divider { background: rgba(0,0,0,0.07) !important; }
-.dark .about-divider { background: rgba(255,255,255,0.07) !important; }
+.about-divider { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
 
 /* Timeline */
-.timeline::before { background: rgba(0,0,0,0.1) !important; }
-.dark .timeline::before { background: rgba(255,255,255,0.07) !important; }
-
-.tl-dot { background: #f8f8f6 !important; border-color: rgba(0,0,0,0.18) !important; }
-.dark .tl-dot { background: #0f0f0f !important; border-color: rgba(255,255,255,0.2) !important; }
-
-.tl-dot.tl-active {
-  border-color: var(--amber) !important;
-  background: rgba(217,119,6,0.15) !important;
-  box-shadow: 0 0 0 3px rgba(217,119,6,0.08) !important;
-}
-
-.tl-card {
-  background: #fff !important;
-  border: 1px solid rgba(0,0,0,0.07) !important;
-}
-.dark .tl-card {
-  background: rgba(255,255,255,0.03) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-}
-.tl-card:hover { border-color: rgba(217,119,6,0.3) !important; }
-
-.tl-title { color: rgba(0,0,0,0.85) !important; }
-.dark .tl-title { color: rgba(255,255,255,0.88) !important; }
-.tl-title .at { color: rgba(0,0,0,0.38) !important; font-weight: 400 !important; }
-.dark .tl-title .at { color: rgba(255,255,255,0.3) !important; }
-
-.tl-desc { color: rgba(0,0,0,0.55) !important; }
-.dark .tl-desc { color: rgba(255,255,255,0.45) !important; }
-
-.tl-date, .tl-location { color: rgba(0,0,0,0.32) !important; }
-.dark .tl-date, .dark .tl-location { color: rgba(255,255,255,0.28) !important; }
-
-.tag {
-  color: rgba(0,0,0,0.45) !important;
-  background: rgba(0,0,0,0.04) !important;
-  border: 1px solid rgba(0,0,0,0.07) !important;
-}
-.dark .tag {
-  color: rgba(255,255,255,0.38) !important;
-  background: rgba(255,255,255,0.04) !important;
-  border-color: rgba(255,255,255,0.08) !important;
-}
+.timeline::before { background: var(--border) !important; }
+.tl-dot           { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
+.tl-dot.tl-active { border-color: var(--amber) !important; background: rgba(217,119,6,0.12) !important; box-shadow: 0 0 0 3px rgba(217,119,6,0.07) !important; }
+.tl-card          { background: var(--surface) !important; border: 1px solid var(--border) !important; }
+.tl-card:hover    { border-color: var(--border-hi) !important; }
+.tl-title         { color: var(--t1) !important; }
+.tl-title .at     { color: var(--t3) !important; font-weight: 400; }
+.tl-desc          { color: var(--t2) !important; }
+.tl-date, .tl-location { color: var(--t3) !important; font-family: monospace; font-size: 11px; }
+.tag { color: var(--t2) !important; background: var(--surface-dim) !important; border: 1px solid var(--border) !important; }
