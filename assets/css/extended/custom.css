@@ -366,3 +366,52 @@ footer.footer {
 .tl-desc          { color: var(--t2) !important; }
 .tl-date, .tl-location { color: var(--t3) !important; font-family: monospace; font-size: 11px; }
 .tag { color: var(--t2) !important; background: var(--surface-dim) !important; border: 1px solid var(--border) !important; }
+
+/* ================================================
+   DARK MODE BODY BACKGROUND — belt and braces
+   PaperMod may override body bg via its own vars
+   ================================================ */
+.dark body,
+html.dark body,
+[data-theme="dark"] body {
+  background-color: #111110 !important;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(217,119,6,0.04) 0%, transparent 45%),
+    radial-gradient(#252523 1px, transparent 1px) !important;
+  background-size: 100% 100%, 26px 26px !important;
+  color: rgba(255,255,255,0.90) !important;
+}
+
+/* Force PaperMod's own CSS variable overrides in dark mode */
+.dark,
+html.dark {
+  --theme: #111110 !important;
+  --entry: rgba(255,255,255,0.035) !important;
+  --primary: rgba(255,255,255,0.88) !important;
+  --secondary: rgba(255,255,255,0.55) !important;
+  --border: rgba(255,255,255,0.09) !important;
+  --content: rgba(255,255,255,0.88) !important;
+  --hljs-bg: #1e1e1e !important;
+  --code-bg: #1e1e1e !important;
+  --header: rgba(255,255,255,0.88) !important;
+}
+
+/* Ensure all text elements respect dark mode */
+.dark p, .dark li, .dark td, .dark th,
+html.dark p, html.dark li { color: rgba(255,255,255,0.80) !important; }
+
+.dark h1, .dark h2, .dark h3, .dark h4,
+html.dark h1, html.dark h2, html.dark h3 { color: rgba(255,255,255,0.92) !important; }
+
+/* Post entries dark mode */
+.dark .post-entry,
+html.dark .post-entry {
+  background: rgba(255,255,255,0.035) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* About page dark overrides */
+.dark .tl-card, html.dark .tl-card { background: rgba(255,255,255,0.035) !important; border-color: rgba(255,255,255,0.08) !important; }
+.dark .tl-title, html.dark .tl-title { color: rgba(255,255,255,0.90) !important; }
+.dark .tl-desc, html.dark .tl-desc { color: rgba(255,255,255,0.55) !important; }
+.dark .about-bio, .dark .about-bio p, html.dark .about-bio, html.dark .about-bio p { color: rgba(255,255,255,0.55) !important; }

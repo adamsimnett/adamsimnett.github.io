@@ -1,0 +1,12 @@
+<script>
+(function() {
+  // PaperMod uses localStorage key 'pref-theme'
+  // and toggles class 'dark' on document.documentElement (<html>)
+  const saved = localStorage.getItem('pref-theme');
+  if (saved === 'dark') {
+    document.documentElement.classList.add('dark');
+  } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+</script>
