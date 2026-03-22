@@ -252,16 +252,16 @@ summary: "About me"
 
 <!-- HERO -->
 <div class="about-hero">
-  <img src="/images/headshot.jpg" alt="Adam Simnett" />
+  <img src="/images/headshot.jpg" alt="Your Name" />
   <div class="about-hero-text">
-    <h1>Adam Simnett</h1>
+    <h1>Your Name</h1>
     <p class="role">Azure Engineer · Writer · Builder</p>
     <p>
       Senior cloud engineer based in the UK. I write about infrastructure, platform engineering,
       and the real lessons from building and operating systems at scale.
     </p>
     <div class="about-social">
-      <a href="https://github.com/adamsimnett">github</a>
+      <a href="https://github.com/yourusername">github</a>
       <a href="https://linkedin.com/in/yourprofile">linkedin</a>
       <a href="mailto:you@yourdomain.com">email</a>
       <a href="/index.xml">rss</a>
@@ -280,6 +280,20 @@ summary: "About me"
   <p>
     Outside of work I run a homelab on AMD EPYC hardware, contribute to open source where I can,
     and write here about things I wish someone had written down when I was learning them.
+  </p>
+</div>
+
+<!-- WHAT I WRITE ABOUT -->
+<p class="about-section-label">What I write about</p>
+<div class="about-bio">
+  <p>
+    My posts tend to fall into a few buckets: deep dives on Azure infrastructure and tooling,
+    thoughts on platform engineering and developer experience, and the occasional post on
+    engineering culture and lessons learned the hard way.
+  </p>
+  <p>
+    I try to write the posts I wish had existed when I was figuring things out myself.
+    No fluff, no sponsored content — just what I actually think.
   </p>
 </div>
 
@@ -363,20 +377,4 @@ summary: "About me"
     </div>
   </div>
 
-</div>
-
-<div class="about-divider"></div>
-
-<!-- WHAT I WRITE ABOUT -->
-<p class="about-section-label">What I write about</p>
-<div class="about-bio">
-  <p>
-    My posts tend to fall into a few buckets: deep dives on Azure infrastructure and tooling,
-    thoughts on platform engineering and developer experience, and the occasional post on
-    engineering culture and lessons learned the hard way.
-  </p>
-  <p>
-    I try to write the posts I wish had existed when I was figuring things out myself.
-    No fluff, no sponsored content — just what I actually think.
-  </p>
 </div>

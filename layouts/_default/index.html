@@ -1,0 +1,57 @@
+{{- define "main" }}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
+
+<div class="profile-mode">
+  {{- with site.Params.profileMode }}
+  <div class="profile">
+    {{- with .imageUrl }}
+    <img src="{{ . }}" alt="{{ $.Site.Params.profileMode.imageTitle | default "profile image" }}" width="{{ $.Site.Params.profileMode.imageWidth | default 120 }}" height="{{ $.Site.Params.profileMode.imageHeight | default 120 }}" />
+    {{- end }}
+    <div class="profile_inner">
+      <h1>{{ .title | default site.Title }}</h1>
+      <span>{{ .subtitle | default "" }}</span>
+      {{- with site.Params.socialIcons }}
+      <div class="social-icons">
+        {{- range . }}
+        <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name }}">
+          {{ partial "svg.html" . }}
+        </a>
+        {{- end }}
+      </div>
+      {{- end }}
+      {{- with .buttons }}
+      <div class="buttons">
+        {{- range . }}
+        <a class="button" href="{{ trim .url " " }}" rel="noopener">{{ .name }}</a>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </div>
+  {{- end }}
+
+  {{- if $pages }}
+  <div id="recent-posts">
+    <h2>Recent posts</h2>
+    {{- range $pages }}
+    <a class="post-entry" href="{{ .Permalink }}">
+      <div class="entry-header">
+        <h2>{{ .Title }}</h2>
+      </div>
+      {{- with .Params.description }}
+      <div class="entry-content"><p>{{ . }}</p></div>
+      {{- end }}
+      <div class="entry-footer">
+        <span>{{ .Date.Format "Jan 2006" }}</span>
+        {{- with .Params.tags }}
+        &nbsp;·&nbsp;
+        {{- range . }}<span>#{{ . }}</span> {{- end }}
+        {{- end }}
+      </div>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
+</div>
+{{- end }}
