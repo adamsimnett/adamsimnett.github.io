@@ -2,26 +2,29 @@
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" }}
 
-<div class="profile-mode">
+<div style="max-width:920px; margin:0 auto; padding: 0 1rem;">
   {{- with site.Params.profileMode }}
-  <div class="profile">
+  <div class="profile" style="text-align:center; padding: 2rem 0 1.5rem;">
     {{- with .imageUrl }}
-    <img src="{{ . }}" alt="{{ $.Site.Params.profileMode.imageTitle | default "profile image" }}" width="{{ $.Site.Params.profileMode.imageWidth | default 120 }}" height="{{ $.Site.Params.profileMode.imageHeight | default 120 }}" />
+    <img src="{{ . }}" alt="{{ $.Site.Params.profileMode.imageTitle | default "profile" }}"
+         width="{{ $.Site.Params.profileMode.imageWidth | default 120 }}"
+         height="{{ $.Site.Params.profileMode.imageHeight | default 120 }}"
+         style="border-radius:50%; border:2px solid rgba(217,119,6,0.4); box-shadow:0 0 0 4px rgba(217,119,6,0.08); margin-bottom:1rem;" />
     {{- end }}
     <div class="profile_inner">
-      <h1>{{ .title | default site.Title }}</h1>
-      <span>{{ .subtitle | default "" }}</span>
-      {{- with site.Params.socialIcons }}
-      <div class="social-icons">
+      <h1 style="font-size:2rem; font-weight:600; letter-spacing:-0.02em; margin:0 0 4px;">{{ .title | default site.Title }}</h1>
+      <span style="font-size:15px; opacity:0.5;">{{ .subtitle | default "" }}</span>
+      {{- with $.Site.Params.socialIcons }}
+      <div class="social-icons" style="margin: 0.75rem 0;">
         {{- range . }}
-        <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name }}">
+        <a href="{{ trim .url " " }}" target="_blank" rel="noopener noreferrer me" title="{{ .name }}" style="margin:0 4px;">
           {{ partial "svg.html" . }}
         </a>
         {{- end }}
       </div>
       {{- end }}
       {{- with .buttons }}
-      <div class="buttons">
+      <div class="buttons" style="margin-top:0.75rem;">
         {{- range . }}
         <a class="button" href="{{ trim .url " " }}" rel="noopener">{{ .name }}</a>
         {{- end }}
@@ -45,8 +48,7 @@
       <div class="entry-footer">
         <span>{{ .Date.Format "Jan 2006" }}</span>
         {{- with .Params.tags }}
-        &nbsp;·&nbsp;
-        {{- range . }}<span>#{{ . }}</span> {{- end }}
+        &nbsp;·&nbsp;{{- range . }}<span>#{{ . }}</span> {{- end }}
         {{- end }}
       </div>
     </a>
