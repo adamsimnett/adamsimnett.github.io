@@ -15,7 +15,7 @@ minify:
 
 params:
   env: production
-  background: "constellation"
+  background: "topography"
   title: "Your Name"
   description: "Azure Engineer. Writing about cloud infrastructure, platform engineering, and lessons from building systems at scale."
   keywords: [azure, cloud, infrastructure, engineering, blog]
