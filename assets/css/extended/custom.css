@@ -2,6 +2,7 @@
    adamsimnett.github.io — custom theme
    ================================================ */
 
+/* ---- Default tokens (dark) ---- */
 :root {
   --amber:      #d97706;
   --amber-hi:   #f59e0b;
@@ -38,8 +39,7 @@
 }
 
 /* ================================================
-   ANIMATED GRADIENT BACKGROUND
-   Applied to html to beat PaperMod's body styles
+   ANIMATED GRADIENT — on html, body transparent
    ================================================ */
 @keyframes bgShift {
   0%   { background-position: 0% 50%; }
@@ -88,16 +88,19 @@ h1,h2,h3,h4 { color: var(--t1) !important; }
 }
 
 /* ================================================
-   NAVBAR — comfortable pill, clean underline
+   NAVBAR — consistent size on all pages
    ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
-  padding: 1.25rem 0 0 !important;
+  /* Consistent padding on every page */
+  padding: 1.5rem 0 0 !important;
   margin-bottom: 0 !important;
   display: block !important;
   position: relative;
   z-index: 100;
+  /* Kill any PaperMod flex that misaligns the pill */
+  text-align: center !important;
 }
 
 .nav {
@@ -108,7 +111,9 @@ header.header {
   background: var(--nav-bg) !important;
   border: 1px solid var(--nav-border) !important;
   border-radius: 999px !important;
-  padding: 5px 8px !important;
+  /* Comfortable padding — not fat, not squashed */
+  padding: 6px 10px !important;
+  /* Centre via transform — works regardless of parent layout */
   position: relative !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
@@ -116,22 +121,26 @@ header.header {
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   white-space: nowrap !important;
+  /* Prevent width stretching */
+  width: max-content !important;
 }
 
+/* Logo / site title */
 .nav .logo { display: flex !important; align-items: center !important; }
 .nav .logo a {
-  padding: 7px 16px !important;
+  padding: 5px 16px !important;
   font-size: 14px !important;
   font-weight: 500 !important;
   color: var(--t2) !important;
   text-decoration: none !important;
-  line-height: 1.3 !important;
+  line-height: 1.4 !important;
   display: block !important;
   border-radius: 999px !important;
   letter-spacing: -0.01em;
 }
 .nav .logo a:hover { color: var(--t1) !important; }
 
+/* Menu list */
 .nav ul#menu {
   display: inline-flex !important;
   flex-direction: row !important;
@@ -141,7 +150,6 @@ header.header {
   margin: 0 !important;
   padding: 0 !important;
 }
-
 .nav ul#menu li {
   margin: 0 !important;
   padding: 0 !important;
@@ -150,12 +158,13 @@ header.header {
   align-items: center !important;
 }
 
+/* Nav links — uniform padding, no extra bottom padding needed */
 .nav ul#menu li a {
   display: block !important;
-  padding: 7px 18px 9px !important;
+  padding: 5px 16px !important;
   font-size: 14px !important;
   font-weight: 400 !important;
-  line-height: 1.3 !important;
+  line-height: 1.4 !important;
   color: var(--nav-link) !important;
   text-decoration: none !important;
   white-space: nowrap !important;
@@ -169,6 +178,7 @@ header.header {
   color: var(--t1) !important;
 }
 
+/* Active — just a clean line, no bubble */
 .nav ul#menu li a.active,
 .nav ul#menu li a[aria-current="page"] {
   color: var(--t1) !important;
@@ -180,27 +190,29 @@ header.header {
 .nav ul#menu li a[aria-current="page"]::after {
   content: '';
   position: absolute;
-  bottom: 4px;
-  left: 18px;
-  right: 18px;
+  bottom: 0px;
+  left: 16px;
+  right: 16px;
   height: 2px;
   border-radius: 2px;
   background: var(--amber);
   display: block;
 }
 
+/* Theme toggle */
 #theme-toggle {
   all: unset !important;
   cursor: pointer !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 7px 10px !important;
+  padding: 5px 10px !important;
   margin: 0 !important;
   color: var(--t3) !important;
   border-radius: 999px !important;
   transition: color 0.15s, background 0.15s;
   flex-shrink: 0 !important;
+  line-height: 1 !important;
 }
 #theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
 #theme-toggle svg   { width: 15px !important; height: 15px !important; display: block !important; }
@@ -257,8 +269,7 @@ header.header {
 
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block;
-  font-size: 10px; font-weight: 600;
+  display: block; font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
   font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
