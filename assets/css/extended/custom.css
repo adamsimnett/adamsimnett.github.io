@@ -445,3 +445,63 @@ footer.footer {
   width: auto !important;
   max-width: 100% !important;
 }
+
+/* ================================================
+   NUCLEAR OPTION: kill ALL multi-column layouts
+   on post list cards regardless of class
+   ================================================ */
+.post-entry,
+.post-entry * {
+  grid-column: unset !important;
+  grid-row: unset !important;
+  grid-area: unset !important;
+  float: none !important;
+}
+
+.post-entry {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+.post-entry .entry-header,
+.post-entry .entry-content,
+.post-entry .entry-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+.post-entry .entry-header h2 {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: var(--t1) !important;
+  margin: 0 0 6px !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.post-entry .entry-content {
+  margin: 0 0 6px !important;
+}
+
+.post-entry .entry-content p {
+  font-size: 13px !important;
+  color: var(--t2) !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+.post-entry .entry-footer {
+  font-size: 11px !important;
+  color: var(--t3) !important;
+  font-family: monospace !important;
+  margin-top: 6px !important;
+}
