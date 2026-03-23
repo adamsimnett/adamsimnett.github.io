@@ -45,6 +45,7 @@
 
 
 body {
+  background: transparent !important;
   color: var(--t1) !important;
 }
 
