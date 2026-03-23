@@ -480,3 +480,14 @@ footer.footer {
   font-family: monospace !important;
   margin-top: 6px !important;
 }
+
+/* ================================================
+   OVERRIDE PAPERMOD'S --theme VARIABLE
+   This is what controls body background-color
+   ================================================ */
+:root {
+  --theme: transparent !important;
+}
+.dark {
+  --theme: transparent !important;
+}
