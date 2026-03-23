@@ -1,6 +1,7 @@
 baseURL: "https://yourdomain.com/"
 title: "Your Name"
-paginate: 10
+pagination:
+  pagerSize: 10
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -110,3 +111,11 @@ outputs:
     - HTML
     - RSS
     - JSON
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+ignoreLogs:
+  - warning-goldmark-raw-html
