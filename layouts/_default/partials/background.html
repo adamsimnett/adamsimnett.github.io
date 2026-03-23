@@ -1,19 +1,9 @@
-<!-- {{- $bg := .Params.background | default "aurora" -}}
+{{- $bg := .Params.background | default "aurora" -}}
 <style>
 {{- if eq $bg "constellation" }}
-html, body {
-  background-color: #080810 !important;
-  background-image: none !important;
-}
-#bg-canvas {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  pointer-events: none;
-}
-body > * { position: relative; z-index: 1; }
+html, body { background-color: #080810 !important; background-image: none !important; }
+#bg-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+body > *:not(#bg-canvas) { position: relative; z-index: 1; }
 
 {{- else if eq $bg "aurora" }}
 @keyframes auroraShift {
@@ -53,97 +43,21 @@ html, body {
 }
 
 {{- else if eq $bg "topography" }}
-html, body {
-  background-color: #0f0e0b !important;
+html { background-color: #0f0e0b !important; }
+body {
+  background-color: transparent !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cellipse cx='200' cy='300' rx='80' ry='50' fill='none' stroke='rgba(217,119,6,0.18)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='140' ry='90' fill='none' stroke='rgba(217,119,6,0.13)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='200' ry='130' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='260' ry='170' fill='none' stroke='rgba(217,119,6,0.06)' stroke-width='0.8'/%3E%3Cellipse cx='450' cy='150' rx='60' ry='40' fill='none' stroke='rgba(180,83,9,0.15)' stroke-width='0.8'/%3E%3Cellipse cx='450' cy='150' rx='110' ry='75' fill='none' stroke='rgba(180,83,9,0.10)' stroke-width='0.8'/%3E%3C/svg%3E") !important;
   background-size: 600px 600px !important;
   background-repeat: repeat !important;
 }
 
 {{- else if eq $bg "void" }}
-html, body {
-  background-color: #0a0a0a !important;
-  background-image: none !important;
-}
-
+html, body { background-color: #0a0a0a !important; background-image: none !important; }
 {{- end }}
 
-/* Light mode — keep it clean regardless of chosen dark background */
-[data-theme="light"] html,
-[data-theme="light"] body,
-html[data-theme="light"],
-body[data-theme="light"] {
+[data-theme="light"] body {
   background-color: #f4f3ef !important;
   background-image: none !important;
   animation: none !important;
 }
 </style>
-
-{{- if eq $bg "constellation" }}
-<script>
-(function() {
-  function init() {
-    var existing = document.getElementById('bg-canvas');
-    if (existing) existing.remove();
-    var canvas = document.createElement('canvas');
-    canvas.id = 'bg-canvas';
-    document.body.insertBefore(canvas, document.body.firstChild);
-    var ctx = canvas.getContext('2d');
-    var stars = [], w, h;
-
-    function resize() {
-      w = canvas.width  = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      stars = Array.from({length: 90}, function() {
-        return {
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: Math.random() * 1.2 + 0.3,
-          alpha: Math.random() * 0.5 + 0.3,
-          speed: Math.random() * 0.003 + 0.001,
-          phase: Math.random() * Math.PI * 2
-        };
-      });
-    }
-
-    function draw(t) {
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#080810';
-      ctx.fillRect(0, 0, w, h);
-      ctx.lineWidth = 0.5;
-      for (var i = 0; i < stars.length; i++) {
-        for (var j = i + 1; j < stars.length; j++) {
-          var dx = stars[i].x - stars[j].x;
-          var dy = stars[i].y - stars[j].y;
-          var dist = Math.sqrt(dx*dx + dy*dy);
-          if (dist < 100) {
-            ctx.globalAlpha = (1 - dist/100) * 0.18;
-            ctx.strokeStyle = 'rgba(217,119,6,1)';
-            ctx.beginPath();
-            ctx.moveTo(stars[i].x, stars[i].y);
-            ctx.lineTo(stars[j].x, stars[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      ctx.globalAlpha = 1;
-      stars.forEach(function(s) {
-        var a = s.alpha * (0.7 + 0.3 * Math.sin(t * s.speed * 1000 + s.phase));
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,250,220,' + a + ')';
-        ctx.fill();
-      });
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-    requestAnimationFrame(draw);
-  }
-
-  if (document.body) { init(); }
-  else { document.addEventListener('DOMContentLoaded', init); }
-})();
-</script>
-{{- end }} -->
