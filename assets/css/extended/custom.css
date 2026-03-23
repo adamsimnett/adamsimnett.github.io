@@ -16,7 +16,7 @@
   --t2: rgba(0,0,0,0.55);
   --t3: rgba(0,0,0,0.35);
   --t4: rgba(0,0,0,0.20);
-  --nav-bg:     rgba(255,255,255,0.82);
+  --nav-bg:     rgba(255,255,255,0.85);
   --nav-border: rgba(0,0,0,0.08);
   --nav-link:   rgba(0,0,0,0.45);
   --nav-hover:  rgba(0,0,0,0.05);
@@ -33,36 +33,69 @@
   --t2: rgba(255,255,255,0.55);
   --t3: rgba(255,255,255,0.30);
   --t4: rgba(255,255,255,0.16);
-  --nav-bg:     rgba(20,20,19,0.90);
+  --nav-bg:     rgba(20,20,19,0.92);
   --nav-border: rgba(255,255,255,0.09);
   --nav-link:   rgba(255,255,255,0.45);
   --nav-hover:  rgba(255,255,255,0.07);
 }
 
 /* ================================================
-   GRAIN BACKGROUND
-   Applied to html element so it's truly behind everything
+   BACKGROUND — warm base + CSS noise grain
+   Using box-shadow trick for grain that works
+   cross-browser without SVG data URIs
    ================================================ */
-html {
-  background-color: var(--bg);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-}
-
-[data-theme="dark"] html,
-[data-theme="dark"] {
-  background-color: #111110;
-}
-
-[data-theme="dark"] html {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+html, body {
+  min-height: 100% !important;
 }
 
 body {
-  background-color: transparent !important;
-  background-image: none !important;
+  background-color: var(--bg) !important;
   color: var(--t1) !important;
+  position: relative !important;
+}
+
+/* Grain overlay — generated via a repeating CSS pattern */
+body::after {
+  content: '' !important;
+  position: fixed !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  opacity: 1 !important;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.015) 2px,
+      rgba(0,0,0,0.015) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.01) 2px,
+      rgba(0,0,0,0.01) 4px
+    ) !important;
+  background-size: 4px 4px !important;
+}
+
+[data-theme="dark"] body::after {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.02) 2px,
+      rgba(255,255,255,0.02) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.015) 2px,
+      rgba(255,255,255,0.015) 4px
+    ) !important;
 }
 
 a            { color: var(--amber) !important; }
@@ -80,30 +113,46 @@ h1,h2,h3,h4  { color: var(--t1) !important; }
 }
 
 /* ================================================
-   NAVBAR
+   NAVBAR — centred pill
+   Override PaperMod's flex layout completely
    ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
   padding: 1.1rem 0 0 !important;
   margin-bottom: 0 !important;
+  /* PaperMod makes header a flex row — override */
+  display: block !important;
+  position: relative;
+  z-index: 100;
 }
 
 .nav {
-  display: flex !important;
+  /* Force pill to be centred block */
+  display: inline-flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  justify-content: center !important;
   gap: 0 !important;
   background: var(--nav-bg) !important;
   border: 1px solid var(--nav-border) !important;
   border-radius: 999px !important;
   padding: 4px 6px !important;
-  width: fit-content !important;
+  width: auto !important;
+  max-width: fit-content !important;
+  /* Centre it */
   margin: 0 auto !important;
+  position: relative !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   box-shadow: 0 1px 12px rgba(0,0,0,0.08) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
+  white-space: nowrap !important;
+}
+
+.nav .logo {
+  display: flex !important;
+  align-items: center !important;
 }
 
 .nav .logo a {
@@ -112,15 +161,15 @@ header.header {
   font-weight: 500 !important;
   color: var(--t2) !important;
   text-decoration: none !important;
-  white-space: nowrap;
-  border-radius: 999px !important;
+  white-space: nowrap !important;
   line-height: 1 !important;
   display: block !important;
+  border-radius: 999px !important;
 }
-.nav .logo a:hover { color: var(--t1) !important; background: transparent !important; }
+.nav .logo a:hover { color: var(--t1) !important; }
 
 .nav ul#menu {
-  display: flex !important;
+  display: inline-flex !important;
   flex-direction: row !important;
   align-items: center !important;
   gap: 0 !important;
@@ -129,7 +178,13 @@ header.header {
   padding: 0 !important;
 }
 
-.nav ul#menu li { margin: 0 !important; padding: 0 !important; list-style: none !important; }
+.nav ul#menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
 
 .nav ul#menu li a {
   display: block !important;
@@ -139,7 +194,7 @@ header.header {
   line-height: 1 !important;
   color: var(--nav-link) !important;
   text-decoration: none !important;
-  white-space: nowrap;
+  white-space: nowrap !important;
   border-radius: 999px !important;
   transition: color 0.12s, background 0.12s;
   position: relative;
@@ -173,7 +228,7 @@ header.header {
 #theme-toggle {
   all: unset !important;
   cursor: pointer !important;
-  display: flex !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 5px 8px !important;
@@ -181,7 +236,7 @@ header.header {
   color: var(--t3) !important;
   border-radius: 999px !important;
   transition: color 0.12s, background 0.12s;
-  line-height: 1 !important;
+  flex-shrink: 0 !important;
 }
 #theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
 #theme-toggle svg   { width: 14px !important; height: 14px !important; display: block !important; }
@@ -199,13 +254,11 @@ header.header {
   flex-direction: column;
   align-items: center;
   padding: 0 1rem;
+  position: relative;
+  z-index: 1;
 }
 
-.home-profile {
-  text-align: center;
-  padding: 2rem 0 1.25rem;
-  width: 100%;
-}
+.home-profile { text-align: center; padding: 2rem 0 1.25rem; width: 100%; }
 
 .home-profile img {
   border-radius: 50%;
@@ -216,50 +269,36 @@ header.header {
 }
 
 .home-profile h1 {
-  font-size: 2.4rem !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-  color: var(--t1) !important;
-  margin: 0 0 6px !important;
-  line-height: 1.15 !important;
+  font-size: 2.4rem !important; font-weight: 700 !important;
+  letter-spacing: -0.03em !important; color: var(--t1) !important;
+  margin: 0 0 6px !important; line-height: 1.15 !important;
 }
 
 .home-subtitle { font-size: 15px; color: var(--t2) !important; margin: 0 0 0.75rem !important; }
 
 .home-social { display: flex; justify-content: center; gap: 6px; margin: 0.5rem 0; }
-.home-social a   { color: var(--amber) !important; }
+.home-social a { color: var(--amber) !important; }
 .home-social svg { width: 18px; height: 18px; }
 
 .home-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 0.75rem; }
 .home-btn {
-  border: 1px solid rgba(217,119,6,0.45) !important;
-  border-radius: 999px !important;
-  color: var(--amber) !important;
-  padding: 7px 22px !important;
-  font-size: 13px !important;
-  background: transparent !important;
-  text-decoration: none !important;
-  transition: background 0.12s;
+  border: 1px solid rgba(217,119,6,0.45) !important; border-radius: 999px !important;
+  color: var(--amber) !important; padding: 7px 22px !important; font-size: 13px !important;
+  background: transparent !important; text-decoration: none !important; transition: background 0.12s;
 }
 .home-btn:hover { background: var(--amber-glow) !important; }
 
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block;
-  font-size: 10px; font-weight: 600;
+  display: block; font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
-  font-family: monospace; color: var(--t3);
-  margin-bottom: 0.7rem;
+  font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
-.home-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 12px;
-}
+.home-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
 /* ================================================
-   POST CARDS — shared style
+   POST CARDS + FIRST ENTRY (blog list page)
    ================================================ */
 .post-entry,
 .first-entry {
@@ -270,11 +309,10 @@ header.header {
   margin: 0 0 12px !important;
   text-decoration: none !important;
   display: block !important;
-  transition: border-color 0.12s;
-  /* Reset any PaperMod cover/hero styles */
   position: static !important;
   height: auto !important;
   min-height: 0 !important;
+  transition: border-color 0.12s;
 }
 .post-entry:hover,
 .first-entry:hover { border-color: var(--border-hi) !important; }
@@ -282,37 +320,21 @@ header.header {
 .post-entry .entry-header h2,
 .first-entry .entry-header h1,
 .first-entry .entry-header h2 {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--t1) !important;
-  margin: 0 0 5px !important;
-  line-height: 1.4 !important;
-  /* Reset hero sizing */
-  letter-spacing: 0 !important;
+  font-size: 14px !important; font-weight: 500 !important;
+  color: var(--t1) !important; margin: 0 0 5px !important;
+  line-height: 1.4 !important; letter-spacing: 0 !important;
 }
-
 .post-entry .entry-content p,
 .first-entry .entry-content p {
-  font-size: 13px !important;
-  color: var(--t2) !important;
-  margin: 0 0 7px !important;
-  line-height: 1.5 !important;
+  font-size: 13px !important; color: var(--t2) !important;
+  margin: 0 0 7px !important; line-height: 1.5 !important;
 }
-
 .post-entry .entry-footer,
 .first-entry .entry-footer {
-  font-size: 11px !important;
-  color: var(--t3) !important;
-  font-family: monospace;
-  /* Reset absolute positioning */
-  position: static !important;
+  font-size: 11px !important; color: var(--t3) !important;
+  font-family: monospace; position: static !important;
 }
-
-/* Fix the cover image / background that PaperMod adds to first-entry */
 .first-entry .entry-cover { display: none !important; }
-
-/* Blog list page — stack cards full width */
-.posts-area { width: 100% !important; }
 
 /* ================================================
    POST SINGLE
@@ -321,11 +343,11 @@ header.header {
   font-size: 2.2rem !important; font-weight: 700 !important;
   letter-spacing: -0.03em !important; color: var(--t1) !important; line-height: 1.2 !important;
 }
-.post-meta    { font-size: 13px !important; color: var(--t3) !important; }
-.post-header  { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+.post-meta   { font-size: 13px !important; color: var(--t3) !important; }
+.post-header { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
 .post-content { color: var(--t1) !important; }
 .post-content a { text-decoration: underline; text-decoration-color: rgba(217,119,6,0.35); text-underline-offset: 3px; }
-.highlight pre  { border-radius: 8px; border: 1px solid var(--border); }
+.highlight pre { border-radius: 8px; border: 1px solid var(--border); }
 code { font-size: 13px; }
 
 /* ================================================
@@ -345,7 +367,7 @@ footer.footer {
   font-size: 12px !important; padding: 1.75rem 0 !important;
   border-top: 1px solid var(--border) !important; color: var(--t4) !important;
 }
-.footer a       { color: var(--t3) !important; }
+.footer a { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
 
 /* ================================================
@@ -358,13 +380,13 @@ footer.footer {
   margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
 }
-.about-bio, .about-bio p     { color: var(--t2) !important; line-height: 1.75 !important; }
-.about-hero-text h1  { color: var(--t1) !important; font-size: 1.8rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
-.about-hero-text .role { color: var(--t3) !important; font-size: 14px !important; }
-.about-hero-text p   { color: var(--t2) !important; }
-.about-social a      { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
-.about-social a:hover{ color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
-.about-divider       { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
+.about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
+.about-hero-text h1      { color: var(--t1) !important; font-size: 1.8rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
+.about-hero-text .role   { color: var(--t3) !important; font-size: 14px !important; }
+.about-hero-text p       { color: var(--t2) !important; }
+.about-social a          { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
+.about-social a:hover    { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
+.about-divider           { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
 
 .timeline::before { background: var(--border) !important; }
 .tl-dot           { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
