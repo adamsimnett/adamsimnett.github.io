@@ -96,11 +96,13 @@ header.header {
   /* Consistent padding on every page */
   padding: 1.5rem 0 0 !important;
   margin-bottom: 0 !important;
-  display: block !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   position: relative;
   z-index: 100;
   /* Kill any PaperMod flex that misaligns the pill */
-  text-align: center !important;
+  
 }
 
 .nav {
@@ -114,9 +116,9 @@ header.header {
   /* Comfortable padding — not fat, not squashed */
   padding: 6px 10px !important;
   /* Centre via transform — works regardless of parent layout */
-  position: relative !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+  position: static !important;
+  left: auto !important;
+  transform: none !important;
   box-shadow: 0 2px 20px rgba(0,0,0,0.15) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
@@ -134,7 +136,9 @@ header.header {
   color: var(--t2) !important;
   text-decoration: none !important;
   line-height: 1.4 !important;
-  display: block !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   border-radius: 999px !important;
   letter-spacing: -0.01em;
 }
@@ -160,7 +164,9 @@ header.header {
 
 /* Nav links — uniform padding, no extra bottom padding needed */
 .nav ul#menu li a {
-  display: block !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   padding: 5px 16px !important;
   font-size: 14px !important;
   font-weight: 400 !important;
@@ -287,7 +293,9 @@ header.header {
   padding: 1rem 1.1rem !important;
   margin: 0 0 12px !important;
   text-decoration: none !important;
-  display: block !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   position: static !important;
   height: auto !important;
   min-height: 0 !important;
