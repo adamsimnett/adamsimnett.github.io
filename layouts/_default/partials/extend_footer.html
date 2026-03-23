@@ -1,74 +1,73 @@
 {{- $bg := .Params.background | default site.Params.background | default "aurora" -}}
 <script>
 var __bg = {{ $bg | jsonify }};
-console.log('Background partial loaded, bg =', __bg);
-console.log('html element:', document.documentElement);
-console.log('body element:', document.body);
+
+var __colors = {
+  aurora: {
+    htmlBg: '#0d0c10',
+    htmlImg: 'radial-gradient(ellipse 120% 80% at 10% 10%, rgba(217,119,6,0.28) 0%, transparent 60%),radial-gradient(ellipse 80% 70% at 90% 15%, rgba(120,53,15,0.22) 0%, transparent 55%),radial-gradient(ellipse 100% 60% at 50% 95%, rgba(180,83,9,0.20) 0%, transparent 60%),radial-gradient(ellipse 60% 50% at 80% 70%, rgba(217,119,6,0.12) 0%, transparent 50%)',
+    htmlSize: '300% 300%',
+    anim: true
+  },
+  ember: {
+    htmlBg: '#0c0a08',
+    htmlImg: 'radial-gradient(ellipse 100% 80% at 50% 110%, rgba(217,119,6,0.55) 0%, rgba(150,60,10,0.25) 40%, transparent 70%),radial-gradient(ellipse 50% 40% at 20% 10%, rgba(245,158,11,0.12) 0%, transparent 55%)'
+  },
+  grid: {
+    htmlBg: '#0f0f0f',
+    htmlImg: 'linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px),radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.12) 0%, transparent 60%)',
+    htmlSize: '28px 28px, 28px 28px, 100% 100%'
+  },
+  void: { htmlBg: '#0a0a0a', htmlImg: 'none' },
+  constellation: { htmlBg: '#080810', htmlImg: 'none' },
+  topography: { htmlBg: '#0f0e0b', htmlImg: 'none' }
+};
+
+var __lightBg = '#f4f3ef';
+var __applied = false;
+
+function __isLight() {
+  return document.documentElement.getAttribute('data-theme') === 'light';
+}
 
 function __applyBg() {
-  console.log('__applyBg called, __bg =', __bg);
   var html = document.documentElement;
   var body = document.body;
+  if (!body) return;
 
-  if (__bg === 'aurora') {
-    console.log('Applying aurora');
-    html.style.setProperty('background-color', '#0d0c10', 'important');
-    html.style.setProperty('background-image', [
-      'radial-gradient(ellipse 120% 80% at 10% 10%, rgba(217,119,6,0.28) 0%, transparent 60%)',
-      'radial-gradient(ellipse 80% 70% at 90% 15%, rgba(120,53,15,0.22) 0%, transparent 55%)',
-      'radial-gradient(ellipse 100% 60% at 50% 95%, rgba(180,83,9,0.20) 0%, transparent 60%)',
-      'radial-gradient(ellipse 60% 50% at 80% 70%, rgba(217,119,6,0.12) 0%, transparent 50%)'
-    ].join(','), 'important');
-    html.style.setProperty('background-size', '300% 300%', 'important');
-    html.style.setProperty('background-attachment', 'fixed', 'important');
+  if (__isLight()) {
+    html.setAttribute('style', 'background-color: ' + __lightBg + ' !important; background-image: none !important;');
+    body.setAttribute('style', (body.getAttribute('style') || '').replace(/background[^;]+;?/g, '') + ' background-color: transparent !important; background-image: none !important;');
+    return;
+  }
+
+  var c = __colors[__bg] || __colors.aurora;
+
+  var htmlStyle = 'background-color: ' + c.htmlBg + ' !important; background-image: ' + c.htmlImg + ' !important;';
+  if (c.htmlSize) htmlStyle += ' background-size: ' + c.htmlSize + ' !important;';
+  if (c.htmlImg !== 'none') htmlStyle += ' background-attachment: fixed !important;';
+
+  html.setAttribute('style', htmlStyle);
+
+  if (c.anim) {
     var s = document.getElementById('bg-anim') || document.createElement('style');
     s.id = 'bg-anim';
     s.textContent = '@keyframes aS{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}html{animation:aS 22s ease infinite}';
-    document.head.appendChild(s);
-    body.style.setProperty('background-color', 'transparent', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
-
-  } else if (__bg === 'constellation') {
-    html.style.setProperty('background-color', '#080810', 'important');
-    html.style.setProperty('background-image', 'none', 'important');
-    body.style.setProperty('background-color', '#080810', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
-    __startConstellation();
-
-  } else if (__bg === 'ember') {
-    html.style.setProperty('background-color', '#0c0a08', 'important');
-    html.style.setProperty('background-image', [
-      'radial-gradient(ellipse 100% 80% at 50% 110%, rgba(217,119,6,0.55) 0%, rgba(150,60,10,0.25) 40%, transparent 70%)',
-      'radial-gradient(ellipse 50% 40% at 20% 10%, rgba(245,158,11,0.12) 0%, transparent 55%)'
-    ].join(','), 'important');
-    html.style.setProperty('background-attachment', 'fixed', 'important');
-    body.style.setProperty('background-color', 'transparent', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
-
-  } else if (__bg === 'grid') {
-    html.style.setProperty('background-color', '#0f0f0f', 'important');
-    html.style.setProperty('background-image', [
-      'linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px)',
-      'linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px)',
-      'radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.12) 0%, transparent 60%)'
-    ].join(','), 'important');
-    html.style.setProperty('background-size', '28px 28px, 28px 28px, 100% 100%', 'important');
-    body.style.setProperty('background-color', 'transparent', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
-
-  } else if (__bg === 'topography') {
-    html.style.setProperty('background-color', '#0f0e0b', 'important');
-    body.style.setProperty('background-image', "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cellipse cx='200' cy='300' rx='80' ry='50' fill='none' stroke='rgba(217,119,6,0.18)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='140' ry='90' fill='none' stroke='rgba(217,119,6,0.13)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='200' ry='130' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='0.8'/%3E%3Cellipse cx='450' cy='150' rx='60' ry='40' fill='none' stroke='rgba(180,83,9,0.15)' stroke-width='0.8'/%3E%3C/svg%3E\")", 'important');
-    body.style.setProperty('background-size', '600px 600px', 'important');
-    body.style.setProperty('background-repeat', 'repeat', 'important');
-
-  } else if (__bg === 'void') {
-    html.style.setProperty('background-color', '#0a0a0a', 'important');
-    html.style.setProperty('background-image', 'none', 'important');
-    body.style.setProperty('background-color', 'transparent', 'important');
+    if (!document.getElementById('bg-anim')) document.head.appendChild(s);
   }
-  
-  console.log('After apply - html background-color:', html.style.backgroundColor);
+
+  var bodyExtra = '';
+  if (__bg === 'topography') {
+    bodyExtra = "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cellipse cx='200' cy='300' rx='80' ry='50' fill='none' stroke='rgba(217,119,6,0.18)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='140' ry='90' fill='none' stroke='rgba(217,119,6,0.13)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='200' ry='130' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='0.8'/%3E%3Cellipse cx='450' cy='150' rx='60' ry='40' fill='none' stroke='rgba(180,83,9,0.15)' stroke-width='0.8'/%3E%3C/svg%3E\") !important; background-size: 600px 600px !important; background-repeat: repeat !important;";
+  } else {
+    bodyExtra = 'background-color: transparent !important; background-image: none !important;';
+  }
+  body.setAttribute('style', bodyExtra);
+
+  if (__bg === 'constellation' && !__applied) {
+    __applied = true;
+    __startConstellation();
+  }
 }
 
 function __startConstellation() {
@@ -126,9 +125,27 @@ function __startConstellation() {
 
 __applyBg();
 
+// Watch for PaperMod clearing our styles and re-apply
+var __observer = new MutationObserver(function(mutations) {
+  for(var i=0; i<mutations.length; i++) {
+    if(mutations[i].type === 'attributes' && mutations[i].attributeName === 'style') {
+      var el = mutations[i].target;
+      if(el === document.documentElement || el === document.body) {
+        __observer.disconnect();
+        __applyBg();
+        __observer.observe(document.documentElement, {attributes:true, attributeFilter:['style']});
+        __observer.observe(document.body, {attributes:true, attributeFilter:['style']});
+        break;
+      }
+    }
+  }
+});
+__observer.observe(document.documentElement, {attributes:true, attributeFilter:['style']});
+__observer.observe(document.body, {attributes:true, attributeFilter:['style']});
+
 document.addEventListener('click', function(e) {
   if (e.target && e.target.closest('#theme-toggle')) {
-    setTimeout(__applyBg, 50);
+    setTimeout(__applyBg, 100);
   }
 });
 </script>
