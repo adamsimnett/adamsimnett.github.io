@@ -19,13 +19,10 @@
   --nav-border: rgba(255,255,255,0.09);
   --nav-link:   rgba(255,255,255,0.45);
   --nav-hover:  rgba(255,255,255,0.07);
-
-  /* Override PaperMod's body background variable */
   --theme: transparent;
   --entry: rgba(255,255,255,0.045);
   --primary: rgba(255,255,255,0.88);
   --secondary: rgba(255,255,255,0.55);
-  --border: rgba(255,255,255,0.09);
 }
 
 [data-theme="light"] {
@@ -42,39 +39,10 @@
   --nav-border: rgba(0,0,0,0.09);
   --nav-link:   rgba(0,0,0,0.45);
   --nav-hover:  rgba(0,0,0,0.05);
-
   --theme: #f4f3ef;
   --entry: #ffffff;
   --primary: rgba(0,0,0,0.88);
   --secondary: rgba(0,0,0,0.55);
-}
-
-/* ================================================
-   BACKGROUND — applied to html so body transparent
-   ================================================ */
-@keyframes auroraShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-html {
-  background-color: #131312;
-  background-image:
-    radial-gradient(ellipse 140% 90% at 5% 5%,   rgba(217,119,6,0.45) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 80% at 95% 10%,  rgba(120,53,15,0.38) 0%, transparent 50%),
-    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.40)  0%, transparent 55%);
-  background-size: 300% 300%;
-  animation: auroraShift 20s ease infinite;
-}
-
-[data-theme="light"] html {
-  background-color: #f4f3ef;
-  background-image:
-    radial-gradient(ellipse 140% 90% at 5% 5%,   rgba(217,119,6,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 80% at 95% 10%,  rgba(245,158,11,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.14)  0%, transparent 55%);
-  animation: auroraShift 20s ease infinite;
 }
 
 body {
@@ -82,23 +50,128 @@ body {
   color: var(--t1) !important;
 }
 
+
+/* ============================================================
+   BACKGROUND — uncomment ONE block to activate
+   All others should remain commented out
+   ============================================================ */
+
+
+/* ---- AURORA (slow shifting amber gradient) ---- */
+/*
+@keyframes auroraShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+html {
+  background-color: #131312;
+  background-image:
+    radial-gradient(ellipse 140% 90% at 5%   5%,  rgba(217,119,6,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 80% at 95%  10%, rgba(120,53,15,0.38) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.40)  0%, transparent 55%);
+  background-size: 300% 300%;
+  animation: auroraShift 20s ease infinite;
+}
+[data-theme="light"] html {
+  background-color: #f4f3ef;
+  background-image:
+    radial-gradient(ellipse 140% 90% at 5%   5%,  rgba(217,119,6,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 80% at 95%  10%, rgba(245,158,11,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.14)  0%, transparent 55%);
+  animation: auroraShift 20s ease infinite;
+}
+*/
+
+
+/* ---- TOPOGRAPHY (contour map curves) ---- */
+html {
+  background-color: #0f0e0b;
+}
+body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cellipse cx='300' cy='400' rx='100' ry='65' fill='none' stroke='rgba(217,119,6,0.22)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='180' ry='115' fill='none' stroke='rgba(217,119,6,0.16)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='260' ry='165' fill='none' stroke='rgba(217,119,6,0.11)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='340' ry='215' fill='none' stroke='rgba(217,119,6,0.07)' stroke-width='1'/%3E%3Cellipse cx='650' cy='180' rx='80' ry='55' fill='none' stroke='rgba(180,83,9,0.20)' stroke-width='1'/%3E%3Cellipse cx='650' cy='180' rx='150' ry='100' fill='none' stroke='rgba(180,83,9,0.13)' stroke-width='1'/%3E%3Cellipse cx='100' cy='700' rx='70' ry='45' fill='none' stroke='rgba(217,119,6,0.15)' stroke-width='1'/%3E%3Cellipse cx='100' cy='700' rx='130' ry='85' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='1'/%3E%3C/svg%3E") !important;
+  background-size: 800px 800px !important;
+  background-repeat: repeat !important;
+}
+[data-theme="light"] html { background-color: #f0efe8; }
+
+
+/* ---- EMBER (warm glow from below) ---- */
+/*
+html {
+  background-color: #0c0a08;
+  background-image:
+    radial-gradient(ellipse 130% 90% at 50% 115%, rgba(217,119,6,0.65) 0%, rgba(150,60,10,0.32) 35%, transparent 65%),
+    radial-gradient(ellipse 60%  50% at 15%  10%, rgba(245,158,11,0.18) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+[data-theme="light"] html {
+  background-color: #f5f0ea;
+  background-image:
+    radial-gradient(ellipse 130% 90% at 50% 115%, rgba(217,119,6,0.25) 0%, rgba(150,60,10,0.12) 35%, transparent 65%),
+    radial-gradient(ellipse 60%  50% at 15%  10%, rgba(245,158,11,0.08) 0%, transparent 50%);
+}
+*/
+
+
+/* ---- GRID (technical line grid) ---- */
+/*
+html {
+  background-color: #0f0f0f;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.16) 0%, transparent 60%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+}
+[data-theme="light"] html {
+  background-color: #f5f5f3;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.10) 0%, transparent 60%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+}
+*/
+
+
+/* ---- VOID (pure dark, minimal) ---- */
+/*
+html {
+  background-color: #0a0a0a;
+}
+[data-theme="light"] html {
+  background-color: #f8f8f6;
+}
+*/
+
+
+/* ---- CONSTELLATION (animated stars) ---- */
+/* Note: requires extend_footer.html JS to be active — see README */
+/*
+html, body {
+  background-color: #080810 !important;
+  background-image: none !important;
+}
+*/
+
+
+/* ============================================================
+   END BACKGROUNDS
+   ============================================================ */
+
+
 a           { color: var(--amber) !important; }
 a:hover     { color: var(--amber-hi) !important; }
 p, li       { color: var(--t1); }
 h1,h2,h3,h4 { color: var(--t1) !important; }
 
-/* ================================================
-   LAYOUT
-   ================================================ */
 .main {
   max-width: 900px !important;
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
-/* ================================================
-   NAVBAR
-   ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
@@ -127,104 +200,57 @@ header.header {
 
 .nav .logo { display: flex !important; align-items: center !important; }
 .nav .logo a {
-  padding: 5px 16px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--t2) !important;
-  text-decoration: none !important;
-  line-height: 1.4 !important;
-  display: block !important;
-  border-radius: 999px !important;
+  padding: 5px 16px !important; font-size: 14px !important; font-weight: 500 !important;
+  color: var(--t2) !important; text-decoration: none !important;
+  line-height: 1.4 !important; display: block !important; border-radius: 999px !important;
 }
 .nav .logo a:hover { color: var(--t1) !important; }
 
 .nav ul#menu {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 2px !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: inline-flex !important; flex-direction: row !important;
+  align-items: center !important; gap: 2px !important;
+  list-style: none !important; margin: 0 !important; padding: 0 !important;
 }
 .nav ul#menu li {
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
+  margin: 0 !important; padding: 0 !important;
+  list-style: none !important; display: inline-flex !important; align-items: center !important;
 }
 .nav ul#menu li a {
-  display: block !important;
-  padding: 5px 16px !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  color: var(--nav-link) !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-  border-radius: 999px !important;
-  transition: color 0.15s, background 0.15s;
-  position: relative;
+  display: block !important; padding: 5px 16px !important; font-size: 14px !important;
+  font-weight: 400 !important; line-height: 1.4 !important; color: var(--nav-link) !important;
+  text-decoration: none !important; white-space: nowrap !important; border-radius: 999px !important;
+  transition: color 0.15s, background 0.15s; position: relative;
 }
-.nav ul#menu li a:hover {
-  background: var(--nav-hover) !important;
-  color: var(--t1) !important;
-}
+.nav ul#menu li a:hover { background: var(--nav-hover) !important; color: var(--t1) !important; }
 .nav ul#menu li a.active,
 .nav ul#menu li a[aria-current="page"] {
-  color: var(--t1) !important;
-  font-weight: 500 !important;
-  background: transparent !important;
-  border: none !important;
+  color: var(--t1) !important; font-weight: 500 !important;
+  background: transparent !important; border: none !important;
 }
 .nav ul#menu li a.active::after,
 .nav ul#menu li a[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-  right: 16px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--amber);
+  content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+  height: 2px; border-radius: 2px; background: var(--amber);
 }
 
 #theme-toggle {
-  all: unset !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 5px 10px !important;
-  color: var(--t3) !important;
-  border-radius: 999px !important;
-  transition: color 0.15s, background 0.15s;
+  all: unset !important; cursor: pointer !important; display: inline-flex !important;
+  align-items: center !important; justify-content: center !important;
+  padding: 5px 10px !important; color: var(--t3) !important;
+  border-radius: 999px !important; transition: color 0.15s, background 0.15s;
 }
 #theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
 #theme-toggle svg   { width: 15px !important; height: 15px !important; display: block !important; }
-
 #theme-toggle #moon                      { display: block !important; }
 #theme-toggle #sun                       { display: none !important; }
 [data-theme="dark"] #theme-toggle #moon  { display: none !important; }
 [data-theme="dark"] #theme-toggle #sun   { display: block !important; }
 
-/* ================================================
-   HOMEPAGE
-   ================================================ */
-.home-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
-}
+.home-wrap { display: flex; flex-direction: column; align-items: center; padding: 0 1rem; }
 .home-profile { text-align: center; padding: 2rem 0 1.25rem; width: 100%; }
 .home-profile img {
-  border-radius: 50%;
-  border: 2px solid rgba(217,119,6,0.45);
-  box-shadow: 0 0 0 5px rgba(217,119,6,0.08);
-  display: block;
-  margin: 0 auto 1rem;
+  border-radius: 50%; border: 2px solid rgba(217,119,6,0.45);
+  box-shadow: 0 0 0 5px rgba(217,119,6,0.08); display: block; margin: 0 auto 1rem;
 }
 .home-profile h1 {
   font-size: 3rem !important; font-weight: 700 !important;
@@ -233,7 +259,7 @@ header.header {
 }
 .home-subtitle { font-size: 15px; color: var(--t2) !important; margin: 0 0 0.75rem !important; }
 .home-social { display: flex; justify-content: center; gap: 6px; margin: 0.5rem 0; }
-.home-social a   { color: var(--amber) !important; }
+.home-social a { color: var(--amber) !important; }
 .home-social svg { width: 18px; height: 18px; }
 .home-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 0.75rem; }
 .home-btn {
@@ -244,56 +270,30 @@ header.header {
 .home-btn:hover { background: var(--amber-glow) !important; }
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
+  display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
 .home-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
-/* ================================================
-   POST CARDS
-   ================================================ */
-.post-entry,
-.first-entry {
-  background: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 10px !important;
-  padding: 1rem 1.1rem !important;
-  margin: 0 0 12px !important;
-  text-decoration: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  position: static !important;
-  height: auto !important;
-  min-height: 0 !important;
-  transition: border-color 0.12s;
+.post-entry, .first-entry {
+  background: var(--surface) !important; border: 1px solid var(--border) !important;
+  border-radius: 10px !important; padding: 1rem 1.1rem !important; margin: 0 0 12px !important;
+  text-decoration: none !important; display: flex !important; flex-direction: column !important;
+  position: static !important; height: auto !important; min-height: 0 !important; transition: border-color 0.12s;
 }
-.post-entry:hover,
-.first-entry:hover { border-color: var(--border-hi) !important; }
-
-.post-entry .entry-header,
-.first-entry .entry-header { width: 100% !important; padding: 0 !important; margin: 0 0 5px !important; }
-.post-entry .entry-header h2,
-.first-entry .entry-header h1,
-.first-entry .entry-header h2 {
-  font-size: 14px !important; font-weight: 500 !important;
-  color: var(--t1) !important; margin: 0 !important; line-height: 1.4 !important;
+.post-entry:hover, .first-entry:hover { border-color: var(--border-hi) !important; }
+.post-entry .entry-header, .first-entry .entry-header { width: 100% !important; padding: 0 !important; margin: 0 0 5px !important; }
+.post-entry .entry-header h2, .first-entry .entry-header h1, .first-entry .entry-header h2 {
+  font-size: 14px !important; font-weight: 500 !important; color: var(--t1) !important; margin: 0 !important; line-height: 1.4 !important;
 }
-.post-entry .entry-content,
-.first-entry .entry-content { width: 100% !important; padding: 0 !important; margin: 0 0 7px !important; }
-.post-entry .entry-content p,
-.first-entry .entry-content p { font-size: 13px !important; color: var(--t2) !important; margin: 0 !important; }
-.post-entry .entry-footer,
-.first-entry .entry-footer {
-  font-size: 11px !important; color: var(--t3) !important;
-  font-family: monospace; position: static !important; width: 100% !important;
+.post-entry .entry-content, .first-entry .entry-content { width: 100% !important; padding: 0 !important; margin: 0 0 7px !important; }
+.post-entry .entry-content p, .first-entry .entry-content p { font-size: 13px !important; color: var(--t2) !important; margin: 0 !important; }
+.post-entry .entry-footer, .first-entry .entry-footer {
+  font-size: 11px !important; color: var(--t3) !important; font-family: monospace; position: static !important; width: 100% !important;
 }
 .first-entry .entry-cover { display: none !important; }
 
-/* ================================================
-   POST SINGLE
-   ================================================ */
 .post-title {
   font-size: 2.6rem !important; font-weight: 700 !important;
   letter-spacing: -0.03em !important; color: var(--t1) !important; line-height: 1.2 !important;
@@ -305,9 +305,6 @@ header.header {
 .highlight pre { border-radius: 8px; border: 1px solid var(--border); }
 code { font-size: 13px; }
 
-/* ================================================
-   TAGS
-   ================================================ */
 .terms-tags a, .post-tags a {
   background: rgba(217,119,6,0.09) !important; border: 1px solid rgba(217,119,6,0.22) !important;
   color: var(--amber) !important; border-radius: 999px !important;
@@ -315,9 +312,6 @@ code { font-size: 13px; }
 }
 .terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.18) !important; }
 
-/* ================================================
-   FOOTER
-   ================================================ */
 footer.footer {
   font-size: 12px !important; padding: 1.75rem 0 !important;
   border-top: 1px solid var(--border) !important; color: var(--t4) !important;
@@ -325,14 +319,10 @@ footer.footer {
 .footer a { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
 
-/* ================================================
-   ABOUT PAGE
-   ================================================ */
 .about-section-label {
   display: block !important; font-size: 10px !important; font-weight: 600 !important;
-  letter-spacing: 0.12em !important; text-transform: uppercase !important;
-  font-family: monospace !important; color: var(--t3) !important;
-  margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important; font-family: monospace !important;
+  color: var(--t3) !important; margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
 }
 .about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
