@@ -86,10 +86,13 @@ html::before {
   inset: 0;
   z-index: -1;
 
-  background:
-    radial-gradient(circle at 50% 0%, rgba(217,119,6,0.06), transparent 60%),
-    radial-gradient(circle at 50% 100%, rgba(0,0,0,0.4), transparent 70%);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
+  background-size: 40px 40px;
+
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 80%);
   pointer-events: none;
 }
 
