@@ -67,11 +67,12 @@ html {
     radial-gradient(ellipse at 0% 0%, rgba(217,119,6,0.10) 0%, transparent 50%),
     radial-gradient(ellipse at 100% 100%, rgba(180,90,10,0.08) 0%, transparent 50%);
 }
+    */
 
 body {
   background: transparent !important;
   color: var(--t1) !important;
-} */
+}
 
 
 
