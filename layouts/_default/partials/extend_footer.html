@@ -1,26 +1,17 @@
 {{- $bg := .Params.background | default site.Params.background | default "aurora" -}}
 <script>
 var __bg = {{ $bg | jsonify }};
-
-function __isLight() {
-  return document.documentElement.getAttribute('data-theme') === 'light';
-}
+console.log('Background partial loaded, bg =', __bg);
+console.log('html element:', document.documentElement);
+console.log('body element:', document.body);
 
 function __applyBg() {
+  console.log('__applyBg called, __bg =', __bg);
   var html = document.documentElement;
   var body = document.body;
-  if (!body) return;
-
-  if (__isLight()) {
-    html.style.setProperty('background-color', '#f4f3ef', 'important');
-    html.style.setProperty('background-image', 'none', 'important');
-    html.style.removeProperty('animation');
-    body.style.setProperty('background-color', 'transparent', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
-    return;
-  }
 
   if (__bg === 'aurora') {
+    console.log('Applying aurora');
     html.style.setProperty('background-color', '#0d0c10', 'important');
     html.style.setProperty('background-image', [
       'radial-gradient(ellipse 120% 80% at 10% 10%, rgba(217,119,6,0.28) 0%, transparent 60%)',
@@ -34,6 +25,8 @@ function __applyBg() {
     s.id = 'bg-anim';
     s.textContent = '@keyframes aS{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}html{animation:aS 22s ease infinite}';
     document.head.appendChild(s);
+    body.style.setProperty('background-color', 'transparent', 'important');
+    body.style.setProperty('background-image', 'none', 'important');
 
   } else if (__bg === 'constellation') {
     html.style.setProperty('background-color', '#080810', 'important');
@@ -41,7 +34,6 @@ function __applyBg() {
     body.style.setProperty('background-color', '#080810', 'important');
     body.style.setProperty('background-image', 'none', 'important');
     __startConstellation();
-    return;
 
   } else if (__bg === 'ember') {
     html.style.setProperty('background-color', '#0c0a08', 'important');
@@ -50,6 +42,8 @@ function __applyBg() {
       'radial-gradient(ellipse 50% 40% at 20% 10%, rgba(245,158,11,0.12) 0%, transparent 55%)'
     ].join(','), 'important');
     html.style.setProperty('background-attachment', 'fixed', 'important');
+    body.style.setProperty('background-color', 'transparent', 'important');
+    body.style.setProperty('background-image', 'none', 'important');
 
   } else if (__bg === 'grid') {
     html.style.setProperty('background-color', '#0f0f0f', 'important');
@@ -59,6 +53,8 @@ function __applyBg() {
       'radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.12) 0%, transparent 60%)'
     ].join(','), 'important');
     html.style.setProperty('background-size', '28px 28px, 28px 28px, 100% 100%', 'important');
+    body.style.setProperty('background-color', 'transparent', 'important');
+    body.style.setProperty('background-image', 'none', 'important');
 
   } else if (__bg === 'topography') {
     html.style.setProperty('background-color', '#0f0e0b', 'important');
@@ -69,12 +65,10 @@ function __applyBg() {
   } else if (__bg === 'void') {
     html.style.setProperty('background-color', '#0a0a0a', 'important');
     html.style.setProperty('background-image', 'none', 'important');
-  }
-
-  if (__bg !== 'constellation' && __bg !== 'topography') {
     body.style.setProperty('background-color', 'transparent', 'important');
-    body.style.setProperty('background-image', 'none', 'important');
   }
+  
+  console.log('After apply - html background-color:', html.style.backgroundColor);
 }
 
 function __startConstellation() {
