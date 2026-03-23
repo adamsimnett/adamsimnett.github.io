@@ -1,6 +1,5 @@
 /* ================================================
    adamsimnett.github.io — custom theme
-   PaperMod toggles data-theme="dark"/"light" on <html>
    ================================================ */
 
 /* ---- Tokens: light ---- */
@@ -8,8 +7,8 @@
   --amber:      #d97706;
   --amber-hi:   #f59e0b;
   --amber-glow: rgba(217,119,6,0.10);
-  --bg:         #f7f6f3;
-  --dot:        #dddbd5;
+  --bg:         #f5f4f0;
+  --dot:        #e8e6e0;
   --surface:    #ffffff;
   --surface-dim:rgba(0,0,0,0.025);
   --border:     rgba(0,0,0,0.08);
@@ -18,49 +17,70 @@
   --t2: rgba(0,0,0,0.55);
   --t3: rgba(0,0,0,0.35);
   --t4: rgba(0,0,0,0.22);
-  --nav-bg:     rgba(255,255,255,0.92);
+  --nav-bg:     rgba(255,255,255,0.88);
   --nav-border: rgba(0,0,0,0.09);
   --nav-link:   rgba(0,0,0,0.48);
   --nav-hover:  rgba(0,0,0,0.05);
-  --nav-active: rgba(0,0,0,0.07);
+  --nav-active-bg: rgba(0,0,0,0.07);
   --nav-act-t:  rgba(0,0,0,0.88);
 }
 
 /* ---- Tokens: dark ---- */
 [data-theme="dark"] {
-  --bg:         #111110;
-  --dot:        #252523;
-  --surface:    rgba(255,255,255,0.035);
-  --surface-dim:rgba(255,255,255,0.055);
+  --bg:         #0e0e0d;
+  --dot:        #1e1e1c;
+  --surface:    rgba(255,255,255,0.04);
+  --surface-dim:rgba(255,255,255,0.06);
   --border:     rgba(255,255,255,0.08);
   --border-hi:  rgba(217,119,6,0.38);
   --t1: rgba(255,255,255,0.90);
   --t2: rgba(255,255,255,0.55);
   --t3: rgba(255,255,255,0.30);
   --t4: rgba(255,255,255,0.18);
-  --nav-bg:     rgba(20,20,19,0.94);
+  --nav-bg:     rgba(18,18,17,0.94);
   --nav-border: rgba(255,255,255,0.09);
   --nav-link:   rgba(255,255,255,0.48);
   --nav-hover:  rgba(255,255,255,0.07);
-  --nav-active: rgba(255,255,255,0.10);
+  --nav-active-bg: rgba(255,255,255,0.10);
   --nav-act-t:  #ffffff;
 }
 
 /* ================================================
-   BASE
+   MESH GRADIENT BACKGROUND
+   Light: warm amber/cream blobs
+   Dark:  deep amber/slate blobs
    ================================================ */
 body {
   background-color: var(--bg) !important;
   background-image:
-    radial-gradient(circle at 15% 15%, rgba(217,119,6,0.03) 0%, transparent 45%),
+    radial-gradient(ellipse 80% 50% at 10% 0%,   rgba(217,119,6,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 90% 10%,  rgba(251,191,36,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(217,119,6,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 60%,  rgba(245,158,11,0.05) 0%, transparent 50%),
     radial-gradient(var(--dot) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 26px 26px !important;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    26px 26px !important;
+  background-attachment: fixed !important;
   color: var(--t1) !important;
 }
-a            { color: var(--amber) !important; }
-a:hover      { color: var(--amber-hi) !important; }
-p, li        { color: var(--t1); }
-h1,h2,h3,h4  { color: var(--t1) !important; }
+
+[data-theme="dark"] body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% 0%,   rgba(217,119,6,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 90% 10%,  rgba(120,80,20,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(180,90,10,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 60%,  rgba(217,119,6,0.07) 0%, transparent 50%),
+    radial-gradient(var(--dot) 1px, transparent 1px) !important;
+}
+
+a           { color: var(--amber) !important; }
+a:hover     { color: var(--amber-hi) !important; }
+p, li       { color: var(--t1); }
+h1,h2,h3,h4 { color: var(--t1) !important; }
 
 /* ================================================
    LAYOUT
@@ -72,7 +92,7 @@ h1,h2,h3,h4  { color: var(--t1) !important; }
 }
 
 /* ================================================
-   NAVBAR — slightly bigger, active indicator
+   NAVBAR
    ================================================ */
 header.header {
   background: transparent !important;
@@ -95,10 +115,22 @@ header.header {
   min-height: 0 !important;
 }
 
+/* Remove default list styling from menu ul */
+.nav ul, .nav #menu {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.nav li { margin: 0 !important; padding: 0 !important; }
+
 .nav a, .nav span {
   border-radius: 999px !important;
   padding: 6px 16px !important;
-  font-size: 13.5px !important;
+  font-size: 14px !important;
   font-weight: 400 !important;
   line-height: 1.5 !important;
   color: var(--nav-link) !important;
@@ -108,6 +140,7 @@ header.header {
   border: none !important;
   transition: background 0.12s, color 0.12s;
   position: relative;
+  display: inline-block;
 }
 
 .nav a:hover {
@@ -115,10 +148,10 @@ header.header {
   color: var(--t1) !important;
 }
 
-/* Active page indicator — amber underline dot */
+/* Active page: filled background + amber dot below text */
 .nav a.active,
 .nav a[aria-current="page"] {
-  background: var(--nav-active) !important;
+  background: var(--nav-active-bg) !important;
   color: var(--nav-act-t) !important;
   font-weight: 500 !important;
 }
@@ -127,16 +160,17 @@ header.header {
 .nav a[aria-current="page"]::after {
   content: '';
   position: absolute;
-  bottom: 3px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
   height: 4px;
   border-radius: 50%;
   background: var(--amber);
+  display: block;
 }
 
-/* ---- Theme toggle: show only ONE icon ---- */
+/* Theme toggle — one icon only */
 #theme-toggle {
   all: unset !important;
   cursor: pointer !important;
@@ -147,28 +181,19 @@ header.header {
   color: var(--t3) !important;
   border-radius: 999px !important;
   transition: color 0.12s, background 0.12s;
-  line-height: 1 !important;
 }
-#theme-toggle:hover {
-  color: var(--amber-hi) !important;
-  background: var(--nav-hover) !important;
-}
-#theme-toggle svg {
-  width: 15px !important;
-  height: 15px !important;
-  display: block !important;
-}
+#theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
+#theme-toggle svg   { width: 15px !important; height: 15px !important; display: block !important; }
 
-/* In light mode: hide the sun, show the moon */
+/* Light mode: show moon (click to go dark) */
 #theme-toggle #moon { display: block !important; }
 #theme-toggle #sun  { display: none !important; }
-
-/* In dark mode: hide the moon, show the sun */
+/* Dark mode: show sun (click to go light) */
 [data-theme="dark"] #theme-toggle #moon { display: none !important; }
 [data-theme="dark"] #theme-toggle #sun  { display: block !important; }
 
 /* ================================================
-   HOMEPAGE — centred profile + tight feed below
+   HOMEPAGE
    ================================================ */
 .home-wrap {
   display: flex;
@@ -179,52 +204,44 @@ header.header {
 
 .home-profile {
   text-align: center;
-  padding: 1.75rem 0 1.25rem;
+  padding: 2rem 0 1.25rem;
   width: 100%;
 }
 
 .home-profile img {
   border-radius: 50%;
   border: 2px solid rgba(217,119,6,0.45);
-  box-shadow: 0 0 0 4px rgba(217,119,6,0.07);
+  box-shadow: 0 0 0 4px rgba(217,119,6,0.08);
   display: block;
-  margin: 0 auto 0.85rem;
+  margin: 0 auto 1rem;
 }
 
 .home-profile h1 {
-  font-size: 2rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
+  font-size: 2.4rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
   color: var(--t1) !important;
-  margin: 0 0 4px !important;
+  margin: 0 0 6px !important;
+  line-height: 1.15 !important;
 }
 
 .home-subtitle {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--t2) !important;
-  margin: 0 0 0.75rem !important;
+  margin: 0 0 0.85rem !important;
+  letter-spacing: 0.01em;
 }
 
-.home-social {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin: 0.5rem 0;
-}
+.home-social { display: flex; justify-content: center; gap: 6px; margin: 0.6rem 0; }
 .home-social a   { color: var(--amber) !important; }
 .home-social svg { width: 18px; height: 18px; }
 
-.home-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 0.75rem;
-}
+.home-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 0.85rem; }
 .home-btn {
   border: 1px solid rgba(217,119,6,0.45) !important;
   border-radius: 999px !important;
   color: var(--amber) !important;
-  padding: 6px 20px !important;
+  padding: 7px 22px !important;
   font-size: 13px !important;
   background: transparent !important;
   text-decoration: none !important;
@@ -232,23 +249,14 @@ header.header {
 }
 .home-btn:hover { background: var(--amber-glow) !important; }
 
-/* Feed section */
-.home-feed {
-  width: 100%;
-  padding-top: 0.5rem;
-}
-
+.home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
   display: block;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-family: monospace;
-  color: var(--t3);
-  margin-bottom: 0.6rem;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: monospace; color: var(--t3);
+  margin-bottom: 0.7rem;
 }
-
 .home-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
@@ -257,7 +265,7 @@ header.header {
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
 /* ================================================
-   POST CARDS (shared: homepage + blog list)
+   POST CARDS
    ================================================ */
 .post-entry {
   background: var(--surface) !important;
@@ -269,60 +277,36 @@ header.header {
   display: block !important;
   transition: border-color 0.12s, background 0.12s;
 }
-.post-entry:hover {
-  border-color: var(--border-hi) !important;
-  background: var(--surface-dim) !important;
-}
+.post-entry:hover { border-color: var(--border-hi) !important; background: var(--surface-dim) !important; }
 .post-entry .entry-header h2 {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--t1) !important;
-  margin: 0 0 5px !important;
-  letter-spacing: 0 !important;
-  line-height: 1.4 !important;
+  font-size: 14px !important; font-weight: 500 !important;
+  color: var(--t1) !important; margin: 0 0 5px !important;
+  letter-spacing: 0 !important; line-height: 1.4 !important;
 }
-.post-entry .entry-content p {
-  font-size: 13px !important;
-  color: var(--t2) !important;
-  margin: 0 0 7px !important;
-  line-height: 1.5 !important;
-}
-.post-entry .entry-footer {
-  font-size: 11px !important;
-  color: var(--t3) !important;
-  font-family: monospace;
-}
-
-/* Blog list page */
-#recent-posts, .post-entry + .post-entry { margin: 0 !important; }
+.post-entry .entry-content p { font-size: 13px !important; color: var(--t2) !important; margin: 0 0 7px !important; }
+.post-entry .entry-footer     { font-size: 11px !important; color: var(--t3) !important; font-family: monospace; }
 
 /* ================================================
    POST SINGLE
    ================================================ */
 .post-title {
-  font-size: 2rem !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
-  color: var(--t1) !important;
+  font-size: 2.2rem !important; font-weight: 700 !important;
+  letter-spacing: -0.03em !important; color: var(--t1) !important; line-height: 1.2 !important;
 }
 .post-meta    { font-size: 13px !important; color: var(--t3) !important; }
 .post-header  { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
 .post-content { color: var(--t1) !important; }
 .post-content a { text-decoration: underline; text-decoration-color: rgba(217,119,6,0.35); text-underline-offset: 3px; }
-.highlight pre { border-radius: 8px; border: 1px solid var(--border); }
+.highlight pre  { border-radius: 8px; border: 1px solid var(--border); }
 code { font-size: 13px; }
 
 /* ================================================
    TAGS
    ================================================ */
 .terms-tags a, .post-tags a {
-  background: rgba(217,119,6,0.09) !important;
-  border: 1px solid rgba(217,119,6,0.22) !important;
-  color: var(--amber) !important;
-  border-radius: 999px !important;
-  padding: 3px 10px !important;
-  font-size: 11px !important;
-  text-decoration: none !important;
+  background: rgba(217,119,6,0.09) !important; border: 1px solid rgba(217,119,6,0.22) !important;
+  color: var(--amber) !important; border-radius: 999px !important;
+  padding: 3px 10px !important; font-size: 11px !important; text-decoration: none !important;
 }
 .terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.18) !important; }
 
@@ -330,10 +314,8 @@ code { font-size: 13px; }
    FOOTER
    ================================================ */
 footer.footer {
-  font-size: 12px !important;
-  padding: 1.75rem 0 !important;
-  border-top: 1px solid var(--border) !important;
-  color: var(--t4) !important;
+  font-size: 12px !important; padding: 1.75rem 0 !important;
+  border-top: 1px solid var(--border) !important; color: var(--t4) !important;
 }
 .footer a       { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
@@ -342,26 +324,20 @@ footer.footer {
    ABOUT PAGE
    ================================================ */
 .about-section-label {
-  display: block !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
-  font-family: monospace !important;
-  color: var(--t3) !important;
-  margin: 2.25rem 0 1rem !important;
-  padding-bottom: 8px !important;
+  display: block !important; font-size: 10px !important; font-weight: 600 !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important;
+  font-family: monospace !important; color: var(--t3) !important;
+  margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
 }
-.about-bio, .about-bio p    { color: var(--t2) !important; line-height: 1.75 !important; }
-.about-hero-text h1          { color: var(--t1) !important; font-size: 1.6rem !important; font-weight: 600 !important; }
-.about-hero-text .role       { color: var(--t3) !important; font-size: 14px !important; }
-.about-hero-text p           { color: var(--t2) !important; }
-.about-social a              { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
-.about-social a:hover        { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
-.about-divider               { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
+.about-bio, .about-bio p     { color: var(--t2) !important; line-height: 1.75 !important; }
+.about-hero-text h1           { color: var(--t1) !important; font-size: 1.8rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
+.about-hero-text .role        { color: var(--t3) !important; font-size: 14px !important; }
+.about-hero-text p            { color: var(--t2) !important; }
+.about-social a               { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
+.about-social a:hover         { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
+.about-divider                { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
 
-/* Timeline */
 .timeline::before { background: var(--border) !important; }
 .tl-dot           { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
 .tl-dot.tl-active { border-color: var(--amber) !important; background: rgba(217,119,6,0.12) !important; }

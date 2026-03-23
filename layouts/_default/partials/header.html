@@ -1,0 +1,17 @@
+<header class="header">
+  <nav class="nav">
+    {{- partial "logo.html" . }}
+    <ul id="menu">
+      {{- range .Site.Menus.main }}
+      {{- $isActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+      {{- $isCurrent := eq $.RelPermalink .URL }}
+      <li>
+        <a href="{{ .URL | absLangURL }}"
+           {{- if or $isActive $isCurrent }} class="active" aria-current="page"{{- end }}>
+          {{- .Pre }}{{ .Name }}{{- .Post }}
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </nav>
+</header>
