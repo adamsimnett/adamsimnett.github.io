@@ -45,122 +45,46 @@
   --secondary: rgba(0,0,0,0.55);
 }
 
+/* ================================================
+   AURORA BACKGROUND
+   ================================================ */
+@keyframes aurora {
+  0%   { background-position: 0% 50%; }
+  33%  { background-position: 100% 30%; }
+  66%  { background-position: 50% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+html {
+  background-color: #131312;
+  background-image:
+    radial-gradient(ellipse 160% 100% at 0%   0%,  rgba(217,119,6,0.55) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 100% at 100% 0%,  rgba(140,60,10,0.45)  0%, transparent 50%),
+    radial-gradient(ellipse 140% 80%  at 50%  110%, rgba(190,90,10,0.50) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  80%  at 80%  60%,  rgba(217,119,6,0.25) 0%, transparent 50%);
+  background-size: 400% 400%;
+  animation: aurora 25s ease-in-out infinite;
+}
+
+[data-theme="light"] html {
+  background-color: #f4f3ef;
+  background-image:
+    radial-gradient(ellipse 160% 100% at 0%   0%,  rgba(217,119,6,0.22) 0%, transparent 50%),
+    radial-gradient(ellipse 120% 100% at 100% 0%,  rgba(245,158,11,0.16) 0%, transparent 50%),
+    radial-gradient(ellipse 140% 80%  at 50%  110%, rgba(190,90,10,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 80%  80%  at 80%  60%,  rgba(217,119,6,0.10) 0%, transparent 50%);
+  background-size: 400% 400%;
+  animation: aurora 25s ease-in-out infinite;
+}
+
 body {
   background: transparent !important;
   color: var(--t1) !important;
 }
 
-
-/* ============================================================
-   BACKGROUND — uncomment ONE block to activate
-   All others should remain commented out
-   ============================================================ */
-
-
-/* ---- AURORA (slow shifting amber gradient) ---- */
-/*
-@keyframes auroraShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-html {
-  background-color: #131312;
-  background-image:
-    radial-gradient(ellipse 140% 90% at 5%   5%,  rgba(217,119,6,0.45) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 80% at 95%  10%, rgba(120,53,15,0.38) 0%, transparent 50%),
-    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.40)  0%, transparent 55%);
-  background-size: 300% 300%;
-  animation: auroraShift 20s ease infinite;
-}
-[data-theme="light"] html {
-  background-color: #f4f3ef;
-  background-image:
-    radial-gradient(ellipse 140% 90% at 5%   5%,  rgba(217,119,6,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 80% at 95%  10%, rgba(245,158,11,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 120% 70% at 50% 100%, rgba(180,83,9,0.14)  0%, transparent 55%);
-  animation: auroraShift 20s ease infinite;
-}
-*/
-
-
-/* ---- TOPOGRAPHY (contour map curves) ----
-html {
-  background-color: #0f0e0b;
-}
-body {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cellipse cx='300' cy='400' rx='100' ry='65' fill='none' stroke='rgba(217,119,6,0.22)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='180' ry='115' fill='none' stroke='rgba(217,119,6,0.16)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='260' ry='165' fill='none' stroke='rgba(217,119,6,0.11)' stroke-width='1'/%3E%3Cellipse cx='300' cy='400' rx='340' ry='215' fill='none' stroke='rgba(217,119,6,0.07)' stroke-width='1'/%3E%3Cellipse cx='650' cy='180' rx='80' ry='55' fill='none' stroke='rgba(180,83,9,0.20)' stroke-width='1'/%3E%3Cellipse cx='650' cy='180' rx='150' ry='100' fill='none' stroke='rgba(180,83,9,0.13)' stroke-width='1'/%3E%3Cellipse cx='100' cy='700' rx='70' ry='45' fill='none' stroke='rgba(217,119,6,0.15)' stroke-width='1'/%3E%3Cellipse cx='100' cy='700' rx='130' ry='85' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='1'/%3E%3C/svg%3E") !important;
-  background-size: 800px 800px !important;
-  background-repeat: repeat !important;
-}
-[data-theme="light"] html { background-color: #f0efe8; } */
-
-
-/* ---- EMBER (warm glow from below) ---- */
-/*
-html {
-  background-color: #0c0a08;
-  background-image:
-    radial-gradient(ellipse 130% 90% at 50% 115%, rgba(217,119,6,0.65) 0%, rgba(150,60,10,0.32) 35%, transparent 65%),
-    radial-gradient(ellipse 60%  50% at 15%  10%, rgba(245,158,11,0.18) 0%, transparent 50%);
-  background-attachment: fixed;
-}
-[data-theme="light"] html {
-  background-color: #f5f0ea;
-  background-image:
-    radial-gradient(ellipse 130% 90% at 50% 115%, rgba(217,119,6,0.25) 0%, rgba(150,60,10,0.12) 35%, transparent 65%),
-    radial-gradient(ellipse 60%  50% at 15%  10%, rgba(245,158,11,0.08) 0%, transparent 50%);
-}
-*/
-
-
-/* ---- GRID (technical line grid) ---- */
-/*
-html {
-  background-color: #0f0f0f;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.16) 0%, transparent 60%);
-  background-size: 28px 28px, 28px 28px, 100% 100%;
-}
-[data-theme="light"] html {
-  background-color: #f5f5f3;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px),
-    radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.10) 0%, transparent 60%);
-  background-size: 28px 28px, 28px 28px, 100% 100%;
-}
-*/
-
-
-/* ---- VOID (pure dark, minimal) ---- */
-/*
-html {
-  background-color: #0a0a0a;
-}
-[data-theme="light"] html {
-  background-color: #f8f8f6;
-}
-*/
-
-
-/* ---- CONSTELLATION (animated stars) ---- */
-/* Note: requires extend_footer.html JS to be active — see README */
-
-html, body {
-  background-color: #080810 !important;
-  background-image: none !important;
-}
-
-
-
-/* ============================================================
-   END BACKGROUNDS
-   ============================================================ */
-
-
+/* ================================================
+   BASE
+   ================================================ */
 a           { color: var(--amber) !important; }
 a:hover     { color: var(--amber-hi) !important; }
 p, li       { color: var(--t1); }
@@ -172,6 +96,9 @@ h1,h2,h3,h4 { color: var(--t1) !important; }
   margin-top: 0 !important;
 }
 
+/* ================================================
+   NAVBAR
+   ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
@@ -246,6 +173,9 @@ header.header {
 [data-theme="dark"] #theme-toggle #moon  { display: none !important; }
 [data-theme="dark"] #theme-toggle #sun   { display: block !important; }
 
+/* ================================================
+   HOMEPAGE
+   ================================================ */
 .home-wrap { display: flex; flex-direction: column; align-items: center; padding: 0 1rem; }
 .home-profile { text-align: center; padding: 2rem 0 1.25rem; width: 100%; }
 .home-profile img {
@@ -276,6 +206,9 @@ header.header {
 .home-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
+/* ================================================
+   POST CARDS
+   ================================================ */
 .post-entry, .first-entry {
   background: var(--surface) !important; border: 1px solid var(--border) !important;
   border-radius: 10px !important; padding: 1rem 1.1rem !important; margin: 0 0 12px !important;
@@ -294,6 +227,9 @@ header.header {
 }
 .first-entry .entry-cover { display: none !important; }
 
+/* ================================================
+   POST SINGLE
+   ================================================ */
 .post-title {
   font-size: 2.6rem !important; font-weight: 700 !important;
   letter-spacing: -0.03em !important; color: var(--t1) !important; line-height: 1.2 !important;
@@ -305,6 +241,9 @@ header.header {
 .highlight pre { border-radius: 8px; border: 1px solid var(--border); }
 code { font-size: 13px; }
 
+/* ================================================
+   TAGS
+   ================================================ */
 .terms-tags a, .post-tags a {
   background: rgba(217,119,6,0.09) !important; border: 1px solid rgba(217,119,6,0.22) !important;
   color: var(--amber) !important; border-radius: 999px !important;
@@ -312,6 +251,9 @@ code { font-size: 13px; }
 }
 .terms-tags a:hover, .post-tags a:hover { background: rgba(217,119,6,0.18) !important; }
 
+/* ================================================
+   FOOTER
+   ================================================ */
 footer.footer {
   font-size: 12px !important; padding: 1.75rem 0 !important;
   border-top: 1px solid var(--border) !important; color: var(--t4) !important;
@@ -319,6 +261,9 @@ footer.footer {
 .footer a { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
 
+/* ================================================
+   ABOUT PAGE
+   ================================================ */
 .about-section-label {
   display: block !important; font-size: 10px !important; font-weight: 600 !important;
   letter-spacing: 0.12em !important; text-transform: uppercase !important; font-family: monospace !important;
