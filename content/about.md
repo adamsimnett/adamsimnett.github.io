@@ -3,6 +3,7 @@ title: "About"
 layout: "about"
 url: "/about/"
 summary: "About me"
+background: "aurora"
 ---
 
 <style>

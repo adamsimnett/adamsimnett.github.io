@@ -2,6 +2,7 @@
 title: "Why I stopped using ARM templates"
 date: 2026-03-15
 draft: false
+background: "aurora"
 tags: ["azure", "terraform", "iac"]
 description: "A candid look at the shift from ARM to Bicep and Terraform, and what it actually means for teams maintaining large Azure estates at scale."
 ---

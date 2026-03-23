@@ -1,7 +1,6 @@
-baseURL: "https://adamsimnett.github.io/"
-title: "Adam Simnett"
-pagination:
-  pagerSize: 10
+baseURL: "https://yourdomain.com/"
+title: "Your Name"
+paginate: 10
 theme: PaperMod
 
 enableRobotsTXT: true
@@ -9,21 +8,17 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
-
 minify:
   disableXML: true
   minifyOutput: true
 
 params:
   env: production
-  title: "Adam Simnett"
+  background: "constellation"
+  title: "Your Name"
   description: "Azure Engineer. Writing about cloud infrastructure, platform engineering, and lessons from building systems at scale."
   keywords: [azure, cloud, infrastructure, engineering, blog]
-  author: "Adam Simnett"
+  author: "Your Name"
 
   defaultTheme: dark
   disableThemeToggle: false
@@ -49,17 +44,17 @@ params:
     favicon: "/favicon.ico"
 
   label:
-    text: "Adam Simnett"
+    text: "Your Name"
 
   # Homepage profile
   profileMode:
     enabled: true
-    title: "Adam Simnett"
+    title: "Your Name"
     subtitle: "Azure Engineer · Writer · Builder"
     imageUrl: "/images/headshot.jpg"
     imageWidth: 120
     imageHeight: 120
-    imageTitle: "Adam Simnett"
+    imageTitle: "Your Name"
     buttons:
       - name: Blog
         url: /posts
@@ -68,10 +63,10 @@ params:
 
   # Social icons in footer
   socialIcons:
+    - name: linkedin
+      url: "https://linkedin.com/in/adamsimnett"
     - name: github
       url: "https://github.com/adamsimnett"
-    - name: linkedin
-      url: "https://linkedin.com/in/yourprofile"
     - name: rss
       url: "/index.xml"
 
@@ -81,7 +76,7 @@ params:
     hiddenInSingle: true
 
   editPost:
-    URL: "https://github.com/adamsimnett/adamsimnett.github.io/tree/main/content"
+    URL: "https://github.com/yourusername/yourusername.github.io/tree/main/content"
     Text: "Suggest Changes"
     appendFilePath: true
 
