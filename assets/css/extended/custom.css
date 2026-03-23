@@ -2,12 +2,27 @@
    adamsimnett.github.io — custom theme
    ================================================ */
 
-/* ---- Tokens: light ---- */
 :root {
   --amber:      #d97706;
   --amber-hi:   #f59e0b;
   --amber-glow: rgba(217,119,6,0.10);
-  --bg:         #f5f4f0;
+  --bg:         #131312;
+  --surface:    rgba(255,255,255,0.045);
+  --surface-dim:rgba(255,255,255,0.07);
+  --border:     rgba(255,255,255,0.08);
+  --border-hi:  rgba(217,119,6,0.40);
+  --t1: rgba(255,255,255,0.90);
+  --t2: rgba(255,255,255,0.55);
+  --t3: rgba(255,255,255,0.30);
+  --t4: rgba(255,255,255,0.16);
+  --nav-bg:     rgba(22,22,21,0.88);
+  --nav-border: rgba(255,255,255,0.09);
+  --nav-link:   rgba(255,255,255,0.45);
+  --nav-hover:  rgba(255,255,255,0.07);
+}
+
+[data-theme="light"] {
+  --bg:         #f4f3ef;
   --surface:    #ffffff;
   --surface-dim:rgba(0,0,0,0.02);
   --border:     rgba(0,0,0,0.08);
@@ -16,92 +31,52 @@
   --t2: rgba(0,0,0,0.55);
   --t3: rgba(0,0,0,0.35);
   --t4: rgba(0,0,0,0.20);
-  --nav-bg:     rgba(255,255,255,0.85);
-  --nav-border: rgba(0,0,0,0.08);
+  --nav-bg:     rgba(255,255,255,0.82);
+  --nav-border: rgba(0,0,0,0.09);
   --nav-link:   rgba(0,0,0,0.45);
   --nav-hover:  rgba(0,0,0,0.05);
 }
 
-/* ---- Tokens: dark ---- */
-[data-theme="dark"] {
-  --bg:         #111110;
-  --surface:    rgba(255,255,255,0.04);
-  --surface-dim:rgba(255,255,255,0.06);
-  --border:     rgba(255,255,255,0.08);
-  --border-hi:  rgba(217,119,6,0.40);
-  --t1: rgba(255,255,255,0.90);
-  --t2: rgba(255,255,255,0.55);
-  --t3: rgba(255,255,255,0.30);
-  --t4: rgba(255,255,255,0.16);
-  --nav-bg:     rgba(20,20,19,0.92);
-  --nav-border: rgba(255,255,255,0.09);
-  --nav-link:   rgba(255,255,255,0.45);
-  --nav-hover:  rgba(255,255,255,0.07);
+/* ================================================
+   ANIMATED GRADIENT BACKGROUND
+   Applied to html to beat PaperMod's body styles
+   ================================================ */
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* ================================================
-   BACKGROUND — warm base + CSS noise grain
-   Using box-shadow trick for grain that works
-   cross-browser without SVG data URIs
-   ================================================ */
-html, body {
-  min-height: 100% !important;
+html {
+  min-height: 100%;
+  background-color: #131312;
+  background-image:
+    radial-gradient(ellipse 110% 70% at 5%   5%,  rgba(217,119,6,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 80%  80% at 95%  5%,  rgba(120,53,15,0.18)  0%, transparent 55%),
+    radial-gradient(ellipse 90%  60% at 50% 100%, rgba(180,83,9,0.16)  0%, transparent 60%);
+  background-size: 300% 300%;
+  animation: bgShift 20s ease infinite;
+}
+
+[data-theme="light"] html,
+html[data-theme="light"] {
+  background-color: #f4f3ef;
+  background-image:
+    radial-gradient(ellipse 110% 70% at 5%   5%,  rgba(217,119,6,0.13) 0%, transparent 60%),
+    radial-gradient(ellipse 80%  80% at 95%  5%,  rgba(245,158,11,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 90%  60% at 50% 100%, rgba(180,83,9,0.10)  0%, transparent 60%);
 }
 
 body {
-  background-color: var(--bg) !important;
+  background: transparent !important;
+  min-height: 100vh;
   color: var(--t1) !important;
-  position: relative !important;
 }
 
-/* Grain overlay — generated via a repeating CSS pattern */
-body::after {
-  content: '' !important;
-  position: fixed !important;
-  inset: 0 !important;
-  pointer-events: none !important;
-  z-index: 9999 !important;
-  opacity: 1 !important;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.015) 2px,
-      rgba(0,0,0,0.015) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.01) 2px,
-      rgba(0,0,0,0.01) 4px
-    ) !important;
-  background-size: 4px 4px !important;
-}
-
-[data-theme="dark"] body::after {
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.02) 2px,
-      rgba(255,255,255,0.02) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.015) 2px,
-      rgba(255,255,255,0.015) 4px
-    ) !important;
-}
-
-a            { color: var(--amber) !important; }
-a:hover      { color: var(--amber-hi) !important; }
-p, li        { color: var(--t1); }
-h1,h2,h3,h4  { color: var(--t1) !important; }
+a           { color: var(--amber) !important; }
+a:hover     { color: var(--amber-hi) !important; }
+p, li       { color: var(--t1); }
+h1,h2,h3,h4 { color: var(--t1) !important; }
 
 /* ================================================
    LAYOUT
@@ -113,58 +88,47 @@ h1,h2,h3,h4  { color: var(--t1) !important; }
 }
 
 /* ================================================
-   NAVBAR — centred pill
-   Override PaperMod's flex layout completely
+   NAVBAR — comfortable pill, clean underline
    ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
-  padding: 1.1rem 0 0 !important;
+  padding: 1.25rem 0 0 !important;
   margin-bottom: 0 !important;
-  /* PaperMod makes header a flex row — override */
   display: block !important;
   position: relative;
   z-index: 100;
 }
 
 .nav {
-  /* Force pill to be centred block */
   display: inline-flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  gap: 0 !important;
+  gap: 2px !important;
   background: var(--nav-bg) !important;
   border: 1px solid var(--nav-border) !important;
   border-radius: 999px !important;
-  padding: 4px 6px !important;
-  width: auto !important;
-  max-width: fit-content !important;
-  /* Centre it */
-  margin: 0 auto !important;
+  padding: 5px 8px !important;
   position: relative !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  box-shadow: 0 1px 12px rgba(0,0,0,0.08) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
   white-space: nowrap !important;
 }
 
-.nav .logo {
-  display: flex !important;
-  align-items: center !important;
-}
-
+.nav .logo { display: flex !important; align-items: center !important; }
 .nav .logo a {
-  padding: 5px 14px !important;
-  font-size: 13.5px !important;
+  padding: 7px 16px !important;
+  font-size: 14px !important;
   font-weight: 500 !important;
   color: var(--t2) !important;
   text-decoration: none !important;
-  white-space: nowrap !important;
-  line-height: 1 !important;
+  line-height: 1.3 !important;
   display: block !important;
   border-radius: 999px !important;
+  letter-spacing: -0.01em;
 }
 .nav .logo a:hover { color: var(--t1) !important; }
 
@@ -172,7 +136,7 @@ header.header {
   display: inline-flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  gap: 0 !important;
+  gap: 2px !important;
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -188,15 +152,15 @@ header.header {
 
 .nav ul#menu li a {
   display: block !important;
-  padding: 5px 14px !important;
-  font-size: 13.5px !important;
+  padding: 7px 18px 9px !important;
+  font-size: 14px !important;
   font-weight: 400 !important;
-  line-height: 1 !important;
+  line-height: 1.3 !important;
   color: var(--nav-link) !important;
   text-decoration: none !important;
   white-space: nowrap !important;
   border-radius: 999px !important;
-  transition: color 0.12s, background 0.12s;
+  transition: color 0.15s, background 0.15s;
   position: relative;
 }
 
@@ -216,10 +180,10 @@ header.header {
 .nav ul#menu li a[aria-current="page"]::after {
   content: '';
   position: absolute;
-  bottom: 2px;
-  left: 14px;
-  right: 14px;
-  height: 1.5px;
+  bottom: 4px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
   border-radius: 2px;
   background: var(--amber);
   display: block;
@@ -231,15 +195,15 @@ header.header {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 5px 8px !important;
-  margin: 0 2px !important;
+  padding: 7px 10px !important;
+  margin: 0 !important;
   color: var(--t3) !important;
   border-radius: 999px !important;
-  transition: color 0.12s, background 0.12s;
+  transition: color 0.15s, background 0.15s;
   flex-shrink: 0 !important;
 }
 #theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
-#theme-toggle svg   { width: 14px !important; height: 14px !important; display: block !important; }
+#theme-toggle svg   { width: 15px !important; height: 15px !important; display: block !important; }
 
 #theme-toggle #moon                      { display: block !important; }
 #theme-toggle #sun                       { display: none !important; }
@@ -254,8 +218,6 @@ header.header {
   flex-direction: column;
   align-items: center;
   padding: 0 1rem;
-  position: relative;
-  z-index: 1;
 }
 
 .home-profile { text-align: center; padding: 2rem 0 1.25rem; width: 100%; }
@@ -263,7 +225,7 @@ header.header {
 .home-profile img {
   border-radius: 50%;
   border: 2px solid rgba(217,119,6,0.45);
-  box-shadow: 0 0 0 5px rgba(217,119,6,0.07);
+  box-shadow: 0 0 0 5px rgba(217,119,6,0.08);
   display: block;
   margin: 0 auto 1rem;
 }
@@ -277,20 +239,26 @@ header.header {
 .home-subtitle { font-size: 15px; color: var(--t2) !important; margin: 0 0 0.75rem !important; }
 
 .home-social { display: flex; justify-content: center; gap: 6px; margin: 0.5rem 0; }
-.home-social a { color: var(--amber) !important; }
+.home-social a   { color: var(--amber) !important; }
 .home-social svg { width: 18px; height: 18px; }
 
 .home-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 0.75rem; }
 .home-btn {
-  border: 1px solid rgba(217,119,6,0.45) !important; border-radius: 999px !important;
-  color: var(--amber) !important; padding: 7px 22px !important; font-size: 13px !important;
-  background: transparent !important; text-decoration: none !important; transition: background 0.12s;
+  border: 1px solid rgba(217,119,6,0.45) !important;
+  border-radius: 999px !important;
+  color: var(--amber) !important;
+  padding: 7px 22px !important;
+  font-size: 13px !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  transition: background 0.12s;
 }
 .home-btn:hover { background: var(--amber-glow) !important; }
 
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block; font-size: 10px; font-weight: 600;
+  display: block;
+  font-size: 10px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase;
   font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
@@ -298,7 +266,7 @@ header.header {
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
 /* ================================================
-   POST CARDS + FIRST ENTRY (blog list page)
+   POST CARDS + FIRST ENTRY
    ================================================ */
 .post-entry,
 .first-entry {
@@ -367,7 +335,7 @@ footer.footer {
   font-size: 12px !important; padding: 1.75rem 0 !important;
   border-top: 1px solid var(--border) !important; color: var(--t4) !important;
 }
-.footer a { color: var(--t3) !important; }
+.footer a       { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
 
 /* ================================================
