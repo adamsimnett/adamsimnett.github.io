@@ -1,29 +1,6 @@
 {{- $bg := .Params.background | default site.Params.background | default "aurora" -}}
 <script>
 var __bg = {{ $bg | jsonify }};
-
-var __colors = {
-  aurora: {
-    htmlBg: '#0d0c10',
-    htmlImg: 'radial-gradient(ellipse 120% 80% at 10% 10%, rgba(217,119,6,0.28) 0%, transparent 60%),radial-gradient(ellipse 80% 70% at 90% 15%, rgba(120,53,15,0.22) 0%, transparent 55%),radial-gradient(ellipse 100% 60% at 50% 95%, rgba(180,83,9,0.20) 0%, transparent 60%),radial-gradient(ellipse 60% 50% at 80% 70%, rgba(217,119,6,0.12) 0%, transparent 50%)',
-    htmlSize: '300% 300%',
-    anim: true
-  },
-  ember: {
-    htmlBg: '#0c0a08',
-    htmlImg: 'radial-gradient(ellipse 100% 80% at 50% 110%, rgba(217,119,6,0.55) 0%, rgba(150,60,10,0.25) 40%, transparent 70%),radial-gradient(ellipse 50% 40% at 20% 10%, rgba(245,158,11,0.12) 0%, transparent 55%)'
-  },
-  grid: {
-    htmlBg: '#0f0f0f',
-    htmlImg: 'linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px),radial-gradient(ellipse 80% 60% at 30% 30%, rgba(217,119,6,0.12) 0%, transparent 60%)',
-    htmlSize: '28px 28px, 28px 28px, 100% 100%'
-  },
-  void: { htmlBg: '#0a0a0a', htmlImg: 'none' },
-  constellation: { htmlBg: '#080810', htmlImg: 'none' },
-  topography: { htmlBg: '#0f0e0b', htmlImg: 'none' }
-};
-
-var __lightBg = '#f4f3ef';
 var __applied = false;
 
 function __isLight() {
@@ -36,37 +13,69 @@ function __applyBg() {
   if (!body) return;
 
   if (__isLight()) {
-    html.setAttribute('style', 'background-color: ' + __lightBg + ' !important; background-image: none !important;');
-    body.setAttribute('style', (body.getAttribute('style') || '').replace(/background[^;]+;?/g, '') + ' background-color: transparent !important; background-image: none !important;');
+    html.setAttribute('style', 'background-color:#f4f3ef!important;background-image:none!important;');
+    body.setAttribute('style', 'background-color:transparent!important;background-image:none!important;');
     return;
   }
 
-  var c = __colors[__bg] || __colors.aurora;
-
-  var htmlStyle = 'background-color: ' + c.htmlBg + ' !important; background-image: ' + c.htmlImg + ' !important;';
-  if (c.htmlSize) htmlStyle += ' background-size: ' + c.htmlSize + ' !important;';
-  if (c.htmlImg !== 'none') htmlStyle += ' background-attachment: fixed !important;';
-
-  html.setAttribute('style', htmlStyle);
-
-  if (c.anim) {
+  if (__bg === 'aurora') {
+    html.setAttribute('style', [
+      'background-color:#0d0c10!important;',
+      'background-image:radial-gradient(ellipse 140% 90% at 5% 5%,rgba(217,119,6,0.45) 0%,transparent 55%),',
+      'radial-gradient(ellipse 100% 80% at 95% 10%,rgba(120,53,15,0.35) 0%,transparent 50%),',
+      'radial-gradient(ellipse 120% 70% at 50% 100%,rgba(180,83,9,0.38) 0%,transparent 55%)!important;',
+      'background-size:300% 300%!important;',
+      'background-attachment:fixed!important;'
+    ].join(''));
+    body.setAttribute('style','background-color:transparent!important;background-image:none!important;');
     var s = document.getElementById('bg-anim') || document.createElement('style');
-    s.id = 'bg-anim';
-    s.textContent = '@keyframes aS{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}html{animation:aS 22s ease infinite}';
-    if (!document.getElementById('bg-anim')) document.head.appendChild(s);
-  }
+    s.id='bg-anim';
+    s.textContent='@keyframes aS{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}html{animation:aS 20s ease infinite}';
+    if(!document.getElementById('bg-anim')) document.head.appendChild(s);
 
-  var bodyExtra = '';
-  if (__bg === 'topography') {
-    bodyExtra = "background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cellipse cx='200' cy='300' rx='80' ry='50' fill='none' stroke='rgba(217,119,6,0.18)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='140' ry='90' fill='none' stroke='rgba(217,119,6,0.13)' stroke-width='0.8'/%3E%3Cellipse cx='200' cy='300' rx='200' ry='130' fill='none' stroke='rgba(217,119,6,0.09)' stroke-width='0.8'/%3E%3Cellipse cx='450' cy='150' rx='60' ry='40' fill='none' stroke='rgba(180,83,9,0.15)' stroke-width='0.8'/%3E%3C/svg%3E\") !important; background-size: 600px 600px !important; background-repeat: repeat !important;";
-  } else {
-    bodyExtra = 'background-color: transparent !important; background-image: none !important;';
-  }
-  body.setAttribute('style', bodyExtra);
+  } else if (__bg === 'constellation') {
+    html.setAttribute('style','background-color:#080810!important;background-image:none!important;');
+    body.setAttribute('style','background-color:#080810!important;background-image:none!important;');
+    if(!__applied) { __applied=true; __startConstellation(); }
 
-  if (__bg === 'constellation' && !__applied) {
-    __applied = true;
-    __startConstellation();
+  } else if (__bg === 'ember') {
+    html.setAttribute('style', [
+      'background-color:#0c0a08!important;',
+      'background-image:radial-gradient(ellipse 120% 90% at 50% 115%,rgba(217,119,6,0.70) 0%,rgba(150,60,10,0.35) 35%,transparent 65%),',
+      'radial-gradient(ellipse 60% 50% at 15% 10%,rgba(245,158,11,0.20) 0%,transparent 50%)!important;',
+      'background-attachment:fixed!important;'
+    ].join(''));
+    body.setAttribute('style','background-color:transparent!important;background-image:none!important;');
+
+  } else if (__bg === 'grid') {
+    html.setAttribute('style', [
+      'background-color:#0f0f0f!important;',
+      'background-image:linear-gradient(rgba(255,255,255,0.07) 1px,transparent 1px),',
+      'linear-gradient(90deg,rgba(255,255,255,0.07) 1px,transparent 1px),',
+      'radial-gradient(ellipse 80% 60% at 30% 30%,rgba(217,119,6,0.18) 0%,transparent 60%)!important;',
+      'background-size:28px 28px,28px 28px,100% 100%!important;'
+    ].join(''));
+    body.setAttribute('style','background-color:transparent!important;background-image:none!important;');
+
+  } else if (__bg === 'topography') {
+    html.setAttribute('style','background-color:#0f0e0b!important;background-image:none!important;');
+    body.setAttribute('style',[
+      "background-color:transparent!important;",
+      "background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E",
+      "%3Cellipse cx='200' cy='300' rx='80' ry='50' fill='none' stroke='rgba(217,119,6,0.25)' stroke-width='1'/%3E",
+      "%3Cellipse cx='200' cy='300' rx='140' ry='90' fill='none' stroke='rgba(217,119,6,0.18)' stroke-width='1'/%3E",
+      "%3Cellipse cx='200' cy='300' rx='200' ry='130' fill='none' stroke='rgba(217,119,6,0.12)' stroke-width='1'/%3E",
+      "%3Cellipse cx='200' cy='300' rx='260' ry='170' fill='none' stroke='rgba(217,119,6,0.08)' stroke-width='1'/%3E",
+      "%3Cellipse cx='450' cy='150' rx='70' ry='45' fill='none' stroke='rgba(180,83,9,0.20)' stroke-width='1'/%3E",
+      "%3Cellipse cx='450' cy='150' rx='120' ry='80' fill='none' stroke='rgba(180,83,9,0.13)' stroke-width='1'/%3E",
+      "%3C/svg%3E\")!important;",
+      "background-size:600px 600px!important;",
+      "background-repeat:repeat!important;"
+    ].join(''));
+
+  } else if (__bg === 'void') {
+    html.setAttribute('style','background-color:#0a0a0a!important;background-image:none!important;');
+    body.setAttribute('style','background-color:transparent!important;background-image:none!important;');
   }
 }
 
@@ -74,78 +83,54 @@ function __startConstellation() {
   var existing = document.getElementById('bg-canvas');
   if (existing) existing.remove();
   var canvas = document.createElement('canvas');
-  canvas.id = 'bg-canvas';
-  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;display:block;';
+  canvas.id='bg-canvas';
+  canvas.style.cssText='position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;display:block;';
   document.body.insertBefore(canvas, document.body.firstChild);
-  var zs = document.getElementById('bg-z') || document.createElement('style');
-  zs.id = 'bg-z';
-  zs.textContent = 'body>*:not(#bg-canvas){position:relative;z-index:1}';
+  var zs=document.getElementById('bg-z')||document.createElement('style');
+  zs.id='bg-z'; zs.textContent='body>*:not(#bg-canvas){position:relative;z-index:1}';
   document.head.appendChild(zs);
-  var ctx = canvas.getContext('2d'), stars = [], w, h;
+  var ctx=canvas.getContext('2d'), stars=[], w, h;
   function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    stars = Array.from({length:90}, function() {
-      return {x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.2+0.3,
-              alpha:Math.random()*0.5+0.3, speed:Math.random()*0.003+0.001, phase:Math.random()*Math.PI*2};
+    w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;
+    stars=Array.from({length:90},function(){
+      return{x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.3,
+             alpha:Math.random()*0.5+0.3,speed:Math.random()*0.003+0.001,phase:Math.random()*Math.PI*2};
     });
   }
   function draw(t) {
-    ctx.clearRect(0,0,w,h);
-    ctx.fillStyle='#080810'; ctx.fillRect(0,0,w,h);
+    ctx.clearRect(0,0,w,h); ctx.fillStyle='#080810'; ctx.fillRect(0,0,w,h);
     ctx.lineWidth=0.5;
-    for(var i=0;i<stars.length;i++) {
-      for(var j=i+1;j<stars.length;j++) {
-        var dx=stars[i].x-stars[j].x, dy=stars[i].y-stars[j].y, d=Math.sqrt(dx*dx+dy*dy);
-        if(d<100) {
-          ctx.globalAlpha=(1-d/100)*0.18;
-          ctx.strokeStyle='rgba(217,119,6,1)';
-          ctx.beginPath();
-          ctx.moveTo(stars[i].x,stars[i].y);
-          ctx.lineTo(stars[j].x,stars[j].y);
-          ctx.stroke();
-        }
-      }
+    for(var i=0;i<stars.length;i++) for(var j=i+1;j<stars.length;j++) {
+      var dx=stars[i].x-stars[j].x,dy=stars[i].y-stars[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100){ctx.globalAlpha=(1-d/100)*0.18;ctx.strokeStyle='rgba(217,119,6,1)';ctx.beginPath();ctx.moveTo(stars[i].x,stars[i].y);ctx.lineTo(stars[j].x,stars[j].y);ctx.stroke();}
     }
     ctx.globalAlpha=1;
-    for(var k=0;k<stars.length;k++) {
-      var s=stars[k];
-      var a=s.alpha*(0.7+0.3*Math.sin(t*s.speed*1000+s.phase));
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(255,250,220,'+a+')';
-      ctx.fill();
+    for(var k=0;k<stars.length;k++){
+      var s=stars[k],a=s.alpha*(0.7+0.3*Math.sin(t*s.speed*1000+s.phase));
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(255,250,220,'+a+')';ctx.fill();
     }
     requestAnimationFrame(draw);
   }
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(draw);
+  window.addEventListener('resize',resize); resize(); requestAnimationFrame(draw);
 }
 
 __applyBg();
 
-// Watch for PaperMod clearing our styles and re-apply
-var __observer = new MutationObserver(function(mutations) {
-  for(var i=0; i<mutations.length; i++) {
-    if(mutations[i].type === 'attributes' && mutations[i].attributeName === 'style') {
-      var el = mutations[i].target;
-      if(el === document.documentElement || el === document.body) {
-        __observer.disconnect();
-        __applyBg();
-        __observer.observe(document.documentElement, {attributes:true, attributeFilter:['style']});
-        __observer.observe(document.body, {attributes:true, attributeFilter:['style']});
-        break;
-      }
+var __obs=new MutationObserver(function(muts){
+  for(var i=0;i<muts.length;i++){
+    var t=muts[i].target;
+    if(t===document.documentElement||t===document.body){
+      __obs.disconnect(); __applyBg();
+      __obs.observe(document.documentElement,{attributes:true,attributeFilter:['style','data-theme']});
+      __obs.observe(document.body,{attributes:true,attributeFilter:['style']});
+      break;
     }
   }
 });
-__observer.observe(document.documentElement, {attributes:true, attributeFilter:['style']});
-__observer.observe(document.body, {attributes:true, attributeFilter:['style']});
+__obs.observe(document.documentElement,{attributes:true,attributeFilter:['style','data-theme']});
+__obs.observe(document.body,{attributes:true,attributeFilter:['style']});
 
-document.addEventListener('click', function(e) {
-  if (e.target && e.target.closest('#theme-toggle')) {
-    setTimeout(__applyBg, 100);
-  }
+document.addEventListener('click',function(e){
+  if(e.target&&e.target.closest('#theme-toggle')) setTimeout(__applyBg,100);
 });
 </script>
