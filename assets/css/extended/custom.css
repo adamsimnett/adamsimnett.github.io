@@ -84,7 +84,7 @@ html {
 */
 
 
-/* ---- TOPOGRAPHY (contour map curves) ---- */
+/* ---- TOPOGRAPHY (contour map curves) ----
 html {
   background-color: #0f0e0b;
 }
@@ -93,7 +93,7 @@ body {
   background-size: 800px 800px !important;
   background-repeat: repeat !important;
 }
-[data-theme="light"] html { background-color: #f0efe8; }
+[data-theme="light"] html { background-color: #f0efe8; } */
 
 
 /* ---- EMBER (warm glow from below) ---- */
@@ -148,12 +148,12 @@ html {
 
 /* ---- CONSTELLATION (animated stars) ---- */
 /* Note: requires extend_footer.html JS to be active — see README */
-/*
+
 html, body {
   background-color: #080810 !important;
   background-image: none !important;
 }
-*/
+
 
 
 /* ============================================================
