@@ -81,7 +81,11 @@ html {
 #up {
   height: 800px;
   width: 800px;
-  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgba(43, 247, 202, 0.5));
+  background-image: linear-gradient(
+    80deg,
+    rgba(217,119,6,0.35),
+    rgba(245,158,11,0.25)
+  );
   top: -100px;
   left: -100px;
   animation: down 40s infinite;
@@ -91,7 +95,11 @@ html {
   right: 0;
   height: 500px;
   width: 500px;
-  background-image: linear-gradient(80deg, rgba(245, 207, 82, 0.8), rgb(199, 10, 114));
+  background-image: linear-gradient(
+    80deg,
+    rgba(217,119,6,0.25),
+    rgba(120,50,5,0.35)
+  );
   bottom: -100px;
   animation: up 30s infinite;
 }
@@ -99,7 +107,11 @@ html {
 #left {
   height: 500px;
   width: 500px;
-  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgba(183, 253, 52, 0.8));
+  background-image: linear-gradient(
+    80deg,
+    rgba(245,158,11,0.25),
+    rgba(217,119,6,0.20)
+  );
   top: 0;
   left: -100px;
   animation: left 30s 1s infinite;
@@ -108,7 +120,11 @@ html {
 #right {
   height: 500px;
   width: 500px;
-  background-image: linear-gradient(80deg, rgba(26, 248, 18, 0.6), rgba(199, 10, 114, 0.5));
+  background-image: linear-gradient(
+    80deg,
+    rgba(217,119,6,0.20),
+    rgba(120,50,5,0.30)
+  );
   top: 0;
   right: -100px;
   animation: right 40s 0.5s infinite;
@@ -136,7 +152,24 @@ html {
   70%      { right: 1300px; }
 }
 
+#up, #down, #left, #right {
+  opacity: 0.7;
+}
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.02;
+}
+
+html {
+  background-image: linear-gradient(80deg, #0f0f0e, #151310);
+}
 
 /* ================================================
    BASE
