@@ -51,15 +51,28 @@
 
 
 /* ================================================
-   FINAL AURORA BACKGROUND (FIXED)
+   FINAL AURORA — SMOOTH + DYNAMIC + BLENDED
    ================================================ */
 
-/* Ensure background layer */
+/* Base background */
 html {
   background: #131312;
 }
 
-/* Content stays above */
+/* Shared blob styling */
+#up, #down, #left, #right {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.75;
+
+  will-change: transform;
+}
+
+/* Ensure content stays above */
 .main,
 .header,
 .footer {
@@ -68,34 +81,14 @@ html {
 }
 
 /* ================================================
-   BLOBS BASE
-   ================================================ */
-
-#up, #down, #left, #right {
-  position: fixed;
-  z-index: 0;
-  pointer-events: none;
-
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.75;
-
-  /* CRITICAL: center-based positioning */
-  transform: translate(-50%, -50%);
-  transform-origin: center;
-
-  will-change: transform;
-}
-
-/* ================================================
-   POSITIONS + COLOURS
+   BLOBS (RICH COLOUR BLENDING)
    ================================================ */
 
 #up {
-  width: 800px;
   height: 800px;
-  top: 0%;
-  left: 0%;
+  width: 800px;
+  top: -100px;
+  left: -100px;
 
   background: radial-gradient(
     circle at center,
@@ -105,28 +98,33 @@ html {
     rgba(120,50,5,0.18) 75%,
     transparent 100%
   );
+
+  animation: floatUp 60s ease-in-out infinite alternate;
 }
 
 #down {
-  width: 500px;
   height: 500px;
-  top: 100%;
-  left: 100%;
+  width: 500px;
+  bottom: -100px;
+  right: -100px;
 
   background: radial-gradient(
     circle at center,
-    rgba(245,158,11,0.30),
-    rgba(217,119,6,0.25),
-    rgba(120,50,5,0.20),
+    rgba(245,158,11,0.30) 0%,
+    rgba(217,119,6,0.25) 40%,
+    rgba(120,50,5,0.20) 70%,
     transparent 100%
   );
+
+  animation: floatDown 70s ease-in-out infinite alternate;
+  animation-delay: 5s;
 }
 
 #left {
-  width: 500px;
   height: 500px;
-  top: 50%;
-  left: 0%;
+  width: 500px;
+  top: 0;
+  left: -100px;
 
   background: radial-gradient(
     circle at center,
@@ -135,13 +133,16 @@ html {
     rgba(217,119,6,0.20),
     transparent 100%
   );
+
+  animation: floatLeft 65s ease-in-out infinite alternate;
+  animation-delay: 10s;
 }
 
 #right {
-  width: 500px;
   height: 500px;
-  top: 50%;
-  left: 100%;
+  width: 500px;
+  top: 0;
+  right: -100px;
 
   background: radial-gradient(
     circle at center,
@@ -150,10 +151,41 @@ html {
     rgba(120,50,5,0.20),
     transparent 100%
   );
+
+  animation: floatRight 75s ease-in-out infinite alternate;
+  animation-delay: 15s;
 }
 
 /* ================================================
-   GLOBAL LIGHT WASH
+   SMOOTH ORGANIC MOTION
+   ================================================ */
+
+@keyframes floatUp {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50%  { transform: translate(80px, 120px) scale(1.08) rotate(6deg); }
+  100% { transform: translate(-60px, 60px) scale(0.96) rotate(-4deg); }
+}
+
+@keyframes floatDown {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-100px, -80px) scale(1.1); }
+  100% { transform: translate(60px, -40px) scale(0.95); }
+}
+
+@keyframes floatLeft {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(140px, -60px) scale(1.05); }
+  100% { transform: translate(-40px, 80px) scale(0.98); }
+}
+
+@keyframes floatRight {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-120px, 100px) scale(1.07); }
+  100% { transform: translate(50px, -70px) scale(0.95); }
+}
+
+/* ================================================
+   GLOBAL LIGHT WASH (ties everything together)
    ================================================ */
 
 body::before {
@@ -172,7 +204,7 @@ body::before {
 }
 
 /* ================================================
-   NOISE OVERLAY
+   SUBTLE NOISE (premium feel)
    ================================================ */
 
 body::after {
@@ -185,21 +217,6 @@ body::after {
   background-image: url("https://www.transparenttextures.com/patterns/noise.png");
   opacity: 0.02;
 }
-
-/* ================================================
-   ACCESSIBILITY
-   ================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  #up, #down, #left, #right {
-    transform: none !important;
-  }
-}
-
-
-
-
-
 
 /* ================================================
    BASE
