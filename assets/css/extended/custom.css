@@ -51,7 +51,7 @@
 
 
 /* ================================================
-   FINAL AURORA — SMOOTH + DYNAMIC + BLENDED
+   FINAL AURORA SYSTEM (CSS + JS FRIENDLY)
    ================================================ */
 
 /* Base background */
@@ -59,7 +59,18 @@ html {
   background: #131312;
 }
 
-/* Shared blob styling */
+/* Ensure content above background */
+.main,
+.header,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================
+   BLOBS
+   ================================================ */
+
 #up, #down, #left, #right {
   position: fixed;
   z-index: 0;
@@ -70,23 +81,13 @@ html {
   opacity: 0.75;
 
   will-change: transform;
+  transition: transform 0.25s ease-out;
 }
 
-/* Ensure content stays above */
-.main,
-.header,
-.footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* ================================================
-   BLOBS (RICH COLOUR BLENDING)
-   ================================================ */
-
+/* Rich blended colours */
 #up {
-  height: 800px;
   width: 800px;
+  height: 800px;
   top: -100px;
   left: -100px;
 
@@ -99,30 +100,29 @@ html {
     transparent 100%
   );
 
-  animation: floatUp 60s ease-in-out infinite alternate;
+  animation: drift1 80s ease-in-out infinite alternate;
 }
 
 #down {
-  height: 500px;
   width: 500px;
+  height: 500px;
   bottom: -100px;
   right: -100px;
 
   background: radial-gradient(
     circle at center,
-    rgba(245,158,11,0.30) 0%,
-    rgba(217,119,6,0.25) 40%,
-    rgba(120,50,5,0.20) 70%,
+    rgba(245,158,11,0.30),
+    rgba(217,119,6,0.25),
+    rgba(120,50,5,0.20),
     transparent 100%
   );
 
-  animation: floatDown 70s ease-in-out infinite alternate;
-  animation-delay: 5s;
+  animation: drift2 90s ease-in-out infinite alternate;
 }
 
 #left {
-  height: 500px;
   width: 500px;
+  height: 500px;
   top: 0;
   left: -100px;
 
@@ -134,13 +134,12 @@ html {
     transparent 100%
   );
 
-  animation: floatLeft 65s ease-in-out infinite alternate;
-  animation-delay: 10s;
+  animation: drift3 85s ease-in-out infinite alternate;
 }
 
 #right {
-  height: 500px;
   width: 500px;
+  height: 500px;
   top: 0;
   right: -100px;
 
@@ -152,40 +151,35 @@ html {
     transparent 100%
   );
 
-  animation: floatRight 75s ease-in-out infinite alternate;
-  animation-delay: 15s;
+  animation: drift4 95s ease-in-out infinite alternate;
 }
 
 /* ================================================
-   SMOOTH ORGANIC MOTION
+   BASE DRIFT (subtle, JS enhances this)
    ================================================ */
 
-@keyframes floatUp {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50%  { transform: translate(80px, 120px) scale(1.08) rotate(6deg); }
-  100% { transform: translate(-60px, 60px) scale(0.96) rotate(-4deg); }
+@keyframes drift1 {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(40px, 60px) scale(1.05); }
 }
 
-@keyframes floatDown {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(-100px, -80px) scale(1.1); }
-  100% { transform: translate(60px, -40px) scale(0.95); }
+@keyframes drift2 {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(-50px, -40px) scale(1.06); }
 }
 
-@keyframes floatLeft {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(140px, -60px) scale(1.05); }
-  100% { transform: translate(-40px, 80px) scale(0.98); }
+@keyframes drift3 {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(60px, -30px) scale(1.04); }
 }
 
-@keyframes floatRight {
-  0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(-120px, 100px) scale(1.07); }
-  100% { transform: translate(50px, -70px) scale(0.95); }
+@keyframes drift4 {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(-40px, 50px) scale(1.05); }
 }
 
 /* ================================================
-   GLOBAL LIGHT WASH (ties everything together)
+   GLOBAL LIGHT WASH
    ================================================ */
 
 body::before {
@@ -204,7 +198,7 @@ body::before {
 }
 
 /* ================================================
-   SUBTLE NOISE (premium feel)
+   NOISE (depth)
    ================================================ */
 
 body::after {
@@ -217,6 +211,41 @@ body::after {
   background-image: url("https://www.transparenttextures.com/patterns/noise.png");
   opacity: 0.02;
 }
+
+/* ================================================
+   ACCESSIBILITY
+   ================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  #up, #down, #left, #right {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
+
+.home-profile h1 {
+  position: relative;
+}
+
+.home-profile h1::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle,
+    rgba(217,119,6,0.15),
+    transparent 70%
+  );
+  z-index: -1;
+}
+
+
+
+
+
+
 
 /* ================================================
    BASE
