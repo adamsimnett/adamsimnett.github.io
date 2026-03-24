@@ -437,3 +437,8 @@ html {
     scrollbar-width: auto;
     scrollbar-color: auto;
 }
+
+
+#theme-toggle {
+  transform: translateY(-1px);
+}
