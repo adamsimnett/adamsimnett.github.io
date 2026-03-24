@@ -158,7 +158,8 @@ html {
 }
 
 #up, #down, #left, #right {
-  opacity: 0.7;
+  filter: blur(120px); /* was 80px */
+  opacity: 0.8;
 }
 
 body::after {
