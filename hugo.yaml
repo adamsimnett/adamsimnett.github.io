@@ -1,5 +1,5 @@
 baseURL: "https://yourdomain.com/"
-title: "Your Name"
+title: "Adam Simnett"
 pagination:
   pagerSize: 10
 theme: PaperMod
@@ -16,10 +16,10 @@ minify:
 params:
   env: production
   background: "topography"
-  title: "Your Name"
+  title: "Adam Simnett"
   description: "Azure Engineer. Writing about cloud infrastructure, platform engineering, and lessons from building systems at scale."
   keywords: [azure, cloud, infrastructure, engineering, blog]
-  author: "Your Name"
+  author: "Adam Simnett"
 
   defaultTheme: dark
   disableThemeToggle: false
@@ -45,17 +45,17 @@ params:
     favicon: "/favicon.ico"
 
   label:
-    text: "Your Name"
+    text: "Adam Simnett"
 
   # Homepage profile
   profileMode:
     enabled: true
-    title: "Your Name"
+    title: "Adam Simnett"
     subtitle: "Azure Engineer · Writer · Builder"
     imageUrl: "/images/headshot.jpg"
     imageWidth: 120
     imageHeight: 120
-    imageTitle: "Your Name"
+    imageTitle: "Adam Simnett"
     buttons:
       - name: Blog
         url: /posts
