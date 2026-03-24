@@ -21,27 +21,25 @@ window.addEventListener("scroll", () => {
   scrollY = window.scrollY;
 });
 
-/* Animation loop */
+/* Smooth animation loop */
 function animate() {
   time += 0.01;
 
   blobs.forEach(({ el, strength, speed }, i) => {
     if (!el) return;
 
-    /* Smooth floating motion (time-based) */
     const floatX = Math.sin(time * speed + i) * 40;
     const floatY = Math.cos(time * speed + i) * 30;
 
-    /* Mouse influence */
     const mouseOffsetX = mouseX * strength;
     const mouseOffsetY = mouseY * strength;
 
-    /* Scroll parallax */
     const scrollOffset = scrollY * (0.03 + i * 0.01);
 
     el.style.transform = `
+      translate(-50%, -50%)
       translate(${floatX + mouseOffsetX}px, ${floatY + mouseOffsetY + scrollOffset}px)
-      scale(1.02)
+      scale(1.05)
     `;
   });
 

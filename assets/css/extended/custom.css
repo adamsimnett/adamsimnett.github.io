@@ -51,15 +51,15 @@
 
 
 /* ================================================
-   FINAL AURORA SYSTEM (CSS + JS FRIENDLY)
+   FINAL AURORA BACKGROUND (FIXED)
    ================================================ */
 
-/* Base background */
+/* Ensure background layer */
 html {
   background: #131312;
 }
 
-/* Ensure content above background */
+/* Content stays above */
 .main,
 .header,
 .footer {
@@ -68,32 +68,34 @@ html {
 }
 
 /* ================================================
-   BLOBS
+   BLOBS BASE
    ================================================ */
 
-/* #up, #down, #left, #right {
+#up, #down, #left, #right {
   position: fixed;
   z-index: 0;
   pointer-events: none;
 
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(140px);
   opacity: 0.75;
 
-  will-change: transform;
-  transition: transform 0.25s ease-out;
-} */
+  /* CRITICAL: center-based positioning */
+  transform: translate(-50%, -50%);
+  transform-origin: center;
 
-#up, #down, #left, #right {
-  animation: none !important;
+  will-change: transform;
 }
 
-/* Rich blended colours */
+/* ================================================
+   POSITIONS + COLOURS
+   ================================================ */
+
 #up {
   width: 800px;
   height: 800px;
-  top: -100px;
-  left: -100px;
+  top: 0%;
+  left: 0%;
 
   background: radial-gradient(
     circle at center,
@@ -103,15 +105,13 @@ html {
     rgba(120,50,5,0.18) 75%,
     transparent 100%
   );
-
-  animation: drift1 80s ease-in-out infinite alternate;
 }
 
 #down {
   width: 500px;
   height: 500px;
-  bottom: -100px;
-  right: -100px;
+  top: 100%;
+  left: 100%;
 
   background: radial-gradient(
     circle at center,
@@ -120,15 +120,13 @@ html {
     rgba(120,50,5,0.20),
     transparent 100%
   );
-
-  animation: drift2 90s ease-in-out infinite alternate;
 }
 
 #left {
   width: 500px;
   height: 500px;
-  top: 0;
-  left: -100px;
+  top: 50%;
+  left: 0%;
 
   background: radial-gradient(
     circle at center,
@@ -137,15 +135,13 @@ html {
     rgba(217,119,6,0.20),
     transparent 100%
   );
-
-  animation: drift3 85s ease-in-out infinite alternate;
 }
 
 #right {
   width: 500px;
   height: 500px;
-  top: 0;
-  right: -100px;
+  top: 50%;
+  left: 100%;
 
   background: radial-gradient(
     circle at center,
@@ -154,32 +150,6 @@ html {
     rgba(120,50,5,0.20),
     transparent 100%
   );
-
-  animation: drift4 95s ease-in-out infinite alternate;
-}
-
-/* ================================================
-   BASE DRIFT (subtle, JS enhances this)
-   ================================================ */
-
-@keyframes drift1 {
-  0%   { transform: translate(0,0) scale(1); }
-  100% { transform: translate(40px, 60px) scale(1.05); }
-}
-
-@keyframes drift2 {
-  0%   { transform: translate(0,0) scale(1); }
-  100% { transform: translate(-50px, -40px) scale(1.06); }
-}
-
-@keyframes drift3 {
-  0%   { transform: translate(0,0) scale(1); }
-  100% { transform: translate(60px, -30px) scale(1.04); }
-}
-
-@keyframes drift4 {
-  0%   { transform: translate(0,0) scale(1); }
-  100% { transform: translate(-40px, 50px) scale(1.05); }
 }
 
 /* ================================================
@@ -202,7 +172,7 @@ body::before {
 }
 
 /* ================================================
-   NOISE (depth)
+   NOISE OVERLAY
    ================================================ */
 
 body::after {
@@ -220,31 +190,11 @@ body::after {
    ACCESSIBILITY
    ================================================ */
 
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   #up, #down, #left, #right {
-    animation: none !important;
     transform: none !important;
   }
-} */
-
-
-
-/* .home-profile h1 {
-  position: relative;
 }
-
-.home-profile h1::after {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(
-    circle,
-    rgba(217,119,6,0.15),
-    transparent 70%
-  );
-  z-index: -1;
-} */
-
 
 
 
