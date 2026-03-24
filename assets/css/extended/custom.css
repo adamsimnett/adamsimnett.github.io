@@ -2,7 +2,6 @@
    adamsimnett.github.io — custom theme
    ================================================ */
 
-/* ---- Default tokens (dark) ---- */
 :root {
   --amber:      #d97706;
   --amber-hi:   #f59e0b;
@@ -20,6 +19,10 @@
   --nav-border: rgba(255,255,255,0.09);
   --nav-link:   rgba(255,255,255,0.45);
   --nav-hover:  rgba(255,255,255,0.07);
+  --theme: transparent;
+  --entry: rgba(255,255,255,0.045);
+  --primary: rgba(255,255,255,0.88);
+  --secondary: rgba(255,255,255,0.55);
 }
 
 [data-theme="light"] {
@@ -36,51 +39,40 @@
   --nav-border: rgba(0,0,0,0.09);
   --nav-link:   rgba(0,0,0,0.45);
   --nav-hover:  rgba(0,0,0,0.05);
+  --theme: #f4f3ef;
+  --entry: #ffffff;
+  --primary: rgba(0,0,0,0.88);
+  --secondary: rgba(0,0,0,0.55);
 }
 
 /* ================================================
-   ANIMATED GRADIENT — on html, body transparent
+   BACKGROUND — clean dark with dot grid
    ================================================ */
-@keyframes bgShift {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 html {
-  min-height: 100%;
   background-color: #131312;
-  background-image:
-    radial-gradient(ellipse 110% 70% at 5%   5%,  rgba(217,119,6,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 80%  80% at 95%  5%,  rgba(120,53,15,0.18)  0%, transparent 55%),
-    radial-gradient(ellipse 90%  60% at 50% 100%, rgba(180,83,9,0.16)  0%, transparent 60%);
-  background-size: 300% 300%;
-  animation: bgShift 20s ease infinite;
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
-[data-theme="light"] html,
-html[data-theme="light"] {
+[data-theme="light"] html {
   background-color: #f4f3ef;
-  background-image:
-    radial-gradient(ellipse 110% 70% at 5%   5%,  rgba(217,119,6,0.13) 0%, transparent 60%),
-    radial-gradient(ellipse 80%  80% at 95%  5%,  rgba(245,158,11,0.09) 0%, transparent 55%),
-    radial-gradient(ellipse 90%  60% at 50% 100%, rgba(180,83,9,0.10)  0%, transparent 60%);
+  background-image: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 body {
   background: transparent !important;
-  min-height: 100vh;
   color: var(--t1) !important;
 }
 
+/* ================================================
+   BASE
+   ================================================ */
 a           { color: var(--amber) !important; }
 a:hover     { color: var(--amber-hi) !important; }
 p, li       { color: var(--t1); }
 h1,h2,h3,h4 { color: var(--t1) !important; }
 
-/* ================================================
-   LAYOUT
-   ================================================ */
 .main {
   max-width: 900px !important;
   padding-top: 0 !important;
@@ -88,21 +80,16 @@ h1,h2,h3,h4 { color: var(--t1) !important; }
 }
 
 /* ================================================
-   NAVBAR — consistent size on all pages
+   NAVBAR
    ================================================ */
 header.header {
   background: transparent !important;
   box-shadow: none !important;
-  /* Consistent padding on every page */
   padding: 1.5rem 0 0 !important;
   margin-bottom: 0 !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  position: relative;
-  z-index: 100;
-  /* Kill any PaperMod flex that misaligns the pill */
-  
 }
 
 .nav {
@@ -113,116 +100,57 @@ header.header {
   background: var(--nav-bg) !important;
   border: 1px solid var(--nav-border) !important;
   border-radius: 999px !important;
-  /* Comfortable padding — not fat, not squashed */
   padding: 6px 10px !important;
-  /* Centre via transform — works regardless of parent layout */
-  position: static !important;
-  left: auto !important;
-  transform: none !important;
   box-shadow: 0 2px 20px rgba(0,0,0,0.15) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   white-space: nowrap !important;
-  /* Prevent width stretching */
   width: max-content !important;
 }
 
-/* Logo / site title */
 .nav .logo { display: flex !important; align-items: center !important; }
 .nav .logo a {
-  padding: 5px 16px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--t2) !important;
-  text-decoration: none !important;
-  line-height: 1.4 !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  border-radius: 999px !important;
-  letter-spacing: -0.01em;
+  padding: 5px 16px !important; font-size: 14px !important; font-weight: 500 !important;
+  color: var(--t2) !important; text-decoration: none !important;
+  line-height: 1.4 !important; display: block !important; border-radius: 999px !important;
 }
 .nav .logo a:hover { color: var(--t1) !important; }
 
-/* Menu list */
 .nav ul#menu {
-  display: inline-flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 2px !important;
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  display: inline-flex !important; flex-direction: row !important;
+  align-items: center !important; gap: 2px !important;
+  list-style: none !important; margin: 0 !important; padding: 0 !important;
 }
 .nav ul#menu li {
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-  display: inline-flex !important;
-  align-items: center !important;
+  margin: 0 !important; padding: 0 !important;
+  list-style: none !important; display: inline-flex !important; align-items: center !important;
 }
-
-/* Nav links — uniform padding, no extra bottom padding needed */
 .nav ul#menu li a {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 5px 16px !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  color: var(--nav-link) !important;
-  text-decoration: none !important;
-  white-space: nowrap !important;
-  border-radius: 999px !important;
-  transition: color 0.15s, background 0.15s;
-  position: relative;
+  display: block !important; padding: 5px 16px !important; font-size: 14px !important;
+  font-weight: 400 !important; line-height: 1.4 !important; color: var(--nav-link) !important;
+  text-decoration: none !important; white-space: nowrap !important; border-radius: 999px !important;
+  transition: color 0.15s, background 0.15s; position: relative;
 }
-
-.nav ul#menu li a:hover {
-  background: var(--nav-hover) !important;
-  color: var(--t1) !important;
-}
-
-/* Active — just a clean line, no bubble */
+.nav ul#menu li a:hover { background: var(--nav-hover) !important; color: var(--t1) !important; }
 .nav ul#menu li a.active,
 .nav ul#menu li a[aria-current="page"] {
-  color: var(--t1) !important;
-  font-weight: 500 !important;
-  background: transparent !important;
+  color: var(--t1) !important; font-weight: 500 !important;
+  background: transparent !important; border: none !important;
 }
-
 .nav ul#menu li a.active::after,
 .nav ul#menu li a[aria-current="page"]::after {
-  content: '';
-  position: absolute;
-  bottom: 0px;
-  left: 16px;
-  right: 16px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--amber);
-  display: block;
+  content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
+  height: 2px; border-radius: 2px; background: var(--amber);
 }
 
-/* Theme toggle */
 #theme-toggle {
-  all: unset !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 5px 10px !important;
-  margin: 0 !important;
-  color: var(--t3) !important;
-  border-radius: 999px !important;
-  transition: color 0.15s, background 0.15s;
-  flex-shrink: 0 !important;
-  line-height: 1 !important;
+  all: unset !important; cursor: pointer !important; display: inline-flex !important;
+  align-items: center !important; justify-content: center !important;
+  padding: 5px 10px !important; color: var(--t3) !important;
+  border-radius: 999px !important; transition: color 0.15s, background 0.15s;
 }
 #theme-toggle:hover { color: var(--amber-hi) !important; background: var(--nav-hover) !important; }
 #theme-toggle svg   { width: 15px !important; height: 15px !important; display: block !important; }
-
 #theme-toggle #moon                      { display: block !important; }
 #theme-toggle #sun                       { display: none !important; }
 [data-theme="dark"] #theme-toggle #moon  { display: none !important; }
@@ -231,95 +159,54 @@ header.header {
 /* ================================================
    HOMEPAGE
    ================================================ */
-.home-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 1rem;
-}
-
+.home-wrap { display: flex; flex-direction: column; align-items: center; padding: 0 1rem; }
 .home-profile { text-align: center; padding: 2rem 0 1.25rem; width: 100%; }
-
 .home-profile img {
-  border-radius: 50%;
-  border: 2px solid rgba(217,119,6,0.45);
-  box-shadow: 0 0 0 5px rgba(217,119,6,0.08);
-  display: block;
-  margin: 0 auto 1rem;
+  border-radius: 50%; border: 2px solid rgba(217,119,6,0.45);
+  box-shadow: 0 0 0 5px rgba(217,119,6,0.08); display: block; margin: 0 auto 1rem;
 }
-
 .home-profile h1 {
   font-size: 3rem !important; font-weight: 700 !important;
-  letter-spacing: -0.03em !important; color: var(--t1) !important;
-  margin: 0 0 6px !important; line-height: 1.15 !important;
+  letter-spacing: -0.035em !important; color: var(--t1) !important;
+  margin: 0 0 6px !important; line-height: 1.1 !important;
 }
-
 .home-subtitle { font-size: 15px; color: var(--t2) !important; margin: 0 0 0.75rem !important; }
-
 .home-social { display: flex; justify-content: center; gap: 6px; margin: 0.5rem 0; }
-.home-social a   { color: var(--amber) !important; }
+.home-social a { color: var(--amber) !important; }
 .home-social svg { width: 18px; height: 18px; }
-
 .home-buttons { display: flex; justify-content: center; gap: 8px; margin-top: 0.75rem; }
 .home-btn {
-  border: 1px solid rgba(217,119,6,0.45) !important;
-  border-radius: 999px !important;
-  color: var(--amber) !important;
-  padding: 7px 22px !important;
-  font-size: 13px !important;
-  background: transparent !important;
-  text-decoration: none !important;
-  transition: background 0.12s;
+  border: 1px solid rgba(217,119,6,0.45) !important; border-radius: 999px !important;
+  color: var(--amber) !important; padding: 7px 22px !important; font-size: 13px !important;
+  background: transparent !important; text-decoration: none !important; transition: background 0.12s;
 }
 .home-btn:hover { background: var(--amber-glow) !important; }
-
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
+  display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
 .home-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 @media (max-width: 620px) { .home-grid { grid-template-columns: 1fr; } }
 
 /* ================================================
-   POST CARDS + FIRST ENTRY
+   POST CARDS
    ================================================ */
-.post-entry,
-.first-entry {
-  background: var(--surface) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 10px !important;
-  padding: 1rem 1.1rem !important;
-  margin: 0 0 12px !important;
-  text-decoration: none !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  position: static !important;
-  height: auto !important;
-  min-height: 0 !important;
-  transition: border-color 0.12s;
+.post-entry, .first-entry {
+  background: var(--surface) !important; border: 1px solid var(--border) !important;
+  border-radius: 10px !important; padding: 1rem 1.1rem !important; margin: 0 0 12px !important;
+  text-decoration: none !important; display: flex !important; flex-direction: column !important;
+  position: static !important; height: auto !important; min-height: 0 !important; transition: border-color 0.12s;
 }
-.post-entry:hover,
-.first-entry:hover { border-color: var(--border-hi) !important; }
-
-.post-entry .entry-header h2,
-.first-entry .entry-header h1,
-.first-entry .entry-header h2 {
-  font-size: 14px !important; font-weight: 500 !important;
-  color: var(--t1) !important; margin: 0 0 5px !important;
-  line-height: 1.4 !important; letter-spacing: 0 !important;
+.post-entry:hover, .first-entry:hover { border-color: var(--border-hi) !important; }
+.post-entry .entry-header, .first-entry .entry-header { width: 100% !important; padding: 0 !important; margin: 0 0 5px !important; }
+.post-entry .entry-header h2, .first-entry .entry-header h1, .first-entry .entry-header h2 {
+  font-size: 14px !important; font-weight: 500 !important; color: var(--t1) !important; margin: 0 !important; line-height: 1.4 !important;
 }
-.post-entry .entry-content p,
-.first-entry .entry-content p {
-  font-size: 13px !important; color: var(--t2) !important;
-  margin: 0 0 7px !important; line-height: 1.5 !important;
-}
-.post-entry .entry-footer,
-.first-entry .entry-footer {
-  font-size: 11px !important; color: var(--t3) !important;
-  font-family: monospace; position: static !important;
+.post-entry .entry-content, .first-entry .entry-content { width: 100% !important; padding: 0 !important; margin: 0 0 7px !important; }
+.post-entry .entry-content p, .first-entry .entry-content p { font-size: 13px !important; color: var(--t2) !important; margin: 0 !important; }
+.post-entry .entry-footer, .first-entry .entry-footer {
+  font-size: 11px !important; color: var(--t3) !important; font-family: monospace; position: static !important; width: 100% !important;
 }
 .first-entry .entry-cover { display: none !important; }
 
@@ -354,7 +241,7 @@ footer.footer {
   font-size: 12px !important; padding: 1.75rem 0 !important;
   border-top: 1px solid var(--border) !important; color: var(--t4) !important;
 }
-.footer a       { color: var(--t3) !important; }
+.footer a { color: var(--t3) !important; }
 .footer a:hover { color: var(--amber-hi) !important; }
 
 /* ================================================
@@ -362,18 +249,17 @@ footer.footer {
    ================================================ */
 .about-section-label {
   display: block !important; font-size: 10px !important; font-weight: 600 !important;
-  letter-spacing: 0.12em !important; text-transform: uppercase !important;
-  font-family: monospace !important; color: var(--t3) !important;
-  margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
+  letter-spacing: 0.12em !important; text-transform: uppercase !important; font-family: monospace !important;
+  color: var(--t3) !important; margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
 }
 .about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
-.about-hero-text h1      { color: var(--t1) !important; font-size: 2.2rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
-.about-hero-text .role   { color: var(--t3) !important; font-size: 14px !important; }
-.about-hero-text p       { color: var(--t2) !important; }
-.about-social a          { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
-.about-social a:hover    { color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
-.about-divider           { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
+.about-hero-text h1 { color: var(--t1) !important; font-size: 2.2rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
+.about-hero-text .role { color: var(--t3) !important; font-size: 14px !important; }
+.about-hero-text p   { color: var(--t2) !important; }
+.about-social a      { color: var(--t2) !important; border-color: var(--border) !important; text-decoration: none !important; }
+.about-social a:hover{ color: var(--amber-hi) !important; border-color: var(--border-hi) !important; }
+.about-divider       { height: 1px !important; background: var(--border) !important; margin: 2rem 0 !important; }
 
 .timeline::before { background: var(--border) !important; }
 .tl-dot           { background: var(--bg) !important; border: 2px solid var(--t4) !important; }
@@ -385,123 +271,3 @@ footer.footer {
 .tl-desc          { color: var(--t2) !important; }
 .tl-date, .tl-location { color: var(--t3) !important; font-family: monospace; font-size: 11px; }
 .tag { color: var(--t2) !important; background: var(--surface-dim) !important; border: 1px solid var(--border) !important; }
-
-/* ================================================
-   FORCE REMOVE active bubble border — belt+braces
-   ================================================ */
-.nav ul#menu li a.active,
-.nav ul#menu li a[aria-current="page"] {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* ================================================
-   FIX FIRST-ENTRY squashed layout on blog list
-   PaperMod renders it as a flex/grid row
-   ================================================ */
-.first-entry {
-  display: block !important;
-  grid-template-columns: none !important;
-  grid-template-rows: none !important;
-  flex-direction: column !important;
-}
-
-.first-entry .entry-header {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 0 6px !important;
-}
-
-.first-entry .entry-content {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 0 6px !important;
-}
-
-.first-entry .entry-footer {
-  display: block !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  position: static !important;
-}
-
-.first-entry .entry-header h2,
-.first-entry .entry-header h1 {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--t1) !important;
-  margin: 0 0 5px !important;
-  line-height: 1.4 !important;
-  letter-spacing: 0 !important;
-  word-break: normal !important;
-  overflow-wrap: normal !important;
-  white-space: normal !important;
-  width: auto !important;
-  max-width: 100% !important;
-}
-
-/* ================================================
-   NUCLEAR OPTION: kill ALL multi-column layouts
-   on post list cards regardless of class
-   ================================================ */
-.post-entry,
-.post-entry * {
-  grid-column: unset !important;
-  grid-row: unset !important;
-  grid-area: unset !important;
-  float: none !important;
-}
-
-.post-entry {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 0 !important;
-}
-
-.post-entry .entry-header,
-.post-entry .entry-content,
-.post-entry .entry-footer {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  position: static !important;
-}
-
-.post-entry .entry-header h2 {
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  color: var(--t1) !important;
-  margin: 0 0 6px !important;
-  line-height: 1.4 !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.post-entry .entry-content {
-  margin: 0 0 6px !important;
-}
-
-.post-entry .entry-content p {
-  font-size: 13px !important;
-  color: var(--t2) !important;
-  line-height: 1.55 !important;
-  margin: 0 !important;
-}
-
-.post-entry .entry-footer {
-  font-size: 11px !important;
-  color: var(--t3) !important;
-  font-family: monospace !important;
-  margin-top: 6px !important;
-}
