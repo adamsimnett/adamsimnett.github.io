@@ -28,8 +28,8 @@ function animate() {
   blobs.forEach(({ el, strength, speed }, i) => {
     if (!el) return;
 
-    const floatX = Math.sin(time * speed + i) * 40;
-    const floatY = Math.cos(time * speed + i) * 30;
+    const floatX = Math.sin(time * speed + i) * 60;
+    const floatY = Math.cos(time * speed + i) * 50;
 
     const mouseOffsetX = mouseX * strength;
     const mouseOffsetY = mouseY * strength;
