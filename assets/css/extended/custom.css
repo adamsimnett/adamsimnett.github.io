@@ -23,6 +23,8 @@
   --entry: rgba(255,255,255,0.045);
   --primary: rgba(255,255,255,0.88);
   --secondary: rgba(255,255,255,0.55);
+
+  --label-size: 15px
 }
 
 [data-theme="light"] {
@@ -336,7 +338,7 @@ header.header {
 .home-btn:hover { background: var(--amber-glow) !important; }
 .home-feed { width: 100%; padding-top: 0.75rem; }
 .home-feed-label {
-  display: block; font-size: 15px; font-weight: 600; letter-spacing: 0.12em;
+  display: block; font-size: var(--label-size); font-weight: 600; letter-spacing: 0.12em;
   text-transform: uppercase; font-family: monospace; color: var(--t3); margin-bottom: 0.7rem;
 }
 .home-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
@@ -401,7 +403,7 @@ footer.footer {
    ABOUT PAGE
    ================================================ */
 .about-section-label {
-  display: block !important; font-size: 15px !important; font-weight: 600 !important;
+  display: block !important; font-size: var(--label-size) !important; font-weight: 600 !important;
   letter-spacing: 0.12em !important; text-transform: uppercase !important; font-family: monospace !important;
   color: var(--t3) !important; margin: 2.25rem 0 1rem !important; padding-bottom: 8px !important;
   border-bottom: 1px solid var(--border) !important;
