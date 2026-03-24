@@ -51,19 +51,73 @@
 
 
 /* ================================================
-   CLEAN AMBIENT BACKGROUND (ADAPTED)
+   CLEAN AMBIENT BACKGROUND — FINAL
    ================================================ */
 
-/* ================================================
-   ACCENT GLOW (CENTER FOCUS)
-   ================================================ */
+/* Background container */
+.bg-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* IMPORTANT: not negative */
+  pointer-events: none;
+  overflow: hidden;
+}
 
+/* Ensure site content sits above */
+.main,
+.header,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Shared sphere style */
+.bg-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+/* Top-left glow */
+.bg-sphere.s1 {
+  width: 55vw;
+  height: 55vw;
+  top: -20%;
+  left: -15%;
+
+  background: radial-gradient(
+    circle,
+    rgba(217,119,6,0.35),
+    rgba(217,119,6,0.15),
+    transparent 70%
+  );
+
+  animation: float1 18s ease-in-out infinite alternate;
+}
+
+/* Bottom-right glow */
+.bg-sphere.s2 {
+  width: 65vw;
+  height: 65vw;
+  bottom: -25%;
+  right: -15%;
+
+  background: radial-gradient(
+    circle,
+    rgba(120,50,5,0.25),
+    transparent 70%
+  );
+
+  animation: float2 22s ease-in-out infinite alternate;
+}
+
+/* Center accent (behind your name) */
 .bg-sphere.s3 {
   width: 38vw;
   height: 38vw;
   top: 18%;
   left: 50%;
-  transform: translateX(-50%);
 
   background: radial-gradient(
     circle,
@@ -78,6 +132,18 @@
   animation: float3 20s ease-in-out infinite alternate;
 }
 
+/* Animations */
+@keyframes float1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(10%, 8%) scale(1.08); }
+}
+
+@keyframes float2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-10%, -6%) scale(1.1); }
+}
+
+/* IMPORTANT: include translateX(-50%) in BOTH frames */
 @keyframes float3 {
   0% {
     transform: translate(-50%, 0) scale(1);
@@ -86,6 +152,18 @@
     transform: translate(-50%, 8%) scale(1.06);
   }
 }
+
+/* Subtle noise layer */
+.bg-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.02;
+}
+
+
 
 /* ================================================
    BASE
