@@ -163,6 +163,11 @@
   opacity: 0.02;
 }
 
+.home-profile {
+  position: relative;
+  z-index: 2;
+}
+
 
 
 /* ================================================
