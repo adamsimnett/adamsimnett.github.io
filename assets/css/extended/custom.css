@@ -48,21 +48,76 @@
 /* ================================================
    BACKGROUND — clean dark with dot grid
    ================================================ */
+
+   /* ================================================
+   SUBTLE PARALLAX STARFIELD (PORTFOLIO SAFE)
+   ================================================ */
+
+/* Base background (keep it dark and clean) */
 html {
-  background-color: #131312;
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background: radial-gradient(ellipse at bottom, #131312 0%, #090a0f 100%);
 }
 
-[data-theme="light"] html {
-  background-color: #f4f3ef;
-  background-image: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px);
-  background-size: 28px 28px;
+/* Shared */
+#stars, #stars2, #stars3 {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.35; /* keeps it subtle */
 }
 
-body {
-  background: transparent !important;
-  color: var(--t1) !important;
+/* Small stars (most of them) */
+#stars {
+  width: 1px;
+  height: 1px;
+  box-shadow:
+    100px 200px rgba(255,200,120,0.7),
+    300px 400px rgba(255,200,120,0.7),
+    500px 800px rgba(255,200,120,0.6),
+    900px 1200px rgba(255,200,120,0.7),
+    1300px 700px rgba(255,200,120,0.6),
+    1600px 300px rgba(255,200,120,0.7),
+    1800px 900px rgba(255,200,120,0.6),
+    200px 1400px rgba(255,200,120,0.6);
+
+  animation: starScroll 80s linear infinite;
+}
+
+/* Medium stars */
+#stars2 {
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    200px 300px rgba(255,220,160,0.7),
+    600px 900px rgba(255,220,160,0.6),
+    1000px 500px rgba(255,220,160,0.7),
+    1400px 1100px rgba(255,220,160,0.6);
+
+  animation: starScroll 140s linear infinite;
+}
+
+/* Large stars (very few) */
+#stars3 {
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    400px 600px rgba(255,240,200,0.8),
+    800px 200px rgba(255,240,200,0.7),
+    1200px 1000px rgba(255,240,200,0.7);
+
+  animation: starScroll 200s linear infinite;
+}
+
+/* Movement */
+@keyframes starScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2000px); }
+}
+
+/* Optional: fade stars toward bottom (VERY nice effect) */
+#stars, #stars2, #stars3 {
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
 }
 
 /* ================================================
