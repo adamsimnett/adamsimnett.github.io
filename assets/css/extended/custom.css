@@ -54,73 +54,37 @@
    CLEAN AMBIENT BACKGROUND (ADAPTED)
    ================================================ */
 
-.bg-ambient {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  overflow: hidden;
-}
+/* ================================================
+   ACCENT GLOW (CENTER FOCUS)
+   ================================================ */
 
-/* Shared sphere style */
-.bg-sphere {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.25;
-}
-
-/* Top-left warm glow */
-.bg-sphere.s1 {
-  width: 50vw;
-  height: 50vw;
-  top: -15%;
-  left: -10%;
+.bg-sphere.s3 {
+  width: 38vw;
+  height: 38vw;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
 
   background: radial-gradient(
     circle,
-    rgba(217,119,6,0.25),
-    rgba(217,119,6,0.10),
+    rgba(217,119,6,0.22),
+    rgba(217,119,6,0.08),
     transparent 70%
   );
 
-  animation: float1 40s ease-in-out infinite alternate;
+  opacity: 0.3;
+  filter: blur(90px);
+
+  animation: float3 20s ease-in-out infinite alternate;
 }
 
-/* Bottom-right subtle counterbalance */
-.bg-sphere.s2 {
-  width: 60vw;
-  height: 60vw;
-  bottom: -20%;
-  right: -10%;
-
-  background: radial-gradient(
-    circle,
-    rgba(120,50,5,0.18),
-    transparent 70%
-  );
-
-  animation: float2 50s ease-in-out infinite alternate;
-}
-
-@keyframes float1 {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(5%, 5%) scale(1.05); }
-}
-
-@keyframes float2 {
-  0%   { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-5%, -5%) scale(1.08); }
-}
-
-/* Subtle noise (keep this!) */
-.bg-ambient::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
-  opacity: 0.02;
+@keyframes float3 {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    transform: translate(-50%, 8%) scale(1.06);
+  }
 }
 
 /* ================================================
