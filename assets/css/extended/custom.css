@@ -1,5 +1,5 @@
 /* ================================================
-   adamsimnett.github.io — custom theme
+   Custom Theme
    ================================================ */
 
 :root {
@@ -48,20 +48,14 @@
 }
 
 /* ================================================
-   BACKGROUND — clean dark with dot grid
+   Site background
    ================================================ */
 
-
-/* ================================================
-   FINAL AURORA — SMOOTH + DYNAMIC + BLENDED
-   ================================================ */
-
-/* Base background */
 html {
   background: #131312;
 }
 
-/* Shared blob styling */
+/* Shared styling */
 #up, #down, #left, #right {
   position: fixed;
   z-index: 0;
@@ -74,7 +68,6 @@ html {
   will-change: transform;
 }
 
-/* Ensure content stays above */
 .main,
 .header,
 .footer {
@@ -83,7 +76,7 @@ html {
 }
 
 /* ================================================
-   BLOBS (RICH COLOUR BLENDING)
+   Blobs
    ================================================ */
 
 #up {
@@ -159,7 +152,7 @@ html {
 }
 
 /* ================================================
-   SMOOTH ORGANIC MOTION
+   Movement
    ================================================ */
 
 @keyframes floatUp {
@@ -187,7 +180,7 @@ html {
 }
 
 /* ================================================
-   GLOBAL LIGHT WASH (ties everything together)
+   Global
    ================================================ */
 
 body::before {
@@ -206,7 +199,7 @@ body::before {
 }
 
 /* ================================================
-   SUBTLE NOISE (premium feel)
+   Noise layer
    ================================================ */
 
 body::after {
@@ -426,3 +419,21 @@ footer.footer {
 .tl-desc          { color: var(--t2) !important; }
 .tl-date, .tl-location { color: var(--t3) !important; font-family: monospace; font-size: 11px; }
 .tag { color: var(--t2) !important; background: var(--surface-dim) !important; border: 1px solid var(--border) !important; }
+
+
+
+
+
+
+/* Reset scrollbar to browser default */
+
+/* Chrome etc */
+::-webkit-scrollbar {
+    all: unset;
+}
+
+/* Firefox */
+html {
+    scrollbar-width: auto;
+    scrollbar-color: auto;
+}
