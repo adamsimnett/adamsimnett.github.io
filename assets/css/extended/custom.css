@@ -51,24 +51,28 @@
 
 
 /* ================================================
-   ORIGINAL AURORA (HUGO-COMPATIBLE)
+   FINAL AURORA — SMOOTH + DYNAMIC + BLENDED
    ================================================ */
 
-/* DO NOT override body/layout — only background */
+/* Base background */
 html {
-  background-image: linear-gradient(80deg, rgb(5, 124, 172), rgb(199, 10, 114));
+  background: #131312;
 }
 
-/* Shared fix: make them proper background layers */
+/* Shared blob styling */
 #up, #down, #left, #right {
-  position: fixed;        /* was absolute */
-  z-index: 0;             /* sits behind content */
-  pointer-events: none;   /* prevents interaction issues */
-  filter: blur(80px);
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+
   border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.75;
+
+  will-change: transform;
 }
 
-/* Ensure content is above */
+/* Ensure content stays above */
 .main,
 .header,
 .footer {
@@ -76,28 +80,34 @@ html {
   z-index: 1;
 }
 
-/* ORIGINAL STYLES BELOW (unchanged except positioning) */
+/* ================================================
+   BLOBS (RICH COLOUR BLENDING)
+   ================================================ */
 
 #up {
   height: 800px;
   width: 800px;
-  background: radial-gradient(
-    circle at center,
-    rgba(251,191,36,0.35) 0%,   /* warm yellow highlight */
-    rgba(245,158,11,0.30) 25%,  /* amber-hi */
-    rgba(217,119,6,0.25) 50%,   /* core amber */
-    rgba(120,50,5,0.18) 75%,    /* depth */
-    transparent 100%
-  );
   top: -100px;
   left: -100px;
-  animation: down 40s infinite;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(251,191,36,0.35) 0%,
+    rgba(245,158,11,0.30) 25%,
+    rgba(217,119,6,0.25) 50%,
+    rgba(120,50,5,0.18) 75%,
+    transparent 100%
+  );
+
+  animation: floatUp 60s ease-in-out infinite alternate;
 }
 
 #down {
-  right: 0;
   height: 500px;
   width: 500px;
+  bottom: -100px;
+  right: -100px;
+
   background: radial-gradient(
     circle at center,
     rgba(245,158,11,0.30) 0%,
@@ -105,13 +115,17 @@ html {
     rgba(120,50,5,0.20) 70%,
     transparent 100%
   );
-  bottom: -100px;
-  animation: up 30s infinite;
+
+  animation: floatDown 70s ease-in-out infinite alternate;
+  animation-delay: 5s;
 }
 
 #left {
   height: 500px;
   width: 500px;
+  top: 0;
+  left: -100px;
+
   background: radial-gradient(
     circle at center,
     rgba(251,191,36,0.28),
@@ -119,14 +133,17 @@ html {
     rgba(217,119,6,0.20),
     transparent 100%
   );
-  top: 0;
-  left: -100px;
-  animation: left 30s 1s infinite;
+
+  animation: floatLeft 65s ease-in-out infinite alternate;
+  animation-delay: 10s;
 }
 
 #right {
   height: 500px;
   width: 500px;
+  top: 0;
+  right: -100px;
+
   background: radial-gradient(
     circle at center,
     rgba(217,119,6,0.25),
@@ -134,51 +151,71 @@ html {
     rgba(120,50,5,0.20),
     transparent 100%
   );
-  top: 0;
-  right: -100px;
-  animation: right 40s 0.5s infinite;
+
+  animation: floatRight 75s ease-in-out infinite alternate;
+  animation-delay: 15s;
 }
 
-/* ORIGINAL ANIMATIONS (unchanged) */
+/* ================================================
+   SMOOTH ORGANIC MOTION
+   ================================================ */
 
-@keyframes down {
-  0%, 100% { top: -100px; }
-  70%      { top: 700px; }
+@keyframes floatUp {
+  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50%  { transform: translate(80px, 120px) scale(1.08) rotate(6deg); }
+  100% { transform: translate(-60px, 60px) scale(0.96) rotate(-4deg); }
 }
 
-@keyframes up {
-  0%, 100% { bottom: -100px; }
-  70%      { bottom: 700px; }
+@keyframes floatDown {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-100px, -80px) scale(1.1); }
+  100% { transform: translate(60px, -40px) scale(0.95); }
 }
 
-@keyframes left {
-  0%, 100% { left: -100px; }
-  70%      { left: 1300px; }
+@keyframes floatLeft {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(140px, -60px) scale(1.05); }
+  100% { transform: translate(-40px, 80px) scale(0.98); }
 }
 
-@keyframes right {
-  0%, 100% { right: -100px; }
-  70%      { right: 1300px; }
+@keyframes floatRight {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-120px, 100px) scale(1.07); }
+  100% { transform: translate(50px, -70px) scale(0.95); }
 }
 
-#up, #down, #left, #right {
-  filter: blur(120px); /* was 80px */
-  opacity: 0.75;
+/* ================================================
+   GLOBAL LIGHT WASH (ties everything together)
+   ================================================ */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(217,119,6,0.12),
+    rgba(217,119,6,0.06) 40%,
+    transparent 70%
+  );
 }
+
+/* ================================================
+   SUBTLE NOISE (premium feel)
+   ================================================ */
 
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
   z-index: 0;
+  pointer-events: none;
 
   background-image: url("https://www.transparenttextures.com/patterns/noise.png");
   opacity: 0.02;
-}
-
-html {
-  background-image: linear-gradient(80deg, #0f0f0e, #151310);
 }
 
 /* ================================================
