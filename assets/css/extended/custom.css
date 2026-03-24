@@ -49,75 +49,78 @@
    BACKGROUND — clean dark with dot grid
    ================================================ */
 
-   /* ================================================
-   SUBTLE PARALLAX STARFIELD (PORTFOLIO SAFE)
+
+/* ================================================
+   CLEAN AMBIENT BACKGROUND (ADAPTED)
    ================================================ */
 
-/* Base background (keep it dark and clean) */
-html {
-  background: radial-gradient(ellipse at bottom, #131312 0%, #090a0f 100%);
-}
-
-/* Shared */
-#stars, #stars2, #stars3 {
+.bg-ambient {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.35; /* keeps it subtle */
+  overflow: hidden;
 }
 
-/* Small stars (most of them) */
-#stars {
-  width: 1px;
-  height: 1px;
-  box-shadow:
-    100px 200px rgba(255,200,120,0.7),
-    300px 400px rgba(255,200,120,0.7),
-    500px 800px rgba(255,200,120,0.6),
-    900px 1200px rgba(255,200,120,0.7),
-    1300px 700px rgba(255,200,120,0.6),
-    1600px 300px rgba(255,200,120,0.7),
-    1800px 900px rgba(255,200,120,0.6),
-    200px 1400px rgba(255,200,120,0.6);
-
-  animation: starScroll 80s linear infinite;
+/* Shared sphere style */
+.bg-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
 }
 
-/* Medium stars */
-#stars2 {
-  width: 2px;
-  height: 2px;
-  box-shadow:
-    200px 300px rgba(255,220,160,0.7),
-    600px 900px rgba(255,220,160,0.6),
-    1000px 500px rgba(255,220,160,0.7),
-    1400px 1100px rgba(255,220,160,0.6);
+/* Top-left warm glow */
+.bg-sphere.s1 {
+  width: 50vw;
+  height: 50vw;
+  top: -15%;
+  left: -10%;
 
-  animation: starScroll 140s linear infinite;
+  background: radial-gradient(
+    circle,
+    rgba(217,119,6,0.25),
+    rgba(217,119,6,0.10),
+    transparent 70%
+  );
+
+  animation: float1 40s ease-in-out infinite alternate;
 }
 
-/* Large stars (very few) */
-#stars3 {
-  width: 3px;
-  height: 3px;
-  box-shadow:
-    400px 600px rgba(255,240,200,0.8),
-    800px 200px rgba(255,240,200,0.7),
-    1200px 1000px rgba(255,240,200,0.7);
+/* Bottom-right subtle counterbalance */
+.bg-sphere.s2 {
+  width: 60vw;
+  height: 60vw;
+  bottom: -20%;
+  right: -10%;
 
-  animation: starScroll 200s linear infinite;
+  background: radial-gradient(
+    circle,
+    rgba(120,50,5,0.18),
+    transparent 70%
+  );
+
+  animation: float2 50s ease-in-out infinite alternate;
 }
 
-/* Movement */
-@keyframes starScroll {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-2000px); }
+@keyframes float1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(5%, 5%) scale(1.05); }
 }
 
-/* Optional: fade stars toward bottom (VERY nice effect) */
-#stars, #stars2, #stars3 {
-  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+@keyframes float2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-5%, -5%) scale(1.08); }
+}
+
+/* Subtle noise (keep this!) */
+.bg-ambient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+  opacity: 0.02;
 }
 
 /* ================================================
