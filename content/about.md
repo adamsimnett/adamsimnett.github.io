@@ -303,8 +303,7 @@ background: "aurora"
 
 <div class="about-bio">
   <p>
-    As mentioned, I'm a cloud engineer by trade. Day to day I mainly deal with Azure landing zones, infrastructure 
-    deployments and ongoing maintenance and improvements of highly secure cloud platforms for both government 
+    As mentioned, I'm a cloud engineer by trade. Day to day I mainly deal with Azure landing zones, infrastructure deployments and ongoing maintenance and improvements of highly secure cloud platforms for both government 
     and private organizations.
   </p>
 </div>
