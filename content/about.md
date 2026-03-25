@@ -316,22 +316,22 @@ background: "aurora"
     <div class="tl-dot tl-active"></div>
     <div class="tl-card">
       <div class="tl-meta">
-        <span class="tl-location">London, UK</span>
-        <span class="tl-date">2022 — present</span>
+        <span class="tl-location">Remote, UK</span>
+        <span class="tl-date">2023 — present</span>
       </div>
-      <div class="tl-title">Senior Azure Engineer <span class="at">at Your Current Company</span></div>
+      <div class="tl-title">Cloud Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
         Leading cloud infrastructure strategy across a multi-region Azure estate.
         Driving IaC adoption and platform engineering practices across multiple engineering squads.
       </p>
       <span class="badge badge-amber">current role</span>
       <div class="tags">
-        <span class="tag">Azure</span>
+        <span class="tag">Bicep</span>
         <span class="tag">Terraform</span>
-        <span class="tag">Kubernetes</span>
+        <span class="tag">DevOps</span>
         <span class="tag">CI/CD</span>
         <span class="tag">Platform Eng</span>
-        <span class="tag">Bicep</span>
+        <span class="tag">AVM + ALZ</span>
       </div>
     </div>
   </div>
@@ -341,10 +341,10 @@ background: "aurora"
     <div class="tl-dot"></div>
     <div class="tl-card">
       <div class="tl-meta">
-        <span class="tl-location">Remote</span>
-        <span class="tl-date">2019 — 2022</span>
+        <span class="tl-location">Remote, UK</span>
+        <span class="tl-date">2022 — 2023</span>
       </div>
-      <div class="tl-title">Cloud Engineer <span class="at">at Previous Company</span></div>
+      <div class="tl-title">Junior Cloud Support Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
         Built and maintained production infrastructure for a SaaS platform.
         First cloud hire — took the company from on-prem to fully cloud native on Azure.
@@ -352,9 +352,9 @@ background: "aurora"
       <span class="badge badge-blue">first cloud role</span>
       <div class="tags">
         <span class="tag">Azure</span>
-        <span class="tag">Docker</span>
-        <span class="tag">Ansible</span>
-        <span class="tag">Python</span>
+        <span class="tag">M365</span>
+        <span class="tag">Defender for Cloud</span>
+        <span class="tag">Azure Monitor</span>
         <span class="tag">ARM Templates</span>
       </div>
     </div>
@@ -365,21 +365,21 @@ background: "aurora"
     <div class="tl-dot"></div>
     <div class="tl-card">
       <div class="tl-meta">
-        <span class="tl-location">Manchester, UK</span>
-        <span class="tl-date">2016 — 2019</span>
+        <span class="tl-location">Wisbech, UK</span>
+        <span class="tl-date">2019 — 2022</span>
       </div>
-      <div class="tl-title">Systems Engineer <span class="at">at Earlier Company</span></div>
+      <div class="tl-title">IT Infrastructure Technician <span class="at">at Tamar-IT Ltd</span></div>
       <p class="tl-desc">
-        Infrastructure and systems engineering for a mid-size enterprise.
-        Managed on-prem estate while beginning the journey into cloud and automation.
+        Infrastructure and systems support and setup within a varied MSP supporting local and national businesses.
+        Managed on-prem Windows, ADDS, Hyper-V and Windows Clusters, alongside consumer hardware and software support
       </p>
       <span class="badge badge-green">where it started</span>
       <div class="tags">
-        <span class="tag">Linux</span>
-        <span class="tag">VMware</span>
-        <span class="tag">Networking</span>
+        <span class="tag">M365</span>
+        <span class="tag">ADDS</span>
+        <span class="tag">Ubiquiti Unifi</span>
         <span class="tag">PowerShell</span>
-        <span class="tag">Windows Server</span>
+        <span class="tag">Windows Server Clusters</span>
       </div>
     </div>
   </div>
