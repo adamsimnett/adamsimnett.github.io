@@ -262,8 +262,8 @@ background: "aurora"
       and the real lessons from building and operating systems at scale.
     </p>
     <div class="about-social">
-      <a href="https://github.com/yourusername">github</a>
-      <a href="https://linkedin.com/in/yourprofile">linkedin</a>
+      <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
+      <a href="https://github.com/adamsimnett">github</a>
       <a href="mailto:you@yourdomain.com">email</a>
       <a href="/index.xml">rss</a>
     </div>
@@ -330,8 +330,9 @@ background: "aurora"
         <span class="tag">Terraform</span>
         <span class="tag">DevOps</span>
         <span class="tag">CI/CD</span>
-        <span class="tag">Platform Eng</span>
         <span class="tag">AVM + ALZ</span>
+        <span class="tag">Architecture</span>
+        <span class="tag">Azure Policy</span>
       </div>
     </div>
   </div>
@@ -380,6 +381,7 @@ background: "aurora"
         <span class="tag">Ubiquiti Unifi</span>
         <span class="tag">PowerShell</span>
         <span class="tag">Windows Server Clusters</span>
+        <span class="tag">Networking</span>
       </div>
     </div>
   </div>
