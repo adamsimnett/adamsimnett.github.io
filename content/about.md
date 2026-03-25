@@ -256,9 +256,9 @@ background: "aurora"
   <img src="/images/headshot.jpg" alt="Your Name" />
   <div class="about-hero-text">
     <h1>Your Name</h1>
-    <p class="role">Azure Engineer · Writer · Builder</p>
+    <p class="role">Cloud Engineer · Builder · Enthusiast</p>
     <p>
-      Senior cloud engineer based in the UK. I write about infrastructure, platform engineering,
+      Cloud engineer based in the UK. I write about infrastructure, platform engineering,
       and the real lessons from building and operating systems at scale.
     </p>
     <div class="about-social">
@@ -274,13 +274,14 @@ background: "aurora"
 <p class="about-section-label">A bit about me</p>
 <div class="about-bio">
   <p>
-    I'm a Senior Azure Engineer with a background in systems and infrastructure engineering.
-    I've spent the last several years helping organisations move to — and operate well in — the cloud,
-    with a particular focus on platform engineering, IaC, and making the lives of developers easier.
+    I'm Adam 👋 I'm a Cloud Engineer with a background in infrastructure and platform engineering.
+    I've spent the last 4 years focused on Azure, focusing on Infrastructure as Code, DevOps, and 
+    automating all the things!
   </p>
   <p>
-    Outside of work I run a homelab on AMD EPYC hardware, contribute to open source where I can,
-    and write here about things I wish someone had written down when I was learning them.
+    Outside of work you can find me tinkering with my Homelab, centered around an AMD EPYC 7532 system
+    hosting numerous services. Other than that I'll be making patches on my many synthesizers or some other
+    music related escapades.
   </p>
 </div>
 
@@ -288,13 +289,10 @@ background: "aurora"
 <p class="about-section-label">What I write about</p>
 <div class="about-bio">
   <p>
-    My posts tend to fall into a few buckets: deep dives on Azure infrastructure and tooling,
-    thoughts on platform engineering and developer experience, and the occasional post on
-    engineering culture and lessons learned the hard way.
-  </p>
-  <p>
-    I try to write the posts I wish had existed when I was figuring things out myself.
-    No fluff, no sponsored content — just what I actually think.
+    Honestly, if its tech related then you'll probably find it here at some point. But there will be 
+    strong focus on Azure and Infrastructure as Code, as well as tooling and surrounding technology. I want
+    to create the kind of posts that I crave when I'm deep down the rabbit hole trying to work out why that
+    pipeline error just wont go away!
   </p>
 </div>
 
@@ -302,6 +300,14 @@ background: "aurora"
 
 <!-- CAREER TIMELINE -->
 <p class="about-section-label">Career</p>
+
+<div class="about-bio">
+  <p>
+    As mentioned, I'm a cloud engineer by trade. Day to day I mainly deal with Azure landing zones, infrastructure 
+    deployments and ongoing maintenance and improvements of highly secure cloud platforms for both government 
+    and private organizations.
+  </p>
+</div>
 
 <div class="timeline">
 
