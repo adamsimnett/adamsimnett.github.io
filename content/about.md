@@ -320,8 +320,8 @@ background: "aurora"
       </div>
       <div class="tl-title">Cloud Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
-        Leading cloud infrastructure strategy across a multi-region Azure estate.
-        Driving IaC adoption and platform engineering practices across multiple engineering squads.
+        blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank 
+        blank blank blank blank blank blank blank blank blank blank blank blank blank blank
       </p>
       <span class="badge badge-amber">current role</span>
       <div class="tags">
@@ -346,8 +346,8 @@ background: "aurora"
       </div>
       <div class="tl-title">Junior Cloud Support Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
-        Built and maintained production infrastructure for a SaaS platform.
-        First cloud hire — took the company from on-prem to fully cloud native on Azure.
+        blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank 
+        blank blank blank blank blank blank blank blank blank blank blank blank blank blank
       </p>
       <span class="badge badge-blue">first cloud role</span>
       <div class="tags">
