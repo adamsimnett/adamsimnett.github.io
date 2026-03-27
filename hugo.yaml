@@ -51,7 +51,7 @@ params:
   profileMode:
     enabled: true
     title: "Adam Simnett"
-    subtitle: "Azure Engineer · Writer · Builder"
+    subtitle: "Azure Engineer · BLANK · BLANK"
     imageUrl: "/images/headshot.jpg"
     imageWidth: 120
     imageHeight: 120
