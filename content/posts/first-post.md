@@ -17,9 +17,9 @@ Your post content goes here, written in standard Markdown. You can use:
 - *Italic text* like this
 - `inline code` like this
 
-```bash
+```powershell
 # Code blocks with syntax highlighting
-az group create --name myResourceGroup --location uksouth
+Write-Host -ForegroundColor Orange "This is a test"
 ```
 
 Writing posts is as simple as creating a new `.md` file in the `content/posts/` folder, filling in the frontmatter at the top (title, date, tags, description), and writing in Markdown below the `---` line.
