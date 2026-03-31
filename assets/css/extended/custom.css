@@ -94,7 +94,7 @@ html {
     transparent 100%
   );
 
-  animation: floatUp 60s ease-in-out infinite alternate;
+  animation: floatUp 30s ease-in-out infinite alternate;
 }
 
 #down {
@@ -111,8 +111,8 @@ html {
     transparent 100%
   );
 
-  animation: floatDown 70s ease-in-out infinite alternate;
-  animation-delay: 5s;
+  animation: floatDown 35s ease-in-out infinite alternate;
+  animation-delay: 2.5s;
 }
 
 #left {
@@ -129,8 +129,8 @@ html {
     transparent 100%
   );
 
-  animation: floatLeft 65s ease-in-out infinite alternate;
-  animation-delay: 10s;
+  animation: floatLeft 32.5s ease-in-out infinite alternate;
+  animation-delay: 5s;
 }
 
 #right {
@@ -147,8 +147,8 @@ html {
     transparent 100%
   );
 
-  animation: floatRight 75s ease-in-out infinite alternate;
-  animation-delay: 15s;
+  animation: floatRight 37.5s ease-in-out infinite alternate;
+  animation-delay: 7.5s;
 }
 
 /* ================================================
