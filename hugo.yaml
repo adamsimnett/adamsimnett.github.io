@@ -65,13 +65,11 @@ params:
   # Social icons in footer
   socialIcons:
     - name: linkedin
-      url: "https://linkedin.com/in/adamsimnett"
+      url: "https://linkedin.com/in/adam-simnett"
     - name: github
       url: "https://github.com/adamsimnett"
     - name: email
       url: "mailto:asimnett@adamsimnett.com"
-    - name: rss
-      url: "/index.xml"
 
   cover:
     hidden: true
