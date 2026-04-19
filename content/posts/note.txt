@@ -1,0 +1,5 @@
+Generate HTML for signatures
+
+SSLZ, SMBLZ
+
+IaC for Static Site Storage Account

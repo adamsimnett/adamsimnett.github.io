@@ -256,15 +256,15 @@ background: "aurora"
   <img src="/images/headshot.jpg" alt="Your Name" />
   <div class="about-hero-text">
     <h1>Your Name</h1>
-    <p class="role">Cloud Engineer · Builder · Enthusiast</p>
+    <p class="role">Cloud Engineer · Tech Enthusiast</p>
     <p>
-      Cloud engineer based in the UK. I write about infrastructure, platform engineering,
-      and the real lessons from building and operating systems at scale.
+      Cloud engineer based in the UK. I write about cloud infrastructure, homelabing,
+      and the lessons I've learned from working with Azure at scale in the real world.
     </p>
     <div class="about-social">
       <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
       <a href="https://github.com/adamsimnett">github</a>
-      <a href="mailto:you@yourdomain.com">email</a>
+      <a href="mailto:adamsimnett@adamsimnett.com">email</a>
       <a href="/index.xml">rss</a>
     </div>
   </div>
@@ -274,14 +274,12 @@ background: "aurora"
 <p class="about-section-label">A bit about me</p>
 <div class="about-bio">
   <p>
-    I'm Adam 👋 I'm a Cloud Engineer with a background in infrastructure and platform engineering.
-    I've spent the last 4 years focused on Azure, focusing on Infrastructure as Code, DevOps, and 
-    automating all the things!
+    I'm Adam 👋 I'm a Cloud Engineer with a background in infrastructure and platform engineering. I've spent the last 
+    4 years focused on Azure, working on Infrastructure as Code, DevOps, and automating all the things!
   </p>
   <p>
-    Outside of work you can find me tinkering with my Homelab, centered around an AMD EPYC 7532 system
-    hosting numerous services. Other than that I'll be making patches on my many synthesizers or some other
-    music related escapades.
+    Outside of work you can find me tinkering with my Homelab, centered around my hyperconverged server which hosts 
+    numerous services. Other than that I'll be making patches on my many synthesizers or some other music related escapade 🎹
   </p>
 </div>
 
@@ -289,10 +287,9 @@ background: "aurora"
 <p class="about-section-label">What I write about</p>
 <div class="about-bio">
   <p>
-    Honestly, if its tech related then you'll probably find it here at some point. But there will be 
-    strong focus on Azure and Infrastructure as Code, as well as tooling and surrounding technology. I want
-    to create the kind of posts that I crave when I'm deep down the rabbit hole trying to work out why that
-    pipeline error just wont go away!
+    Honestly, if its tech related then you'll probably find it here at some point. But there will be strong focus on Azure and 
+    Infrastructure as Code, as well as tooling and surrounding technology. There's also going to be content around "Homelabbing"
+    and why I still think its incredibly benneficial, even in an ever cloud centric world!
   </p>
 </div>
 
@@ -303,8 +300,8 @@ background: "aurora"
 
 <div class="about-bio">
   <p>
-    As mentioned, I'm a cloud engineer by trade. Day to day I mainly deal with Azure landing zones, infrastructure deployments and ongoing maintenance and improvements of highly secure cloud platforms for both government 
-    and private organizations.
+    As mentioned, I'm a cloud engineer by trade. Day to day I mainly deal with Azure infrastructure, landing zone deployments and 
+    ongoing maintenance and improvements of highly secure cloud platforms for both government and private organizations.
   </p>
 </div>
 
@@ -320,10 +317,12 @@ background: "aurora"
       </div>
       <div class="tl-title">Cloud Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
-        blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank 
-        blank blank blank blank blank blank blank blank blank blank blank blank blank blank
+        Delivering end-to-end cloud infrastyructure projects for public and private sector clients, with a 
+        focus on security and automation. Developing infrastructure as code and DevOps pipelines to deploy and
+        maintain these envionmentsm, and growing my skills with Terraform, Bicep and the latest infrasturcutre 
+        technologies and developments.
       </p>
-      <span class="badge badge-amber">current role</span>
+      <span class="badge badge-amber">Current Role</span>
       <div class="tags">
         <span class="tag">Bicep</span>
         <span class="tag">Terraform</span>
@@ -346,10 +345,11 @@ background: "aurora"
       </div>
       <div class="tl-title">Junior Cloud Support Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
-        blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank 
-        blank blank blank blank blank blank blank blank blank blank blank blank blank blank
+        Working across multiple Azure and Microsoft 365 tenancies to support and develop robust cloud baselines
+        for customers. Focusing on technical support and infrastructure deployment, I was able to hone my skills
+        on Azure, and develop Infrastructure as Code and automation processes for both internal and external use
       </p>
-      <span class="badge badge-blue">first cloud role</span>
+      <span class="badge badge-blue">First Cloud Role</span>
       <div class="tags">
         <span class="tag">Azure</span>
         <span class="tag">M365</span>
@@ -373,7 +373,7 @@ background: "aurora"
         Infrastructure and systems support and setup within a varied MSP supporting local and national businesses.
         Managed on-prem Windows, ADDS, Hyper-V and Windows Clusters, alongside consumer hardware and software support
       </p>
-      <span class="badge badge-green">where it started</span>
+      <span class="badge badge-green">Where I Started</span>
       <div class="tags">
         <span class="tag">M365</span>
         <span class="tag">ADDS</span>
