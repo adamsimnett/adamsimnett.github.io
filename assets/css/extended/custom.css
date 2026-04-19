@@ -442,3 +442,12 @@ html {
 #theme-toggle {
   transform: translateY(-1px);
 }
+
+
+
+
+/* About page — full width content */
+.post-single .post-content,
+.post-content {
+  max-width: 100% !important;
+}
