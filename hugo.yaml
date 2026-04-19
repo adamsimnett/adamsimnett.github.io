@@ -68,6 +68,8 @@ params:
       url: "https://linkedin.com/in/adamsimnett"
     - name: github
       url: "https://github.com/adamsimnett"
+    - name: email
+      url: "mailto:asimnett@adamsimnett.com"
     - name: rss
       url: "/index.xml"
 

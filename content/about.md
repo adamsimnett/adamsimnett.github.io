@@ -264,7 +264,7 @@ background: "aurora"
     <div class="about-social">
       <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
       <a href="https://github.com/adamsimnett">github</a>
-      <a href="mailto:adamsimnett@adamsimnett.com">email</a>
+      <a href="mailto:asimnett@adamsimnett.com">email</a>
       <a href="/index.xml">rss</a>
     </div>
   </div>
