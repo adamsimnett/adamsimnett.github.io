@@ -317,7 +317,7 @@ background: "aurora"
       </div>
       <div class="tl-title">Cloud Engineer <span class="at">at LA NET Ltd</span></div>
       <p class="tl-desc">
-        Delivering end-to-end cloud infrastyructure projects for public and private sector clients, with a 
+        Delivering end-to-end cloud infrastructure projects for public and private sector clients, with a 
         focus on security and automation. Developing infrastructure as code and DevOps pipelines to deploy and
         maintain these envionmentsm, and growing my skills with Terraform, Bicep and the latest infrasturcutre 
         technologies and developments.
