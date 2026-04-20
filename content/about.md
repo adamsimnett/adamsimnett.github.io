@@ -253,7 +253,7 @@ background: "aurora"
 
 <!-- HERO -->
 <div class="about-hero">
-  <img src="/images/headshot.jpg" alt="Your Name" />
+  <img src="/images/headshot.jpg" alt="Adam Simnett" />
   <div class="about-hero-text">
     <h1>Your Name</h1>
     <p class="role">Cloud Engineer · Tech Enthusiast</p>
