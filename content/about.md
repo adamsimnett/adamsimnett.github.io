@@ -293,7 +293,7 @@ background: "aurora"
   </p>
 </div>
 
-<div class="about-divider"></div>
+<!-- <div class="about-divider"></div> -->
 
 <!-- CAREER TIMELINE -->
 <p class="about-section-label">Career</p>
