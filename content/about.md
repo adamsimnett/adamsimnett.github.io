@@ -255,7 +255,7 @@ background: "aurora"
 <div class="about-hero">
   <img src="/images/headshot.jpg" alt="Adam Simnett" />
   <div class="about-hero-text">
-    <h1>Your Name</h1>
+    <h1>Adam Simnett</h1>
     <p class="role">Cloud Engineer · Tech Enthusiast</p>
     <p>
       Cloud engineer based in the UK. I write about cloud infrastructure, homelabing,
