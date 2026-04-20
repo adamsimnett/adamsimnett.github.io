@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "AdamSimnett",
+  "short_name": "AS",
   "icons": [
     {
       "src": "/static/web-app-manifest-192x192.png",
