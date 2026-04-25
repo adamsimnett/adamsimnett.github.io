@@ -17,6 +17,13 @@ background: "aurora"
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
+.about-hero {
+  background: rgba(13, 13, 12, 0.3);
+  backdrop-filter: blur(2px);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
 .about-hero img {
   width: 90px;
   height: 90px;
