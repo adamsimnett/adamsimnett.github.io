@@ -48,12 +48,6 @@ background: "aurora"
   max-width: 520px;
 }
 
-.about-social {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
 .about-social a {
   font-size: 12px;
   font-family: monospace;
@@ -260,20 +254,11 @@ background: "aurora"
       Cloud engineer based in the UK. I write about cloud infrastructure, homelabing,
       and the lessons I've learned from working with Azure at scale in the real world.
     </p>
-    <div class="home-btn">
-      <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
-      <!-- <a href="https://github.com/adamsimnett">github</a>
-      <a href="mailto:asimnett@adamsimnett.com">email</a>
-      <a href="/index.xml">rss</a> -->
-    </div>
-    <div class="home-btn">
-      <a href="https://github.com/adamsimnett">github</a>
-    </div>
-    <div class="home-btn">
-      <a href="mailto:asimnett@adamsimnett.com">email</a>
-    </div>
-    <div class="home-btn">
-      <a href="/index.xml">rss</a>
+    <div class="home-buttons">
+      <a class="home-btn" href="https://linkedin.com/in/adam-simnett">linkedin</a>
+      <a class="home-btn" href="https://github.com/adamsimnett">github</a>
+      <a class="home-btn" href="mailto:asimnett@adamsimnett.com">email</a>
+      <a class="home-btn" href="/index.xml">rss</a>
     </div>
   </div>
 </div>
