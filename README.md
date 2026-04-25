@@ -12,7 +12,7 @@ content/about.md
 
 Content for the about page, with brief personal descriptions and career map
 
-### 2. <post>.md
+### 2. posts.md
 
 content/posts/POSTNAME.md
 
