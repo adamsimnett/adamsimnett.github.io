@@ -251,7 +251,6 @@ background: "aurora"
 }
 </style>
 
-<!-- HERO -->
 <div class="about-hero">
   <img src="/images/headshot.jpg" alt="Adam Simnett" />
   <div class="about-hero-text">
@@ -261,7 +260,7 @@ background: "aurora"
       Cloud engineer based in the UK. I write about cloud infrastructure, homelabing,
       and the lessons I've learned from working with Azure at scale in the real world.
     </p>
-    <div class="about-social">
+    <div class="home-btn">
       <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
       <a href="https://github.com/adamsimnett">github</a>
       <a href="mailto:asimnett@adamsimnett.com">email</a>
@@ -270,7 +269,6 @@ background: "aurora"
   </div>
 </div>
 
-<!-- BIO -->
 <p class="about-section-label">A bit about me</p>
 <div class="about-bio">
   <p>
@@ -283,7 +281,6 @@ background: "aurora"
   </p>
 </div>
 
-<!-- WHAT I WRITE ABOUT -->
 <p class="about-section-label">What I write about</p>
 <div class="about-bio">
   <p>
@@ -293,9 +290,7 @@ background: "aurora"
   </p>
 </div>
 
-<!-- <div class="about-divider"></div> -->
-
-<!-- CAREER TIMELINE -->
+<!-- Timeline -->
 <p class="about-section-label">Career</p>
 
 <div class="about-bio">
@@ -307,7 +302,6 @@ background: "aurora"
 
 <div class="timeline">
 
-  <!-- Role 1 — RIGHT -->
   <div class="tl-item tl-right">
     <div class="tl-dot tl-active"></div>
     <div class="tl-card">
@@ -335,7 +329,6 @@ background: "aurora"
     </div>
   </div>
 
-  <!-- Role 2 — LEFT -->
   <div class="tl-item tl-left">
     <div class="tl-dot"></div>
     <div class="tl-card">
@@ -360,7 +353,6 @@ background: "aurora"
     </div>
   </div>
 
-  <!-- Role 3 — RIGHT -->
   <div class="tl-item tl-right">
     <div class="tl-dot"></div>
     <div class="tl-card">

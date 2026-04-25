@@ -1,6 +1,6 @@
 # adamsimnett.com
 
-Hugo + PaperMod static site, with custom theming
+Hugo + PaperMod static site with custom theming
 
 ---
 
