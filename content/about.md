@@ -235,7 +235,7 @@ background: "aurora"
   font-size: 15px;
   color: rgba(255,255,255,0.6);
   line-height: 1.75;
-  max-width: 680px;
+  max-width: fit-content;
 }
 
 .about-bio p { margin-bottom: 1rem; }

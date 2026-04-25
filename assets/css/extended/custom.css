@@ -403,7 +403,7 @@ footer.footer {
 }
 /* .about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; } */
 .post-content { max-width: 100% !important; width: 100% !important; }
-.about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; max-width: fit-content;}
+.about-bio, .about-bio p { color: var(--t2) !important; line-height: 1.75 !important; }
 .about-hero-text h1 { color: var(--t1) !important; font-size: 2.2rem !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
 .about-hero-text .role { color: var(--t3) !important; font-size: 14px !important; }
 .about-hero-text p   { color: var(--t2) !important; }
