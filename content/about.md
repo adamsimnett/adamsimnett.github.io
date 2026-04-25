@@ -262,8 +262,17 @@ background: "aurora"
     </p>
     <div class="home-btn">
       <a href="https://linkedin.com/in/adam-simnett">linkedin</a>
-      <a href="https://github.com/adamsimnett">github</a>
+      <!-- <a href="https://github.com/adamsimnett">github</a>
       <a href="mailto:asimnett@adamsimnett.com">email</a>
+      <a href="/index.xml">rss</a> -->
+    </div>
+    <div class="home-btn">
+      <a href="https://github.com/adamsimnett">github</a>
+    </div>
+    <div class="home-btn">
+      <a href="mailto:asimnett@adamsimnett.com">email</a>
+    </div>
+    <div class="home-btn">
       <a href="/index.xml">rss</a>
     </div>
   </div>
