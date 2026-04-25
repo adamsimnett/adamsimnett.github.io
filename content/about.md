@@ -48,6 +48,16 @@ background: "aurora"
   max-width: 520px;
 }
 
+.about-hero-text .home-buttons {
+  justify-content: flex-start;
+}
+
+/* .about-social {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .about-social a {
   font-size: 12px;
   font-family: monospace;
@@ -62,7 +72,7 @@ background: "aurora"
 .about-social a:hover {
   color: #f59e0b;
   border-color: rgba(217,119,6,0.4);
-}
+} */
 
 /* ---- Section label ---- */
 .about-section-label {
