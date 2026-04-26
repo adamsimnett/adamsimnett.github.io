@@ -80,7 +80,7 @@ params:
     hiddenInSingle: true
 
   editPost:
-    URL: "https://github.com/yourusername/yourusername.github.io/tree/main/content"
+    URL: "https://github.com/adamsimnett/adamsimnett.com/tree/main/content"
     Text: "Suggest Changes"
     appendFilePath: true
 
