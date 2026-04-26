@@ -2,7 +2,6 @@
 title: " Blank blank blank blank blank"
 date: 2026-03-15
 draft: false
-# background: "aurora"
 tags: ["azure", "terraform", "iac"]
 description: "Blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank blank"
 ---

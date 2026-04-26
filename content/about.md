@@ -285,7 +285,7 @@ background: "aurora"
   </p>
   <p>
     Outside of work you can find me tinkering with my Homelab, centered around my hyperconverged server which hosts 
-    numerous services. Other than that I'll be making patches on my many synthesizers or some other music related escapade 🎹
+    many services. Other than that I'll be making patches on my many synthesizers or some other music related escapade 🎹
   </p>
 </div>
 
